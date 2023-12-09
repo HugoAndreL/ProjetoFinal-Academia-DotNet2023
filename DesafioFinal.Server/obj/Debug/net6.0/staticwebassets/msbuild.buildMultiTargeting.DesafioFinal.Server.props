@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DesafioFinal.Server.props" />
+</Project>
