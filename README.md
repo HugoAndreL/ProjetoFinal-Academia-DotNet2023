@@ -12,9 +12,14 @@ Este projeto visa desenvolver um sistema robusto de gerenciamento de senhas para
 5. **Cronometragem:** Mostrar o tempo de espera em formato hh:mm:ss.
 
 ## Tecnologias Utilizadas:
-- **Back-end:** Desenvolvimento de *API Web* utilizando **ASP.NET**.
-- **Documentação:** Elaboração da documentação da *API* com o uso do **Swagger**.
-- **Front-end:** *Interface do usuário* desenvolvida com **Angular**.
+- **Back-end:** ASP.NET CORE
+  -  Utilizado para construir a *API* do sistema, oferecendo um backend robusto e escalável.
+- **Entity Framework Core:** Abordagem Code First
+  - Utilizado para modelar o *banco de dados* de forma ágil e intuitiva, permitindo que a estrutura do banco de dados seja gerada a partir das classes de modelo definidas no código.
+- **Front-end:** Angular
+  - *Interface do usuário* desenvolvida com **Angular**.
+- **Banco de Dados:** SQL Server
+  - Sistema de gerenciamento de banco de dados relacional para armazenamento e recuperação eficiente de dados.
 
 ## Status do Projeto:
 - **[ ]** Vídeo de Demonstração: *A gravação está pendente e será disponibilizada em breve*.
