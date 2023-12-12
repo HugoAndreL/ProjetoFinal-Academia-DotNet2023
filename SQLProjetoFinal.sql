@@ -1,6 +1,6 @@
-CREATE DATABASE [Hospitalar_senhas];
+CREATE DATABASE [HospitalDB];
 
-USE [Hospitalar_senhas];
+USE [HospitalDB];
 
 CREATE LOGIN [HospitalAdmin] WITH PASSWORD = 'admin';
 
