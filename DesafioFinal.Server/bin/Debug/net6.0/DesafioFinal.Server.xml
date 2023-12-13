@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DesafioFinal.Server</name>
+    </assembly>
+    <members>
+        <member name="M:DesafioFinal.Server.Controllers.AdminController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
+            <summary>
+                Cadastra um novo usuário
+            </summary>
+            <param name="user">Usuário a ser adicionado</param>
+            <returns>Usuário adicionado</returns>
+            <response code="201">Criado com Sucesso</response>
+            <response code="400">Erro ao efetuar o cadastro</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.AdminController.SelecionarUsuario(System.Int32)">
+            <summary>
+                Seleciona o usuário através de seu numero de identificação
+            </summary>
+            <param name="id">Numero de identificação da pessoa a ser selecionada</param>
+            <returns>Usuário selecionado</returns>
+            <response code="200">Usuário retornado com sucesso</response>
+            <response code="404">Erro ao selecionar o usuário</response>
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
