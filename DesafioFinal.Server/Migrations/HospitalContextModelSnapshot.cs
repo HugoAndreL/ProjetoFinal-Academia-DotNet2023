@@ -48,7 +48,6 @@ namespace DesafioFinal.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CargoId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -70,9 +69,7 @@ namespace DesafioFinal.Server.Migrations
                 {
                     b.HasOne("DesafioFinal.Server.Models.Cargos", "Cargo")
                         .WithMany("Usuarios")
-                        .HasForeignKey("CargoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CargoId");
 
                     b.Navigation("Cargo");
                 });

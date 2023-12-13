@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioFinal.Server.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20231213000044_Initial")]
+    [Migration("20231213154704_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -51,7 +51,6 @@ namespace DesafioFinal.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CargoId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -73,9 +72,7 @@ namespace DesafioFinal.Server.Migrations
                 {
                     b.HasOne("DesafioFinal.Server.Models.Cargos", "Cargo")
                         .WithMany("Usuarios")
-                        .HasForeignKey("CargoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CargoId");
 
                     b.Navigation("Cargo");
                 });

@@ -15,6 +15,9 @@ namespace DesafioFinal.Server.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Usuario>()
+                .Ignore(user => user.Cargo);
+
+            builder.Entity<Usuario>()
                 .HasOne(s => s.Cargo)
                 .WithMany(h => h.Usuarios)
                 .HasForeignKey(s => s.CargoId);

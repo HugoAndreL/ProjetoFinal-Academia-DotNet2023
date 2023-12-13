@@ -1,6 +1,8 @@
-﻿using DesafioFinal.Server.Data;
+﻿using AutoMapper;
+using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DesafioFinal.Server.Controllers
 {
@@ -9,10 +11,12 @@ namespace DesafioFinal.Server.Controllers
     public class AdminController : ControllerBase
     {
         private readonly HospitalContext _context;
+        private readonly IMapper _mapper;
 
-        public AdminController(HospitalContext context)
+        public AdminController(HospitalContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -30,11 +34,13 @@ namespace DesafioFinal.Server.Controllers
             {
                 _context.Usuarios.Add(user);
                 _context.SaveChanges();
-                return CreatedAtAction(nameof(SelecionarUsuario), new { id = user.Id }, user);
+                return CreatedAtAction(nameof(SelecionarUsuario),
+                    new { id = user.Id }, user);
             }
             catch (Exception ex)
             {
-                return BadRequest("Ocorreu um erro ao tentar efetuar a adição do usuário. Error: " + ex.Message);
+                return BadRequest("Ocorreu um erro ao tentar efetuar o cadastro do usuário. Error:\n\t" + 
+                    ex.Message);
             }
         }
 
@@ -49,12 +55,20 @@ namespace DesafioFinal.Server.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult SelecionarUsuario([FromRoute] int id)
         {
-            Usuario user = _context.Usuarios.FirstOrDefault(u => u.Id == id);
-            if (user != null)
-                return Ok(user);
-            return NotFound("Esse usuário não existe! Tente Novamente.");
+            Usuario user = _context.Usuarios
+                .Where(user => user.CargoId == user.CargoId)
+                .Include(user => user.Cargo)   
+                .FirstOrDefault(user => user.Id == id);
+            return user != null ? Ok(user) : NotFound("Esse usuário não existe! Tente Novamente.");
         }
 
+        /// <summary>
+        ///     Adiciona um novo cargo
+        /// </summary>
+        /// <param name="cargo">Cargo a ser adicionado</param>
+        /// <returns>Cargo adicionado</returns>
+        /// <response code="201">Cargo criado com sucesso</response>
+        /// <response code="400">Erro ao efetuar a adição</response>
         [HttpPost("AdicionarCargo")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult AdicionarCargo([FromBody] Cargos cargo)
@@ -63,22 +77,31 @@ namespace DesafioFinal.Server.Controllers
             {
                 _context.Cargos.Add(cargo);
                 _context.SaveChanges();
-                return CreatedAtAction(nameof(SelecionarCargo), new { num = cargo.Numero }, cargo);
+                return CreatedAtAction(nameof(SelecionarCargo),
+                    new { num = cargo.Numero }, cargo);
             }
             catch (Exception ex)
             {
-                return BadRequest("Ocorreu um erro ao tentar efetuar a adição do usuário. Error: " + ex.Message);
+                return BadRequest("Ocorreu um erro ao tentar efetuar a adição do cargo. Error:\n\t" +
+                    ex.Message);
             }
         }
 
+        /// <summary>
+        ///     Seleciona o cargo
+        /// </summary>
+        /// <param name="num">Número do cargo especificado</param>
+        /// <returns>O cargo com o número correspondente</returns>
+        /// <response code="200">Cargo retornado com sucesso</response>
+        /// <response code="404">Cargo não encontrado</response>
         [HttpGet("SelecionarCargo/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult SelecionarCargo([FromRoute] int num)
         {
-            Cargos cargo = _context.Cargos.FirstOrDefault(c => c.Numero == num);
-            if (cargo != null)
-                return Ok(cargo);
-            return NotFound("Esse cargo não existe! Tente Novamente.");
+            Cargos cargo = _context.Cargos
+                .Include(cargo => cargo.Usuarios)
+                .FirstOrDefault(cargo => cargo.Numero == num);
+            return cargo != null ? Ok(cargo) : NotFound("Esse cargo não existe! Tente Novamente.");
         }
     }
 }

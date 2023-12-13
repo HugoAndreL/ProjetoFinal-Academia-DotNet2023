@@ -22,6 +22,24 @@
             <response code="200">Usuário retornado com sucesso</response>
             <response code="404">Erro ao selecionar o usuário</response>
         </member>
+        <member name="M:DesafioFinal.Server.Controllers.AdminController.AdicionarCargo(DesafioFinal.Server.Models.Cargos)">
+            <summary>
+                Adiciona um novo cargo
+            </summary>
+            <param name="cargo">Cargo a ser adicionado</param>
+            <returns>Cargo adicionado</returns>
+            <response code="201">Cargo criado com sucesso</response>
+            <response code="400">Erro ao efetuar a adição</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.AdminController.SelecionarCargo(System.Int32)">
+            <summary>
+                Seleciona o cargo
+            </summary>
+            <param name="num">Número do cargo especificado</param>
+            <returns>O cargo com o número correspondente</returns>
+            <response code="200">Cargo retornado com sucesso</response>
+            <response code="404">Cargo não encontrado</response>
+        </member>
         <member name="T:DesafioFinal.Server.Migrations.Initial">
             <inheritdoc />
         </member>

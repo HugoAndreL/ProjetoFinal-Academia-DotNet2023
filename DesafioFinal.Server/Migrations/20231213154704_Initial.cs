@@ -31,7 +31,7 @@ namespace DesafioFinal.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(80)", nullable: false),
-                    CargoId = table.Column<int>(type: "int", nullable: false)
+                    CargoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -40,8 +40,7 @@ namespace DesafioFinal.Server.Migrations
                         name: "FK_Usuarios_Cargos_CargoId",
                         column: x => x.CargoId,
                         principalTable: "Cargos",
-                        principalColumn: "Numero",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Numero");
                 });
 
             migrationBuilder.CreateIndex(

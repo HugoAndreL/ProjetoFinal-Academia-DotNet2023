@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
@@ -14,6 +15,7 @@ namespace DesafioFinal.Server.Models
         public string Nome { get; set; }
 
         [JsonIgnore]
+        [Browsable(false)]
         public virtual ICollection<Usuario>? Usuarios { get; set; }
     }
 }
