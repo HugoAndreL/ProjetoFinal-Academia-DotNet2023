@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Senhas do hospital
+    /// </summary>
     public class Senhas
     {
         [Key]

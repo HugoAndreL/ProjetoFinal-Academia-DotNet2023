@@ -5,6 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Trabalhadores (Atendentes, Enfermeiros(as), Médicos(as)) do hospital em questão
+    /// </summary>
     public class Usuario
     {
         [Key]

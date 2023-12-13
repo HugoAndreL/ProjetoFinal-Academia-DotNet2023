@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Cargos do hospital em questão
+    /// </summary>
     public class Cargos
     {
         [Key]

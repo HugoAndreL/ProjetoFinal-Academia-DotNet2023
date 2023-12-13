@@ -4,25 +4,7 @@
         <name>DesafioFinal.Server</name>
     </assembly>
     <members>
-        <member name="M:DesafioFinal.Server.Controllers.AdminController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
-            <summary>
-                Cadastra um novo usuário
-            </summary>
-            <param name="user">Usuário a ser adicionado</param>
-            <returns>Usuário adicionado</returns>
-            <response code="201">Criado com Sucesso</response>
-            <response code="400">Erro ao efetuar o cadastro</response>
-        </member>
-        <member name="M:DesafioFinal.Server.Controllers.AdminController.SelecionarUsuario(System.Int32)">
-            <summary>
-                Seleciona o usuário através de seu numero de identificação
-            </summary>
-            <param name="id">Numero de identificação da pessoa a ser selecionada</param>
-            <returns>Usuário selecionado</returns>
-            <response code="200">Usuário retornado com sucesso</response>
-            <response code="404">Erro ao selecionar o usuário</response>
-        </member>
-        <member name="M:DesafioFinal.Server.Controllers.AdminController.AdicionarCargo(DesafioFinal.Server.Models.Cargos)">
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.AdicionarCargo(DesafioFinal.Server.Models.Cargos)">
             <summary>
                 Adiciona um novo cargo
             </summary>
@@ -31,7 +13,7 @@
             <response code="201">Cargo criado com sucesso</response>
             <response code="400">Erro ao efetuar a adição</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.AdminController.SelecionarCargo(System.Int32)">
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.SelecionarCargo(System.Int32)">
             <summary>
                 Seleciona o cargo
             </summary>
@@ -39,6 +21,52 @@
             <returns>O cargo com o número correspondente</returns>
             <response code="200">Cargo retornado com sucesso</response>
             <response code="404">Cargo não encontrado</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
+            <summary>
+                Cadastra um novo usuário
+            </summary>
+            <param name="user">Usuário a ser adicionado</param>
+            <returns>Usuário adicionado</returns>
+            <response code="201">Criado com Sucesso!</response>
+            <response code="400">Erro ao efetuar o cadastro!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.ExibirUsuarios">
+            <summary>
+                Exibe todos os usuários cadastrados
+            </summary>
+            <returns>Lista de usuários</returns>
+            <response code="200">Sucesso!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.SelecionarUsuario(System.Int32)">
+            <summary>
+                Seleciona o usuário através de seu numero de identificação
+            </summary>
+            <param name="id">Numero de identificação da pessoa a ser selecionada</param>
+            <returns>Usuário selecionado</returns>
+            <response code="200">Usuário retornado com sucesso!</response>
+            <response code="404">Erro ao selecionar o usuário!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Usuario)">
+            <summary>
+                Altera o usuário através de seu numero de identificação
+            </summary>
+            <param name="id">Indetificador do Usuário a ser alterado</param>
+            <param name="usuario">Usuário alterado</param>
+            <returns>Nada</returns>
+            <response code="404">Identificador não encontrado!</response>
+            <response code="204">Alterado com sucesso!</response>
+            <response code="400">Erro ao efetuar a alteração!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.RemoveUsuario(System.Int32)">
+            <summary>
+                Remove o usuário (Guarda o resultado em outra tabela)
+            </summary>
+            <param name="id">Identificador do usuário</param>
+            <returns>Nada</returns>
+            <response code="404">Identificador não encontrado!</response>
+            <response code="204">Removido com sucesso!</response>
+            <response code="400">Erro ao efetuar a exclusão!</response>
         </member>
         <member name="T:DesafioFinal.Server.Migrations.Initial">
             <inheritdoc />
@@ -51,6 +79,21 @@
         </member>
         <member name="M:DesafioFinal.Server.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Models.Cargos">
+            <summary>
+                Cargos do hospital em questão
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.Senhas">
+            <summary>
+                Senhas do hospital
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.Usuario">
+            <summary>
+                Trabalhadores (Atendentes, Enfermeiros(as), Médicos(as)) do hospital em questão
+            </summary>
         </member>
     </members>
 </doc>
