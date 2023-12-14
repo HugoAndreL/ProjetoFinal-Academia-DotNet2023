@@ -94,5 +94,3 @@ C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\Microsoft.AspNetC
 C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\DesafioFinal.Server.xml
 C:\workspace\DesafioFinal\DesafioFinal.Server\obj\Debug\net6.0\DesafioFinal.Server.xml
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\AutoMapper.dll
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

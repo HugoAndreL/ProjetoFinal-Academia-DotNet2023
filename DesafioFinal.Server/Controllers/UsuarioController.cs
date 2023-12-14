@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using DesafioFinal.Server.Data;
+﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +10,10 @@ namespace DesafioFinal.Server.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly HospitalContext _context;
-        private readonly IMapper _mapper;
 
-        public UsuarioController(HospitalContext context, IMapper mapper)
+        public UsuarioController(HospitalContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -77,7 +74,7 @@ namespace DesafioFinal.Server.Controllers
         {
             Usuario user = await _context.Usuarios
                 .AsNoTracking()
-                .Include(user => user.Cargo)   
+                .Include(user => user.Cargo)
                 .FirstOrDefaultAsync(user => user.Id == id);
             return user != null ? Ok(user) : NotFound("Esse usuário não existe! Tente Novamente.");
         }
@@ -86,28 +83,29 @@ namespace DesafioFinal.Server.Controllers
         ///     Altera o usuário através de seu numero de identificação
         /// </summary>
         /// <param name="id">Indetificador do Usuário a ser alterado</param>
-        /// <param name="usuario">Usuário alterado</param>
+        /// <param name="input">Usuário a ser alterado</param>
         /// <returns>Nada</returns>
         /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> EditarUsuario([FromRoute] int id, [FromBody] Usuario usuario)
+        public async Task<IActionResult> EditarUsuario([FromRoute] int id, [FromBody] Usuario input)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Ocorreu um erro ao tentar efetuar a alteração do usuário.");
 
-            var user = await _context.Usuarios.FirstOrDefaultAsync(user => user.Id == id);
+            Usuario user = await _context.Usuarios
+                .AsNoTracking()
+                .FirstOrDefaultAsync(user => user.Id == id);
 
             if (user != null)
             {
                 try
                 {
-                    // Mapeando de maneira rapida usando automapper
-                    user.Nome = usuario.Nome;
-                    user.Email = usuario.Email;
-                    user.CargoId = usuario.CargoId;
+                    user.Nome = input.Nome;
+                    user.Email = input.Email;
+                    user.CargoId = input.CargoId;
 
                     _context.Usuarios.Update(user);
                     await _context.SaveChangesAsync();
@@ -115,29 +113,31 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar o cadastro do usuário.\n" +
+                    return BadRequest("Ocorreu um erro interno ao tentar efetuar a alteração do usuário.\n" +
                         "Erro:\n\t" + ex.Message);
                 }
             }
-            return NotFound("Pessoa não encontrada!");
+            return NotFound("Usuário não encontrado!");
         }
 
         /// <summary>
-        ///     Remove o usuário (Guarda o resultado em outra tabela)
+        ///     Desativa o usuário (Guarda o resultado em outra tabela)
         /// </summary>
         /// <param name="id">Identificador do usuário</param>
         /// <returns>Nada</returns>
         /// <response code="404">Identificador não encontrado!</response>
-        /// <response code="204">Removido com sucesso!</response>
-        /// <response code="400">Erro ao efetuar a exclusão!</response>
+        /// <response code="204">Desativdo com sucesso!</response>
+        /// <response code="400">Erro ao efetuar a dasativação!</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> RemoveUsuario([FromRoute] int id)
+        public async Task<IActionResult> DesativarUsuario([FromRoute] int id)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a exclusão do usuário.");
+                return BadRequest("Ocorreu um erro ao tentar efetuar a desativação do usuário.");
 
-            Usuario user = await _context.Usuarios.FirstOrDefaultAsync(user => user.Id == id);
+            Usuario user = await _context.Usuarios
+                .AsNoTracking()
+                .FirstOrDefaultAsync(user => user.Id == id);
 
             if (user != null)
             {

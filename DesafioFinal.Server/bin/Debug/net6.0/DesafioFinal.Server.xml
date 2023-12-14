@@ -13,14 +13,42 @@
             <response code="201">Cargo criado com sucesso</response>
             <response code="400">Erro ao efetuar a adição</response>
         </member>
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.ExibirCargo">
+            <summary>
+                Exibe todos os cargos adicionados
+            </summary>
+            <returns>Lista de cargos</returns>
+            <response code="200">Sucesso!</response>
+        </member>
         <member name="M:DesafioFinal.Server.Controllers.CargosController.SelecionarCargo(System.Int32)">
             <summary>
-                Seleciona o cargo
+                Seleciona o cargo adicionado
             </summary>
-            <param name="num">Número do cargo especificado</param>
-            <returns>O cargo com o número correspondente</returns>
-            <response code="200">Cargo retornado com sucesso</response>
-            <response code="404">Cargo não encontrado</response>
+            <param name="num">Número de identificação do cargo</param>
+            <returns>Cargo selecionado</returns>
+            <response code="200">Cargo selcionado com sucesso!</response>
+            <response code="404">Cargo não encontrado!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Cargos)">
+            <summary>
+                Altera o cargo através de seu numero de identificação
+            </summary>
+            <param name="num">Número de indetificação do cargo a ser alterado</param>
+            <param name="input">Cargo a ser alterado</param>
+            <returns>Nada</returns>
+            <response code="404">Identificador não encontrado!</response>
+            <response code="204">Alterado com sucesso!</response>
+            <response code="400">Erro ao efetuar a alteração!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.DesativarCargo(System.Int32)">
+            <summary>
+                Desativa o cargo (Guarda o resultado em outra tabela)
+            </summary>
+            <param name="num">Número de identificador do cargo</param>
+            <returns>Nada</returns>
+            <response code="404">Número de identificação não encontrado!</response>
+            <response code="204">Desativdo com sucesso!</response>
+            <response code="400">Erro ao efetuar a dasativação!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.UsuarioController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
             <summary>
@@ -52,21 +80,21 @@
                 Altera o usuário através de seu numero de identificação
             </summary>
             <param name="id">Indetificador do Usuário a ser alterado</param>
-            <param name="usuario">Usuário alterado</param>
+            <param name="input">Usuário a ser alterado</param>
             <returns>Nada</returns>
             <response code="404">Identificador não encontrado!</response>
             <response code="204">Alterado com sucesso!</response>
             <response code="400">Erro ao efetuar a alteração!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.RemoveUsuario(System.Int32)">
+        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.DesativarUsuario(System.Int32)">
             <summary>
-                Remove o usuário (Guarda o resultado em outra tabela)
+                Desativa o usuário (Guarda o resultado em outra tabela)
             </summary>
             <param name="id">Identificador do usuário</param>
             <returns>Nada</returns>
             <response code="404">Identificador não encontrado!</response>
-            <response code="204">Removido com sucesso!</response>
-            <response code="400">Erro ao efetuar a exclusão!</response>
+            <response code="204">Desativdo com sucesso!</response>
+            <response code="400">Erro ao efetuar a dasativação!</response>
         </member>
         <member name="T:DesafioFinal.Server.Migrations.Initial">
             <inheritdoc />
