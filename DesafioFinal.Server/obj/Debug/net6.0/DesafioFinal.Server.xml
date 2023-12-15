@@ -4,7 +4,7 @@
         <name>DesafioFinal.Server</name>
     </assembly>
     <members>
-        <member name="M:DesafioFinal.Server.Controllers.CargosController.AdicionarCargo(DesafioFinal.Server.Models.Cargos)">
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.AdicionarCargo(DesafioFinal.Server.Models.Cargo)">
             <summary>
                 Adiciona um novo cargo
             </summary>
@@ -29,7 +29,7 @@
             <response code="200">Cargo selcionado com sucesso!</response>
             <response code="404">Cargo não encontrado!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.CargosController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Cargos)">
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Cargo)">
             <summary>
                 Altera o cargo através de seu numero de identificação
             </summary>
@@ -47,6 +47,66 @@
             <param name="num">Número de identificador do cargo</param>
             <returns>Nada</returns>
             <response code="404">Número de identificação não encontrado!</response>
+            <response code="204">Desativdo com sucesso!</response>
+            <response code="400">Erro ao efetuar a dasativação!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.HistoricosController.ExibirHistoricoUsuarios">
+            <summary>
+                Exibe todos os usuário que foram desativados
+            </summary>
+            <returns>Lista de usuários desativados</returns>
+            <response code="200">Sucesso!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.HistoricosController.ExibirHistoricoCargos">
+            <summary>
+                Exibe todos os cargos que foram desativados
+            </summary>
+            <returns>Lista de cargos desativados</returns>
+            <response code="200">Sucesso!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.AdicionarTipoAreaAtendimento(DesafioFinal.Server.Models.TipoAreaAtendimento)">
+            <summary>
+                Cadastra um novo tipo de área de atendimento
+            </summary>
+            <param name="taa">Tipo de área de atendimento a ser adicionado</param>
+            <returns>Tipo de área de atendimento adicionado</returns>
+            <response code="201">Criado com Sucesso!</response>
+            <response code="400">Erro ao efetuar o cadastro!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.ExibirUsuarios">
+            <summary>
+                Exibe todos os tipos de áreas de atendimento adicionados
+            </summary>
+            <returns>Lista de tipos de áreas de atendimento</returns>
+            <response code="200">Sucesso!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.SelecionarTipoAreaAtendimento(System.Int32)">
+            <summary>
+                Seleciona o tipo de área de atendimento através de seu código
+            </summary>
+            <param name="cod">Código do tipo de área de atendimento a ser selecionada</param>
+            <returns>Tipo de área de atendimento selecionado</returns>
+            <response code="200">Tipo de área de atendimento retornado com sucesso!</response>
+            <response code="404">Código não encontrado!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.EditarTipoAreaAtendimento(System.Int32,DesafioFinal.Server.Models.TipoAreaAtendimento)">
+            <summary>
+                Altera o tipo de área de atendimento através de seu código
+            </summary>
+            <param name="cod">Código do tipo de área de atendimento a ser alterado</param>
+            <param name="input">Tipo de área de atendimento a ser alterado</param>
+            <returns>Nada</returns>
+            <response code="404">Código não encontrado!</response>
+            <response code="204">Alterado com sucesso!</response>
+            <response code="400">Erro ao efetuar a alteração!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.DesativarTipoAreaAtendimento(System.Int32)">
+            <summary>
+                Desativa o Tipo de área de atendimento
+            </summary>
+            <param name="cod">Código do Tipo de área de atendimento</param>
+            <returns>Nada</returns>
+            <response code="404">Código não encontrado!</response>
             <response code="204">Desativdo com sucesso!</response>
             <response code="400">Erro ao efetuar a dasativação!</response>
         </member>
@@ -108,12 +168,48 @@
         <member name="M:DesafioFinal.Server.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:DesafioFinal.Server.Models.Cargos">
+        <member name="T:DesafioFinal.Server.Migrations.HistoricoUsuario">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoUsuario.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoUsuario.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoUsuario.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.HistoricoCargo">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoCargo.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoCargo.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoCargo.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.TipoAreaAtendimento">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.TipoAreaAtendimento.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.TipoAreaAtendimento.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.TipoAreaAtendimento.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Models.Cargo">
             <summary>
                 Cargos do hospital em questão
             </summary>
         </member>
-        <member name="T:DesafioFinal.Server.Models.Senhas">
+        <member name="T:DesafioFinal.Server.Models.Senha">
             <summary>
                 Senhas do hospital
             </summary>

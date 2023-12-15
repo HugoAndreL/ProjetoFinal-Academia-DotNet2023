@@ -1,5 +1,6 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,7 +27,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="400">Erro ao efetuar a adição</response>
         [HttpPost("AdicionarCargo")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> AdicionarCargo([FromBody] Cargos cargo)
+        public async Task<IActionResult> AdicionarCargo([FromBody] Cargo cargo)
         {
             try
             {
@@ -42,7 +43,6 @@ namespace DesafioFinal.Server.Controllers
             }
         }
 
-
         /// <summary>
         ///     Exibe todos os cargos adicionados
         /// </summary>
@@ -52,7 +52,7 @@ namespace DesafioFinal.Server.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ExibirCargo()
         {
-            List<Cargos> lstCargos = await _context.Cargos
+            List<Cargo> lstCargos = await _context.Cargos
                 .AsNoTracking()
                 .Include(cargo => cargo.Usuarios)
                 .ToListAsync();
@@ -70,7 +70,7 @@ namespace DesafioFinal.Server.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> SelecionarCargo([FromRoute] int num)
         {
-            Cargos cargo = await _context.Cargos
+            Cargo cargo = await _context.Cargos
                 .Include(cargo => cargo.Usuarios)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cargo => cargo.Numero == num);
@@ -91,12 +91,12 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="400">Erro ao efetuar a alteração!</response>
         [HttpPut("{num}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> EditarUsuario([FromRoute] int num, [FromBody] Cargos input)
+        public async Task<IActionResult> EditarUsuario([FromRoute] int num, [FromBody] Cargo input)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Ocorreu um erro ao tentar efetuar a alteração do cargo.");
 
-            Cargos cargo = await _context.Cargos
+            Cargo cargo = await _context.Cargos
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cargo => cargo.Numero == num);
 
@@ -134,7 +134,7 @@ namespace DesafioFinal.Server.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Ocorreu um erro ao tentar efetuar a desativação do cargo.");
 
-            Cargos cargo = await _context.Cargos
+            Cargo cargo = await _context.Cargos
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cargo => cargo.Numero == num);
 
@@ -142,6 +142,10 @@ namespace DesafioFinal.Server.Controllers
             {
                 try
                 {
+                    _context.HistoricoCargos.AddAsync(new()
+                    {
+                        Nome = cargo.Nome,
+                    });
                     _context.Cargos.Remove(cargo);
                     await _context.SaveChangesAsync();
                     return NoContent();

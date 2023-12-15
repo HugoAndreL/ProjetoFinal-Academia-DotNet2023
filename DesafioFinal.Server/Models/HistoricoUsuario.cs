@@ -1,14 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
-    /// <summary>
-    ///     Trabalhadores (Atendentes, Enfermeiros(as), Médicos(as)) do hospital em questão
-    /// </summary>
-    public class Usuario
+    public class HistoricoUsuario
     {
         [Key]
         [Required]
@@ -22,11 +18,5 @@ namespace DesafioFinal.Server.Models
         [Required(ErrorMessage = "Email é obrigatorio!")]
         [Column(TypeName = "VARCHAR(80)")]
         public string Email { get; set; }
-
-        [JsonIgnore]
-        public int? CargoId { get; set; }
-        [JsonIgnore]
-        [Browsable(false)]
-        public virtual Cargo? Cargo { get; set; }
     }
 }

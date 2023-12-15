@@ -7,7 +7,7 @@ namespace DesafioFinal.Server.Models
     /// <summary>
     ///     Cargos do hospital em questão
     /// </summary>
-    public class Cargos
+    public class Cargo
     {
         [Key]
         [Required]

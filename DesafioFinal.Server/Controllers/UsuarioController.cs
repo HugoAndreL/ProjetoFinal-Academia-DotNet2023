@@ -76,7 +76,7 @@ namespace DesafioFinal.Server.Controllers
                 .AsNoTracking()
                 .Include(user => user.Cargo)
                 .FirstOrDefaultAsync(user => user.Id == id);
-            return user != null ? Ok(user) : NotFound("Esse usuário não existe! Tente Novamente.");
+            return user != null ? Ok(user) : NotFound("Usuário não encontrado!");
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
-        [HttpPut("{id}")]
+        [HttpPut("EditarUsuario/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarUsuario([FromRoute] int id, [FromBody] Usuario input)
         {
@@ -128,7 +128,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
-        [HttpDelete("{id}")]
+        [HttpDelete("DesativarUsuario/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DesativarUsuario([FromRoute] int id)
         {
@@ -143,6 +143,10 @@ namespace DesafioFinal.Server.Controllers
             {
                 try
                 {
+                    _context.HistoricoUsuarios.AddAsync(new()
+                    {
+                        Nome = user.Nome
+                    });
                     _context.Usuarios.Remove(user);
                     await _context.SaveChangesAsync();
                     return NoContent();
@@ -153,7 +157,7 @@ namespace DesafioFinal.Server.Controllers
                         "Erro:\n\t" + ex.Message);
                 }
             }
-            return NotFound("Usuário não encontrada!");
+            return NotFound("Usuário não encontrado!");
         }
     }
 }

@@ -4,6 +4,7 @@ using DesafioFinal.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioFinal.Server.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20231215125041_HistoricoCargo")]
+    partial class HistoricoCargo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,23 +78,6 @@ namespace DesafioFinal.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HistoricoUsuarios");
-                });
-
-            modelBuilder.Entity("DesafioFinal.Server.Models.TipoAreaAtendimento", b =>
-                {
-                    b.Property<int>("COD")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("COD"));
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("COD");
-
-                    b.ToTable("TiposAreasAtendimento");
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Usuario", b =>

@@ -6,13 +6,13 @@ namespace DesafioFinal.Server.Models
     /// <summary>
     ///     Senhas do hospital
     /// </summary>
-    public class Senhas
+    public class Senha
     {
         [Key]
         [Required]
         public int Ordem { get; set; }
 
-        public int Senha { get; set; }
+        public int Numero { get; set; }
         
         [Required]
         [Column(TypeName = "VARCHAR(20)")]
