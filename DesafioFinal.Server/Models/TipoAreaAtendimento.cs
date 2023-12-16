@@ -12,5 +12,8 @@ namespace DesafioFinal.Server.Models
 
         [Required(ErrorMessage = "Nome é obrigatório!")]
         public string Nome { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<AreaAtendimento>? AreasAtendimento { get; set; }
     }
 }

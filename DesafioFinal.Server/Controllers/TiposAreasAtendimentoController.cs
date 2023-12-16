@@ -23,7 +23,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Tipo de área de atendimento adicionado</returns>
         /// <response code="201">Criado com Sucesso!</response>
         /// <response code="400">Erro ao efetuar o cadastro!</response>
-        [HttpPost("CadastrarUsuario")]
+        [HttpPost("Adicionar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AdicionarTipoAreaAtendimento([FromBody] TipoAreaAtendimento taa)
         {
@@ -68,7 +68,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Tipo de área de atendimento selecionado</returns>
         /// <response code="200">Tipo de área de atendimento retornado com sucesso!</response>
         /// <response code="404">Código não encontrado!</response>
-        [HttpGet("SelecionarTipoAreaAtendimento/{cod}")]
+        [HttpGet("Selecionar/{cod}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> SelecionarTipoAreaAtendimento([FromRoute] int cod)
         {
@@ -88,7 +88,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Código não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
-        [HttpPut("AlterarTipoAreaAtendimento/{cod}")]
+        [HttpPut("Alterar/{cod}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarTipoAreaAtendimento([FromRoute] int cod, [FromBody] TipoAreaAtendimento input)
         {
@@ -126,7 +126,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Código não encontrado!</response>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
-        [HttpDelete("DesativarTipoAreaAtendimento/{cod}")]
+        [HttpDelete("Desativar/{cod}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DesativarTipoAreaAtendimento([FromRoute] int cod)
         {

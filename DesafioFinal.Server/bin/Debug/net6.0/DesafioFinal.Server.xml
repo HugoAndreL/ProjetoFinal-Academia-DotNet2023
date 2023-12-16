@@ -4,6 +4,52 @@
         <name>DesafioFinal.Server</name>
     </assembly>
     <members>
+        <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.AdicionarAreaAtendimento(DesafioFinal.Server.Models.AreaAtendimento)">
+            <summary>
+                Cadastra uma nova área de atendimento
+            </summary>
+            <param name="aa">Área de atendimento a ser adicionado</param>
+            <returns>Área de atendimento adicionado</returns>
+            <response code="201">Criado com Sucesso!</response>
+            <response code="400">Erro ao efetuar o cadastro!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.ExibirAreaAtendimento">
+            <summary>
+                Exibe todas as áreas de atendimento adicionados
+            </summary>
+            <returns>Lista de tipos de áreas de atendimento</returns>
+            <response code="200">Sucesso!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.SelecionarAreaAtendimento(System.Int32)">
+            <summary>
+                Seleciona a área de atendimento através de seu número de indentificação 
+            </summary>
+            <param name="num">Número de indentificação  do tipo de área de atendimento a ser selecionada</param>
+            <returns>Área de atendimento selecionado</returns>
+            <response code="200">Área de atendimento retornado com sucesso!</response>
+            <response code="404">Número de indentificação não encontrado!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.EditarAreaAtendimento(System.Int32,DesafioFinal.Server.Models.AreaAtendimento)">
+            <summary>
+                Altera a área de atendimento através de seu número de indentificação
+            </summary>
+            <param name="num">Número da área de atendimento a ser alterado</param>
+            <param name="input">Área de atendimento a ser alterado</param>
+            <returns>Nada</returns>
+            <response code="404">Número de identificação não encontrado!</response>
+            <response code="204">Alterado com sucesso!</response>
+            <response code="400">Erro ao efetuar a alteração!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.DesativarAreaAtendimento(System.Int32)">
+            <summary>
+                Desativa a área de atendimento
+            </summary>
+            <param name="num">Número de indentificação da área de atendimento</param>
+            <returns>Nada</returns>
+            <response code="404">Número de indentificação não encontrado!</response>
+            <response code="204">Desativdo com sucesso!</response>
+            <response code="400">Erro ao efetuar a dasativação!</response>
+        </member>
         <member name="M:DesafioFinal.Server.Controllers.CargosController.AdicionarCargo(DesafioFinal.Server.Models.Cargo)">
             <summary>
                 Adiciona um novo cargo
@@ -202,6 +248,30 @@
             <inheritdoc />
         </member>
         <member name="M:DesafioFinal.Server.Migrations.TipoAreaAtendimento.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.AreaAtendimento">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AreaAtendimento.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AreaAtendimento.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AreaAtendimento.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.Fk1TipoAreaAtendimentoNAreaAtendimento">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Fk1TipoAreaAtendimentoNAreaAtendimento.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Fk1TipoAreaAtendimentoNAreaAtendimento.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Fk1TipoAreaAtendimentoNAreaAtendimento.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:DesafioFinal.Server.Models.Cargo">

@@ -23,7 +23,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Usuário adicionado</returns>
         /// <response code="201">Criado com Sucesso!</response>
         /// <response code="400">Erro ao efetuar o cadastro!</response>
-        [HttpPost("CadastrarUsuario")]
+        [HttpPost("Cadastrar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario user)
         {
@@ -68,7 +68,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Usuário selecionado</returns>
         /// <response code="200">Usuário retornado com sucesso!</response>
         /// <response code="404">Erro ao selecionar o usuário!</response>
-        [HttpGet("SelecionarUsuario/{id}")]
+        [HttpGet("Selecionar/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> SelecionarUsuario([FromRoute] int id)
         {
@@ -88,7 +88,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
-        [HttpPut("EditarUsuario/{id}")]
+        [HttpPut("Alterar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarUsuario([FromRoute] int id, [FromBody] Usuario input)
         {
@@ -128,7 +128,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
-        [HttpDelete("DesativarUsuario/{id}")]
+        [HttpDelete("Desativar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DesativarUsuario([FromRoute] int id)
         {

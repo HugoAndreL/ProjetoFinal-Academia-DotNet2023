@@ -23,10 +23,8 @@ namespace DesafioFinal.Server.Models
         [Column(TypeName = "VARCHAR(80)")]
         public string Email { get; set; }
 
-        [JsonIgnore]
         public int? CargoId { get; set; }
         [JsonIgnore]
-        [Browsable(false)]
         public virtual Cargo? Cargo { get; set; }
     }
 }

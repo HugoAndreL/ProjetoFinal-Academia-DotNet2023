@@ -25,7 +25,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Cargo adicionado</returns>
         /// <response code="201">Cargo criado com sucesso</response>
         /// <response code="400">Erro ao efetuar a adição</response>
-        [HttpPost("AdicionarCargo")]
+        [HttpPost("Adicionar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AdicionarCargo([FromBody] Cargo cargo)
         {
@@ -66,7 +66,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Cargo selecionado</returns>
         /// <response code="200">Cargo selcionado com sucesso!</response>
         /// <response code="404">Cargo não encontrado!</response>
-        [HttpGet("Selecionado/{num}")]
+        [HttpGet("Selecionar/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> SelecionarCargo([FromRoute] int num)
         {
@@ -89,7 +89,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
-        [HttpPut("{num}")]
+        [HttpPut("Alterar/{num}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarUsuario([FromRoute] int num, [FromBody] Cargo input)
         {
@@ -127,7 +127,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Número de identificação não encontrado!</response>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
-        [HttpDelete("{num}")]
+        [HttpDelete("Desativar/{num}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DesativarCargo([FromRoute] int num)
         {
@@ -152,7 +152,7 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar o cadastro do cargo.\n" +
+                    return BadRequest("Ocorreu um erro interno ao tentar efetuar o desativação do cargo.\n" +
                         "Erro:\n\t" + ex.Message);
                 }
             }

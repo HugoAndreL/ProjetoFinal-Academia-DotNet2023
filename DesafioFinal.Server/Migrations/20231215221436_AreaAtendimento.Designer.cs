@@ -4,6 +4,7 @@ using DesafioFinal.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioFinal.Server.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20231215221436_AreaAtendimento")]
+    partial class AreaAtendimento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +33,7 @@ namespace DesafioFinal.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Numero"));
 
-                    b.Property<int>("TipoAreaAtendimentoId")
-                        .HasColumnType("int");
-
                     b.HasKey("Numero");
-
-                    b.HasIndex("TipoAreaAtendimentoId");
 
                     b.ToTable("AreasAtendimento");
                 });
@@ -138,17 +136,6 @@ namespace DesafioFinal.Server.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("DesafioFinal.Server.Models.AreaAtendimento", b =>
-                {
-                    b.HasOne("DesafioFinal.Server.Models.TipoAreaAtendimento", "TipoAreaAtendimento")
-                        .WithMany("AreasAtendimento")
-                        .HasForeignKey("TipoAreaAtendimentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TipoAreaAtendimento");
-                });
-
             modelBuilder.Entity("DesafioFinal.Server.Models.Usuario", b =>
                 {
                     b.HasOne("DesafioFinal.Server.Models.Cargo", "Cargo")
@@ -161,11 +148,6 @@ namespace DesafioFinal.Server.Migrations
             modelBuilder.Entity("DesafioFinal.Server.Models.Cargo", b =>
                 {
                     b.Navigation("Usuarios");
-                });
-
-            modelBuilder.Entity("DesafioFinal.Server.Models.TipoAreaAtendimento", b =>
-                {
-                    b.Navigation("AreasAtendimento");
                 });
 #pragma warning restore 612, 618
         }

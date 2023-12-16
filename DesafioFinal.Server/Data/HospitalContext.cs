@@ -14,6 +14,8 @@ namespace DesafioFinal.Server.Data
         public DbSet<HistoricoUsuario> HistoricoUsuarios { get; set; }
         public DbSet<HistoricoCargo> HistoricoCargos { get; set; }
 
+        public DbSet<AreaAtendimento> AreasAtendimento { get; set; }
+
         public DbSet<TipoAreaAtendimento> TiposAreasAtendimento { get; set; }
 
         public HospitalContext(DbContextOptions<HospitalContext> opt) : base(opt) { }
@@ -29,7 +31,15 @@ namespace DesafioFinal.Server.Data
                 .HasForeignKey(s => s.CargoId);
 
             builder.Entity<TipoAreaAtendimento>()
-                .HasKey(t => t.COD);
+                .HasKey(taa => taa.COD);
+
+            builder.Entity<AreaAtendimento>()
+                .HasKey(aa => aa.Numero);
+
+            builder.Entity<AreaAtendimento>()
+                .HasOne(aa => aa.TipoAreaAtendimento)
+                .WithMany(taa => taa.AreasAtendimento)
+                .HasForeignKey(aa => aa.TipoAreaAtendimentoId);
 
             //builder.Entity<Historico>().HasNoKey();
         }
