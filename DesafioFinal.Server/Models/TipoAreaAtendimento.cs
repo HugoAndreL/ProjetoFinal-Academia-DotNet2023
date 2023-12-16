@@ -8,7 +8,7 @@ namespace DesafioFinal.Server.Models
         [Key]
         [Required]
         [JsonIgnore]
-        public int COD { get; }
+        public int COD { get; set; }
 
         [Required(ErrorMessage = "Nome é obrigatório!")]
         public string Nome { get; set; }

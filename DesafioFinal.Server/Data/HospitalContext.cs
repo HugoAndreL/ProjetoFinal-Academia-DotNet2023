@@ -5,7 +5,7 @@ namespace DesafioFinal.Server.Data
 {
     public class HospitalContext : DbContext
     {
-        //public DbSet<Senhas> Senhas { get; set; }
+        public DbSet<Senha> Senhas { get; set; }
 
         public DbSet<Usuario> Usuarios { get; set; }
 
@@ -23,25 +23,14 @@ namespace DesafioFinal.Server.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Usuario>()
-                .Ignore(user => user.Cargo);
-
-            builder.Entity<Usuario>()
                 .HasOne(s => s.Cargo)
                 .WithMany(h => h.Usuarios)
                 .HasForeignKey(s => s.CargoId);
-
-            builder.Entity<TipoAreaAtendimento>()
-                .HasKey(taa => taa.COD);
-
-            builder.Entity<AreaAtendimento>()
-                .HasKey(aa => aa.Numero);
 
             builder.Entity<AreaAtendimento>()
                 .HasOne(aa => aa.TipoAreaAtendimento)
                 .WithMany(taa => taa.AreasAtendimento)
                 .HasForeignKey(aa => aa.TipoAreaAtendimentoId);
-
-            //builder.Entity<Historico>().HasNoKey();
         }
     }
 }

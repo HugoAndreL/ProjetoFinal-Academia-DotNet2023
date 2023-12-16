@@ -110,6 +110,45 @@
             <returns>Lista de cargos desativados</returns>
             <response code="200">Sucesso!</response>
         </member>
+        <member name="M:DesafioFinal.Server.Controllers.SenhasController.GerarSenha(DesafioFinal.Server.Models.Senha)">
+            <summary>
+                Gera uma nova senha
+            </summary>
+            <param name="senha">Senha a ser adicionado</param>
+            <returns>Cargo adicionado</returns>
+            <response code="201">Cargo criado com sucesso</response>
+            <response code="400">Erro ao efetuar a adição</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.SenhasController.SelecionarSenha(System.Int32)">
+            <summary>
+                Seleciona a senha gerada
+            </summary>
+            <param name="num">Número de identificação da senha</param>
+            <returns>Senha selecionada</returns>
+            <response code="200">Senha selecionada com sucesso!</response>
+            <response code="404">Senha não encontrada!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.SenhasController.AlterarPrioridade(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{DesafioFinal.Server.Models.Senha})">
+            <summary>
+                Altera o tipo de prioridade
+            </summary>
+            <param name="num">Número de identificação</param>
+            <param name="senhaPatch">Prioridade desejada</param>
+            <returns>Nada</returns>
+            <response code="204">Alterado com sucesso!</response>
+            <response code="404">Número de identificação não encontrado!</response>
+            <response code="400">Erro ao alterar a senha!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.SenhasController.CancelarSenha(System.Int32)">
+            <summary>
+                Cancela a senha (Guarda o resultado em outra tabela)
+            </summary>
+            <param name="num">Número do identificador</param>
+            <returns>Nada</returns>
+            <response code="404">Número de identificação não encontrado!</response>
+            <response code="204">Cancelado com sucesso!</response>
+            <response code="400">Erro ao efetuar a dasativação!</response>
+        </member>
         <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.AdicionarTipoAreaAtendimento(DesafioFinal.Server.Models.TipoAreaAtendimento)">
             <summary>
                 Cadastra um novo tipo de área de atendimento
@@ -119,7 +158,7 @@
             <response code="201">Criado com Sucesso!</response>
             <response code="400">Erro ao efetuar o cadastro!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.ExibirUsuarios">
+        <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.ExibirTipoAreaAtendimento">
             <summary>
                 Exibe todos os tipos de áreas de atendimento adicionados
             </summary>
@@ -274,14 +313,21 @@
         <member name="M:DesafioFinal.Server.Migrations.Fk1TipoAreaAtendimentoNAreaAtendimento.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:DesafioFinal.Server.Migrations.Senha">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Senha.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Senha.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.Senha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:DesafioFinal.Server.Models.Cargo">
             <summary>
                 Cargos do hospital em questão
-            </summary>
-        </member>
-        <member name="T:DesafioFinal.Server.Models.Senha">
-            <summary>
-                Senhas do hospital
             </summary>
         </member>
         <member name="T:DesafioFinal.Server.Models.Usuario">

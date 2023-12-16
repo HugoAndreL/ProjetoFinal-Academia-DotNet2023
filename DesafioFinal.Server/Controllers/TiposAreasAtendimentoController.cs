@@ -52,11 +52,11 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="200">Sucesso!</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> ExibirUsuarios()
+        public async Task<IActionResult> ExibirTipoAreaAtendimento()
         {
             List<TipoAreaAtendimento> lstTaa = await _context.TiposAreasAtendimento
                 .AsNoTracking()
-                //.Include(user => user.Cargo)
+                .Include(taa => taa.AreasAtendimento)
                 .ToListAsync();
             return Ok(lstTaa);
         }
@@ -74,7 +74,7 @@ namespace DesafioFinal.Server.Controllers
         {
             TipoAreaAtendimento taa = await _context.TiposAreasAtendimento
                 .AsNoTracking()
-                //.Include(user => user.Cargo)
+                .Include(taa => taa.AreasAtendimento)
                 .FirstOrDefaultAsync(taa => taa.COD == cod);
             return taa != null ? Ok(taa) : NotFound("Esse tipo de área de atendimento não existe! Tente Novamente.");
         }
