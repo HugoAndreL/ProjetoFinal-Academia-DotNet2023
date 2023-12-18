@@ -1,5 +1,4 @@
-﻿
-using DesafioFinal.Server.Data;
+﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +24,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Cargo adicionado</returns>
         /// <response code="201">Cargo criado com sucesso</response>
         /// <response code="400">Erro ao efetuar a adição</response>
-        [HttpPost("Adicionar")]
+        [HttpPost("Gerar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> GerarSenha([FromBody] Senha senha)
         {
@@ -33,7 +32,7 @@ namespace DesafioFinal.Server.Controllers
             {
                 await _context.Senhas.AddAsync(senha);
                 await _context.SaveChangesAsync();
-                return CreatedAtAction(nameof(SelecionarSenha),
+                return CreatedAtAction(nameof(ChamarSenha),
                     new { num = senha.Numero }, senha);
             }
             catch (Exception ex)
@@ -52,10 +51,9 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Senha não encontrada!</response>
         [HttpGet("Selecionar/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> SelecionarSenha([FromRoute] int num)
+        public async Task<IActionResult> ChamarSenha([FromRoute] int num)
         {
             Senha senha = await _context.Senhas
-                //.Include(cargo => cargo.Usuarios)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(senha => senha.Numero == num);
 
@@ -113,10 +111,10 @@ namespace DesafioFinal.Server.Controllers
             {
                 try
                 {
-                    //_context.HistoricoCargos.AddAsync(new()
-                    //{
-                    //    Nome = senha.Nome,
-                    //});
+                    _context.HistoricoSenhas.AddAsync(new()
+                    {
+                        Prioridade = senha.Prioridade
+                    });
                     _context.Senhas.Remove(senha);
                     await _context.SaveChangesAsync();
                     return NoContent();
@@ -129,5 +127,7 @@ namespace DesafioFinal.Server.Controllers
             }
             return NotFound("Cargo não encontrado!");
         }
+
+
     }
 }

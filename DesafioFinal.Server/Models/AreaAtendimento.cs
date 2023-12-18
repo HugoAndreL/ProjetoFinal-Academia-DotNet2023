@@ -10,6 +10,9 @@ namespace DesafioFinal.Server.Models
         [JsonIgnore]
         public int Numero { get; set; }
 
+        [Required]
+        public string Nome { get; set; }
+
         public int TipoAreaAtendimentoId { get; set; }
         [JsonIgnore]
         public virtual TipoAreaAtendimento? TipoAreaAtendimento { get; set; }

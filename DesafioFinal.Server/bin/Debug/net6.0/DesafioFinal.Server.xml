@@ -110,6 +110,13 @@
             <returns>Lista de cargos desativados</returns>
             <response code="200">Sucesso!</response>
         </member>
+        <member name="M:DesafioFinal.Server.Controllers.HistoricosController.ExibirHistoricoSenhas">
+            <summary>
+                Exibe todos as senhas que foram desativados
+            </summary>
+            <returns>Lista de senhas desativados</returns>
+            <response code="200">Sucesso!</response>
+        </member>
         <member name="M:DesafioFinal.Server.Controllers.SenhasController.GerarSenha(DesafioFinal.Server.Models.Senha)">
             <summary>
                 Gera uma nova senha
@@ -119,7 +126,7 @@
             <response code="201">Cargo criado com sucesso</response>
             <response code="400">Erro ao efetuar a adição</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.SenhasController.SelecionarSenha(System.Int32)">
+        <member name="M:DesafioFinal.Server.Controllers.SenhasController.ChamarSenha(System.Int32)">
             <summary>
                 Seleciona a senha gerada
             </summary>
@@ -323,6 +330,18 @@
             <inheritdoc />
         </member>
         <member name="M:DesafioFinal.Server.Migrations.Senha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.HistoricoSenha">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenha.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenha.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:DesafioFinal.Server.Models.Cargo">

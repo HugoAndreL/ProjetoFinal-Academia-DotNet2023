@@ -1,6 +1,5 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,6 +44,21 @@ namespace DesafioFinal.Server.Controllers
                 .AsNoTracking()
                 .ToListAsync();
             return Ok(lstCargos);
+        }
+
+        /// <summary>
+        ///     Exibe todos as senhas que foram desativados
+        /// </summary>
+        /// <returns>Lista de senhas desativados</returns>
+        /// <response code="200">Sucesso!</response>
+        [HttpGet("Senhas")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> ExibirHistoricoSenhas()
+        {
+            List<HistoricoSenha> lstSenhas = await _context.HistoricoSenhas
+                .AsNoTracking()
+                .ToListAsync();
+            return Ok(lstSenhas);
         }
     }
 }

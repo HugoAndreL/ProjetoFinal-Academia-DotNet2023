@@ -11,6 +11,7 @@ namespace DesafioFinal.Server.Data
 
         public DbSet<Cargo> Cargos { get; set; }
 
+        public DbSet<HistoricoSenha> HistoricoSenhas { get; set; }
         public DbSet<HistoricoUsuario> HistoricoUsuarios { get; set; }
         public DbSet<HistoricoCargo> HistoricoCargos { get; set; }
 

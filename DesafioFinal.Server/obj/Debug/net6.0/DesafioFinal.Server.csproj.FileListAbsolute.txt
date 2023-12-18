@@ -94,11 +94,3 @@ C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\Microsoft.AspNetC
 C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\DesafioFinal.Server.xml
 C:\workspace\DesafioFinal\DesafioFinal.Server\obj\Debug\net6.0\DesafioFinal.Server.xml
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\PdfSharp.Charting.dll
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\PdfSharp.Quality.dll
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\PdfSharp.Snippets.dll
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\PdfSharp.System.dll
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\PdfSharp.WPFonts.dll
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\PdfSharp.dll
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\de\PdfSharp.Charting.resources.dll
-C:\workspace\DesafioFinal\DesafioFinal.Server\bin\Debug\net6.0\de\PdfSharp.resources.dll
