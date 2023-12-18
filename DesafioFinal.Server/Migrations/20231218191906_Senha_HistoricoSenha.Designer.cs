@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioFinal.Server.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20231218164201_HistoricoSenha")]
-    partial class HistoricoSenha
+    [Migration("20231218191906_Senha_HistoricoSenha")]
+    partial class Senha_HistoricoSenha
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,17 +83,23 @@ namespace DesafioFinal.Server.Migrations
 
             modelBuilder.Entity("DesafioFinal.Server.Models.HistoricoSenha", b =>
                 {
-                    b.Property<int>("Numero")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Numero"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ordem")
+                        .HasColumnType("int");
 
                     b.Property<string>("Prioridade")
                         .IsRequired()
                         .HasColumnType("VARCHAR(20)");
 
-                    b.HasKey("Numero");
+                    b.HasKey("Id");
 
                     b.ToTable("HistoricoSenhas");
                 });
@@ -121,17 +127,23 @@ namespace DesafioFinal.Server.Migrations
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Senha", b =>
                 {
-                    b.Property<int>("Numero")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Numero"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ordem")
+                        .HasColumnType("int");
 
                     b.Property<string>("Prioridade")
                         .IsRequired()
                         .HasColumnType("VARCHAR(20)");
 
-                    b.HasKey("Numero");
+                    b.HasKey("Id");
 
                     b.ToTable("Senhas");
                 });

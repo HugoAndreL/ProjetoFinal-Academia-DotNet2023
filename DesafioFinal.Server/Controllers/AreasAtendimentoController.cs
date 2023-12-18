@@ -103,15 +103,14 @@ namespace DesafioFinal.Server.Controllers
             {
                 try
                 {
-
+                    aa.Nome = input.Nome;
                     _context.AreasAtendimento.Update(aa);
                     await _context.SaveChangesAsync();
                     return NoContent();
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar a alteração da área de atendimento.\n" +
-                        "Erro:\n\t" + ex.Message);
+                    return BadRequest(ex.Message);
                 }
             }
             return NotFound("Área de atendimento não encontrado!");

@@ -33,29 +33,28 @@ namespace DesafioFinal.Server.Controllers
                 await _context.Senhas.AddAsync(senha);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction(nameof(ChamarSenha),
-                    new { num = senha.Numero }, senha);
+                    new { id = senha.Id }, senha);
             }
             catch (Exception ex)
             {
-                return BadRequest("Ocorreu um erro ao tentar efetuar a geração da senha. Error:\n\t" +
-                    ex.Message);
+                return BadRequest("Ocorreu um erro ao tentar efetuar a geração da senha.");
             }
         }
 
         /// <summary>
         ///     Seleciona a senha gerada
         /// </summary>
-        /// <param name="num">Número de identificação da senha</param>
+        /// <param name="id">Número de identificação da senha</param>
         /// <returns>Senha selecionada</returns>
         /// <response code="200">Senha selecionada com sucesso!</response>
         /// <response code="404">Senha não encontrada!</response>
-        [HttpGet("Selecionar/{num}")]
+        [HttpGet("Selecionar/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> ChamarSenha([FromRoute] int num)
+        public async Task<IActionResult> ChamarSenha([FromRoute] int id)
         {
             Senha senha = await _context.Senhas
                 .AsNoTracking()
-                .FirstOrDefaultAsync(senha => senha.Numero == num);
+                .FirstOrDefaultAsync(senha => senha.Id == id);
 
             if (senha != null)
                 return Ok(senha);
@@ -63,19 +62,67 @@ namespace DesafioFinal.Server.Controllers
         }
 
         /// <summary>
+        ///     Altera a ordem
+        /// </summary>
+        /// <param name="id">Número de identificação</param>
+        /// <param name="senhaPatch">Ordem desejada</param>
+        /// <remarks>
+        /// **Código:**
+        /// ```
+        /// [
+        ///     {
+        ///         "path": "/Ordem",
+        ///         "op": "replace",
+        ///         "value": 2
+        ///     }
+        /// ]
+        /// ```
+        /// </remarks>
+        /// <returns>Nada</returns>
+        /// <response code="204">Alterado com Sucesso!</response>
+        [HttpPatch("Ordem/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> AlterarOrdem([FromRoute] int id, [FromBody] JsonPatchDocument<Senha> senhaPatch)
+        {
+            Senha senha = await _context.Senhas.FirstOrDefaultAsync(senha => senha.Id == id);
+
+            if (senha != null)
+            {
+                senhaPatch.ApplyTo(senha, ModelState);
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _context.SaveChanges();
+                return NoContent();
+            }
+            return NotFound("Essa senha não existe! Tente novamente.");
+        }
+
+        /// <summary>
         ///     Altera o tipo de prioridade
         /// </summary>
-        /// <param name="num">Número de identificação</param>
+        /// <param name="id">Número de identificação</param>
         /// <param name="senhaPatch">Prioridade desejada</param>
+        /// <remarks>
+        /// **Código:**
+        /// ```
+        /// [
+        ///     {
+        ///         "path": "/Prioridade",
+        ///         "op": "replace",
+        ///         "value": "Prioritaria"    
+        ///     }
+        /// ]
+        /// ```
+        /// </remarks>
         /// <returns>Nada</returns>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="404">Número de identificação não encontrado!</response>
         /// <response code="400">Erro ao alterar a senha!</response>
-        [HttpPatch("{num}")]
+        [HttpPatch("Prioridade/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public IActionResult AlterarPrioridade([FromRoute] int num, [FromBody] JsonPatchDocument<Senha> senhaPatch)
+        public async Task<IActionResult> AlterarPrioridade([FromRoute] int id, [FromBody] JsonPatchDocument<Senha> senhaPatch)
         {
-            Senha senha = _context.Senhas.FirstOrDefault(senha => senha.Numero == num);
+            Senha senha = _context.Senhas.FirstOrDefault(senha => senha.Id == id);
             
             if (senha != null)
             {
@@ -91,21 +138,21 @@ namespace DesafioFinal.Server.Controllers
         /// <summary>
         ///     Cancela a senha (Guarda o resultado em outra tabela)
         /// </summary>
-        /// <param name="num">Número do identificador</param>
+        /// <param name="id">Número do identificador</param>
         /// <returns>Nada</returns>
         /// <response code="404">Número de identificação não encontrado!</response>
         /// <response code="204">Cancelado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
-        [HttpDelete("Cancelar/{num}")]
+        [HttpDelete("Cancelar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> CancelarSenha([FromRoute] int num)
+        public async Task<IActionResult> CancelarSenha([FromRoute] int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Ocorreu um erro ao tentar efetuar a desativação da senha.");
 
             Senha senha = await _context.Senhas
                 .AsNoTracking()
-                .FirstOrDefaultAsync(senha => senha.Numero == num);
+                .FirstOrDefaultAsync(senha => senha.Id == id);
 
             if (senha != null)
             {
@@ -113,6 +160,7 @@ namespace DesafioFinal.Server.Controllers
                 {
                     _context.HistoricoSenhas.AddAsync(new()
                     {
+                        Numero = senha.Numero,
                         Prioridade = senha.Prioridade
                     });
                     _context.Senhas.Remove(senha);
@@ -121,11 +169,11 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar o desativação do cargo.\n" +
+                    return BadRequest("Ocorreu um erro interno ao tentar efetuar cancelar a senha.\n" +
                         "Erro:\n\t" + ex.Message);
                 }
             }
-            return NotFound("Cargo não encontrado!");
+            return NotFound("Senha não encontrado!");
         }
 
 

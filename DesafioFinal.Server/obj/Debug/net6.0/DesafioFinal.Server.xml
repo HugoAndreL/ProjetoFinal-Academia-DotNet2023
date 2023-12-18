@@ -130,17 +130,50 @@
             <summary>
                 Seleciona a senha gerada
             </summary>
-            <param name="num">Número de identificação da senha</param>
+            <param name="id">Número de identificação da senha</param>
             <returns>Senha selecionada</returns>
             <response code="200">Senha selecionada com sucesso!</response>
             <response code="404">Senha não encontrada!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.SenhasController.AlterarOrdem(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{DesafioFinal.Server.Models.Senha})">
+            <summary>
+                Altera a ordem
+            </summary>
+            <param name="id">Número de identificação</param>
+            <param name="senhaPatch">Ordem desejada</param>
+            <remarks>
+            **Código:**
+            ```
+            [
+                {
+                    "path": "/Ordem",
+                    "op": "replace",
+                    "value": 2
+                }
+            ]
+            ```
+            </remarks>
+            <returns>Nada</returns>
+            <response code="204">Alterado com Sucesso!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.SenhasController.AlterarPrioridade(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{DesafioFinal.Server.Models.Senha})">
             <summary>
                 Altera o tipo de prioridade
             </summary>
-            <param name="num">Número de identificação</param>
+            <param name="id">Número de identificação</param>
             <param name="senhaPatch">Prioridade desejada</param>
+            <remarks>
+            **Código:**
+            ```
+            [
+                {
+                    "path": "/Prioridade",
+                    "op": "replace",
+                    "value": "Prioritaria"    
+                }
+            ]
+            ```
+            </remarks>
             <returns>Nada</returns>
             <response code="204">Alterado com sucesso!</response>
             <response code="404">Número de identificação não encontrado!</response>
@@ -150,7 +183,7 @@
             <summary>
                 Cancela a senha (Guarda o resultado em outra tabela)
             </summary>
-            <param name="num">Número do identificador</param>
+            <param name="id">Número do identificador</param>
             <returns>Nada</returns>
             <response code="404">Número de identificação não encontrado!</response>
             <response code="204">Cancelado com sucesso!</response>
@@ -320,28 +353,16 @@
         <member name="M:DesafioFinal.Server.Migrations.Fk1TipoAreaAtendimentoNAreaAtendimento.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:DesafioFinal.Server.Migrations.Senha">
+        <member name="T:DesafioFinal.Server.Migrations.Senha_HistoricoSenha">
             <inheritdoc />
         </member>
-        <member name="M:DesafioFinal.Server.Migrations.Senha.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:DesafioFinal.Server.Migrations.Senha_HistoricoSenha.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:DesafioFinal.Server.Migrations.Senha.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:DesafioFinal.Server.Migrations.Senha_HistoricoSenha.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:DesafioFinal.Server.Migrations.Senha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:DesafioFinal.Server.Migrations.HistoricoSenha">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenha.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenha.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:DesafioFinal.Server.Migrations.Senha_HistoricoSenha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:DesafioFinal.Server.Models.Cargo">

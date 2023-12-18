@@ -145,7 +145,8 @@ namespace DesafioFinal.Server.Controllers
                 {
                     _context.HistoricoUsuarios.AddAsync(new()
                     {
-                        Nome = user.Nome
+                        Nome = user.Nome,
+                        Email = user.Email
                     });
                     _context.Usuarios.Remove(user);
                     await _context.SaveChangesAsync();

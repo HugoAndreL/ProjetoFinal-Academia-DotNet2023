@@ -9,6 +9,12 @@ namespace DesafioFinal.Server.Models
         [Key]
         [Required]
         [JsonIgnore]
+        public int Id { get; set; }
+
+        [Required]
+        public int Ordem { get; set; }
+
+        [Required]
         public int Numero { get; set; }
 
         [Column(TypeName = "VARCHAR(20)")]
