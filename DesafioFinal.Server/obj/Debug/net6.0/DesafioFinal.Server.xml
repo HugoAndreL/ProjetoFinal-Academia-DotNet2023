@@ -24,7 +24,7 @@
             <summary>
                 Seleciona a área de atendimento através de seu número de indentificação 
             </summary>
-            <param name="num">Número de indentificação  do tipo de área de atendimento a ser selecionada</param>
+            <param name="num">Número de indentificação do tipo de área de atendimento a ser selecionada</param>
             <returns>Área de atendimento selecionado</returns>
             <response code="200">Área de atendimento retornado com sucesso!</response>
             <response code="404">Número de indentificação não encontrado!</response>

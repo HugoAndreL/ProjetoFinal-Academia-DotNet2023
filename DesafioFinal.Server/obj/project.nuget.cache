@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Gm0zLBlCSB5K4h+bYDNmDohk9BEWI2NA0jhBEW7K1tVKtKeVYiegd9OKUng3TaBb9J76ZX9P8wl97tR55caO+g==",
+  "dgSpecHash": "GvRT8mrDsm4ZpsXRZOWDa4QRGJ/ZsybXkoAfO67pQfSV/Q3Dymt/PjyJLQ0nbXN4l+mAPG5t3M0rgWCH1mzyiw==",
   "success": true,
   "projectFilePath": "C:\\workspace\\DesafioFinal\\DesafioFinal.Server\\DesafioFinal.Server.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\hugoa\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\hugoa\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\hugoa\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\hugoa\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.25\\microsoft.aspnetcore.authentication.jwtbearer.6.0.25.nupkg.sha512",
     "C:\\Users\\hugoa\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\7.0.14\\microsoft.aspnetcore.jsonpatch.7.0.14.nupkg.sha512",
     "C:\\Users\\hugoa\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.25\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.25.nupkg.sha512",
     "C:\\Users\\hugoa\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

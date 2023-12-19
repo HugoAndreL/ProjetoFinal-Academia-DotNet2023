@@ -1,19 +1,23 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DesafioFinal.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+        private readonly IJWTAuthenticationManager _jwtAuthenticationManager;
         private readonly HospitalContext _context;
 
-        public UsuarioController(HospitalContext context)
+        public UsuarioController(HospitalContext context, IJWTAuthenticationManager jwtAuthenticationManager)
         {
             _context = context;
+            _jwtAuthenticationManager = jwtAuthenticationManager;
         }
 
         /// <summary>
@@ -23,6 +27,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Usuário adicionado</returns>
         /// <response code="201">Criado com Sucesso!</response>
         /// <response code="400">Erro ao efetuar o cadastro!</response>
+        /// <response code="401">Erro de autorização!</response>
         [HttpPost("Cadastrar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario user)
@@ -50,6 +55,7 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <returns>Lista de usuários</returns>
         /// <response code="200">Sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ExibirUsuarios()
@@ -67,6 +73,7 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="id">Numero de identificação da pessoa a ser selecionada</param>
         /// <returns>Usuário selecionado</returns>
         /// <response code="200">Usuário retornado com sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
         /// <response code="404">Erro ao selecionar o usuário!</response>
         [HttpGet("Selecionar/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -85,9 +92,10 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="id">Indetificador do Usuário a ser alterado</param>
         /// <param name="input">Usuário a ser alterado</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
+        /// <response code="401">Erro de autorização!</response>
+        /// <response code="404">Identificador não encontrado!</response>
         [HttpPut("Alterar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarUsuario([FromRoute] int id, [FromBody] Usuario input)
@@ -125,9 +133,10 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <param name="id">Identificador do usuário</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
+        /// <response code="401">Erro de autorização!</response>
+        /// <response code="404">Identificador não encontrado!</response>
         [HttpDelete("Desativar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DesativarUsuario([FromRoute] int id)
@@ -143,7 +152,7 @@ namespace DesafioFinal.Server.Controllers
             {
                 try
                 {
-                    _context.HistoricoUsuarios.AddAsync(new()
+                    await _context.HistoricoUsuarios.AddAsync(new()
                     {
                         Nome = user.Nome,
                         Email = user.Email

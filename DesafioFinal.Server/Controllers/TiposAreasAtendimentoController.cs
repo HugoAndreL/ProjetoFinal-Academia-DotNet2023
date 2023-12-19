@@ -1,19 +1,23 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DesafioFinal.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TiposAreasAtendimentoController : ControllerBase
     {
+        private readonly IJWTAuthenticationManager _jwtAuthenticationManager;
         private readonly HospitalContext _context;
 
-        public TiposAreasAtendimentoController(HospitalContext context)
+        public TiposAreasAtendimentoController(HospitalContext context, IJWTAuthenticationManager jwtAuthenticationManager)
         {
             _context = context;
+            _jwtAuthenticationManager = jwtAuthenticationManager;
         }
 
         /// <summary>
@@ -23,6 +27,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Tipo de área de atendimento adicionado</returns>
         /// <response code="201">Criado com Sucesso!</response>
         /// <response code="400">Erro ao efetuar o cadastro!</response>
+        /// <response code="401">Erro de autorização!</response>
         [HttpPost("Adicionar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AdicionarTipoAreaAtendimento([FromBody] TipoAreaAtendimento taa)
@@ -50,6 +55,7 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <returns>Lista de tipos de áreas de atendimento</returns>
         /// <response code="200">Sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ExibirTipoAreaAtendimento()
@@ -67,6 +73,7 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="cod">Código do tipo de área de atendimento a ser selecionada</param>
         /// <returns>Tipo de área de atendimento selecionado</returns>
         /// <response code="200">Tipo de área de atendimento retornado com sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
         /// <response code="404">Código não encontrado!</response>
         [HttpGet("Selecionar/{cod}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -85,9 +92,10 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="cod">Código do tipo de área de atendimento a ser alterado</param>
         /// <param name="input">Tipo de área de atendimento a ser alterado</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Código não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
+        /// <response code="401">Erro de autorização!</response>
+        /// <response code="404">Código não encontrado!</response>
         [HttpPut("Alterar/{cod}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarTipoAreaAtendimento([FromRoute] int cod, [FromBody] TipoAreaAtendimento input)
@@ -123,9 +131,10 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <param name="cod">Código do Tipo de área de atendimento</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Código não encontrado!</response>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
+        /// <response code="401">Erro de autorização!</response>
+        /// <response code="404">Código não encontrado!</response>
         [HttpDelete("Desativar/{cod}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DesativarTipoAreaAtendimento([FromRoute] int cod)

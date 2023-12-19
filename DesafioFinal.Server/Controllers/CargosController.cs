@@ -1,21 +1,23 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
-using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace DesafioFinal.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CargosController : ControllerBase
     {
+        private readonly IJWTAuthenticationManager _jwtAuthenticationManager;
         private readonly HospitalContext _context;
 
-        public CargosController(HospitalContext context)
+        public CargosController(HospitalContext context, IJWTAuthenticationManager jwtAuthenticationManager)
         {
             _context = context;
+            _jwtAuthenticationManager = jwtAuthenticationManager;
         }
 
         /// <summary>
@@ -23,8 +25,9 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <param name="cargo">Cargo a ser adicionado</param>
         /// <returns>Cargo adicionado</returns>
-        /// <response code="201">Cargo criado com sucesso</response>
-        /// <response code="400">Erro ao efetuar a adição</response>
+        /// <response code="201">Cargo criado com sucesso!</response>
+        /// <response code="400">Erro ao efetuar a adição!</response>
+        /// <response code="401">Erro de autorização!</response>
         [HttpPost("Adicionar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AdicionarCargo([FromBody] Cargo cargo)
@@ -48,6 +51,7 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <returns>Lista de cargos</returns>
         /// <response code="200">Sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ExibirCargo()
@@ -65,6 +69,7 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="num">Número de identificação do cargo</param>
         /// <returns>Cargo selecionado</returns>
         /// <response code="200">Cargo selcionado com sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
         /// <response code="404">Cargo não encontrado!</response>
         [HttpGet("Selecionar/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -86,9 +91,10 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="num">Número de indetificação do cargo a ser alterado</param>
         /// <param name="input">Cargo a ser alterado</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Identificador não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
+        /// <response code="401">Erro de autorização!</response>
+        /// <response code="404">Identificador não encontrado!</response>
         [HttpPut("Alterar/{num}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarUsuario([FromRoute] int num, [FromBody] Cargo input)
@@ -124,9 +130,10 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <param name="num">Número de identificador do cargo</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Número de identificação não encontrado!</response>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
+        /// <response code="401">Erro de autorização!</response>
+        /// <response code="404">Número de identificação não encontrado!</response>
         [HttpDelete("Desativar/{num}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DesativarCargo([FromRoute] int num)

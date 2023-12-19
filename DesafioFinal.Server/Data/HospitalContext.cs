@@ -18,11 +18,16 @@ namespace DesafioFinal.Server.Data
         public DbSet<AreaAtendimento> AreasAtendimento { get; set; }
 
         public DbSet<TipoAreaAtendimento> TiposAreasAtendimento { get; set; }
+        
+        public DbSet<Login> Logins { get; set; }
 
         public HospitalContext(DbContextOptions<HospitalContext> opt) : base(opt) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Senha>()
+                .HasNoKey();
+
             builder.Entity<Usuario>()
                 .HasOne(s => s.Cargo)
                 .WithMany(h => h.Usuarios)

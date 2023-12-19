@@ -1,19 +1,23 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DesafioFinal.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AreasAtendimentoController : ControllerBase
     {
+        private readonly IJWTAuthenticationManager _jwtAuthenticationManager;
         private readonly HospitalContext _context;
 
-        public AreasAtendimentoController(HospitalContext context)
+        public AreasAtendimentoController(HospitalContext context, IJWTAuthenticationManager jwtAuthenticationManager)
         {
             _context = context;
+            _jwtAuthenticationManager = jwtAuthenticationManager;
         }
 
         /// <summary>
@@ -23,6 +27,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>Área de atendimento adicionado</returns>
         /// <response code="201">Criado com Sucesso!</response>
         /// <response code="400">Erro ao efetuar o cadastro!</response>
+        /// <response code="401">Erro de autorização!</response>
         [HttpPost("Cadastrar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AdicionarAreaAtendimento([FromBody] AreaAtendimento aa)
@@ -50,6 +55,7 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <returns>Lista de tipos de áreas de atendimento</returns>
         /// <response code="200">Sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ExibirAreaAtendimento()
@@ -64,9 +70,10 @@ namespace DesafioFinal.Server.Controllers
         /// <summary>
         ///     Seleciona a área de atendimento através de seu número de indentificação 
         /// </summary>
-        /// <param name="num">Número de indentificação  do tipo de área de atendimento a ser selecionada</param>
+        /// <param name="num">Número de indentificação do tipo de área de atendimento a ser selecionada</param>
         /// <returns>Área de atendimento selecionado</returns>
         /// <response code="200">Área de atendimento retornado com sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
         /// <response code="404">Número de indentificação não encontrado!</response>
         [HttpGet("Selecionar/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -85,9 +92,10 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="num">Número da área de atendimento a ser alterado</param>
         /// <param name="input">Área de atendimento a ser alterado</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Número de identificação não encontrado!</response>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
+        /// <response code="401">Erro de autorização!</response>
+        /// <response code="404">Número de identificação não encontrado!</response>
         [HttpPut("Alterar/{num}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarAreaAtendimento([FromRoute] int num, [FromBody] AreaAtendimento input)
@@ -121,9 +129,10 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <param name="num">Número de indentificação da área de atendimento</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Número de indentificação não encontrado!</response>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
+        /// <response code="401">Erro de autorização!</response>
+        /// <response code="404">Número de indentificação não encontrado!</response>
         [HttpDelete("Desativar/{num}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DesativarAreaAtendimento([FromRoute] int num)
