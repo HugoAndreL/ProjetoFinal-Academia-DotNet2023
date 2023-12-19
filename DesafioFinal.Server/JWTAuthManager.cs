@@ -30,9 +30,9 @@ namespace DesafioFinal.Server
 
         public string Authenticate(string nome, string email, string senha)
         {
-            List<Login> logins = _context.Logins.ToList();
+            List<Usuario> user = _context.Usuarios.ToList();
             
-            if (!logins.Any(login => login.Email == email || login.Nome == nome && login.Senha == senha))
+            if (!user.Any(login => login.Email == email || login.Nome == nome && login.Senha == senha))
             {
                 return null;
             }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioFinal.Server.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20231218191906_Senha_HistoricoSenha")]
-    partial class Senha_HistoricoSenha
+    [Migration("20231219165322_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,10 +128,7 @@ namespace DesafioFinal.Server.Migrations
             modelBuilder.Entity("DesafioFinal.Server.Models.Senha", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Numero")
                         .HasColumnType("int");
@@ -142,8 +139,6 @@ namespace DesafioFinal.Server.Migrations
                     b.Property<string>("Prioridade")
                         .IsRequired()
                         .HasColumnType("VARCHAR(20)");
-
-                    b.HasKey("Id");
 
                     b.ToTable("Senhas");
                 });
@@ -183,6 +178,9 @@ namespace DesafioFinal.Server.Migrations
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("Senha")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

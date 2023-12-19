@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -26,5 +25,8 @@ namespace DesafioFinal.Server.Models
         public int? CargoId { get; set; }
         [JsonIgnore]
         public virtual Cargo? Cargo { get; set; }
+
+        [JsonIgnore]
+        public string? Senha { get; set; }
     }
 }
