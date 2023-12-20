@@ -19,14 +19,16 @@ namespace DesafioFinal.Server.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Email é obrigatorio!")]
+        [EmailAddress]
         [Column(TypeName = "VARCHAR(80)")]
         public string Email { get; set; }
+
+        [JsonIgnore]
+        [Column(TypeName = "VARCHAR(20)")]
+        public string? Senha { get; set; }
 
         public int? CargoId { get; set; }
         [JsonIgnore]
         public virtual Cargo? Cargo { get; set; }
-
-        [JsonIgnore]
-        public string? Senha { get; set; }
     }
 }

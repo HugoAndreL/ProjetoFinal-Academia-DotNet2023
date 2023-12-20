@@ -6,18 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DesafioFinal.Server.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TiposAreasAtendimentoController : ControllerBase
     {
-        private readonly IJWTAuthenticationManager _jwtAuthenticationManager;
         private readonly HospitalContext _context;
 
-        public TiposAreasAtendimentoController(HospitalContext context, IJWTAuthenticationManager jwtAuthenticationManager)
+        public TiposAreasAtendimentoController(HospitalContext context)
         {
             _context = context;
-            _jwtAuthenticationManager = jwtAuthenticationManager;
         }
 
         /// <summary>
@@ -40,7 +37,7 @@ namespace DesafioFinal.Server.Controllers
                 await _context.TiposAreasAtendimento.AddAsync(taa);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction(nameof(SelecionarTipoAreaAtendimento),
-                    new { cod = taa.COD }, taa);
+                    new { id = taa.Id }, taa);
             }
             catch (Exception ex)
             {
@@ -70,42 +67,42 @@ namespace DesafioFinal.Server.Controllers
         /// <summary>
         ///     Seleciona o tipo de área de atendimento através de seu código
         /// </summary>
-        /// <param name="cod">Código do tipo de área de atendimento a ser selecionada</param>
+        /// <param name="id">Identificador da área de atendimento a ser selecionada</param>
         /// <returns>Tipo de área de atendimento selecionado</returns>
         /// <response code="200">Tipo de área de atendimento retornado com sucesso!</response>
         /// <response code="401">Erro de autorização!</response>
-        /// <response code="404">Código não encontrado!</response>
-        [HttpGet("Selecionar/{cod}")]
+        /// <response code="404">Identificador não encontrado!</response>
+        [HttpGet("Selecionar/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> SelecionarTipoAreaAtendimento([FromRoute] int cod)
+        public async Task<IActionResult> SelecionarTipoAreaAtendimento([FromRoute] int id)
         {
             TipoAreaAtendimento taa = await _context.TiposAreasAtendimento
                 .AsNoTracking()
                 .Include(taa => taa.AreasAtendimento)
-                .FirstOrDefaultAsync(taa => taa.COD == cod);
+                .FirstOrDefaultAsync(taa => taa.Id == id);
             return taa != null ? Ok(taa) : NotFound("Esse tipo de área de atendimento não existe! Tente Novamente.");
         }
 
         /// <summary>
         ///     Altera o tipo de área de atendimento através de seu código
         /// </summary>
-        /// <param name="cod">Código do tipo de área de atendimento a ser alterado</param>
+        /// <param name="id">Identificador do tipo de área de atendimento a ser alterado</param>
         /// <param name="input">Tipo de área de atendimento a ser alterado</param>
         /// <returns>Nada</returns>
         /// <response code="204">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
         /// <response code="401">Erro de autorização!</response>
-        /// <response code="404">Código não encontrado!</response>
-        [HttpPut("Alterar/{cod}")]
+        /// <response code="404">Identificador não encontrado!</response>
+        [HttpPut("Alterar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> EditarTipoAreaAtendimento([FromRoute] int cod, [FromBody] TipoAreaAtendimento input)
+        public async Task<IActionResult> EditarTipoAreaAtendimento([FromRoute] int id, [FromBody] TipoAreaAtendimento input)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Ocorreu um erro ao tentar efetuar a alteração do tipo de área de atendimento.");
 
             TipoAreaAtendimento taa = await _context.TiposAreasAtendimento
                 .AsNoTracking()
-                .FirstOrDefaultAsync(taa => taa.COD == cod);
+                .FirstOrDefaultAsync(taa => taa.Id == id);
 
             if (taa != null)
             {
@@ -129,22 +126,22 @@ namespace DesafioFinal.Server.Controllers
         /// <summary>
         ///     Desativa o Tipo de área de atendimento
         /// </summary>
-        /// <param name="cod">Código do Tipo de área de atendimento</param>
+        /// <param name="id">Identificador do Tipo de área de atendimento</param>
         /// <returns>Nada</returns>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
         /// <response code="401">Erro de autorização!</response>
-        /// <response code="404">Código não encontrado!</response>
-        [HttpDelete("Desativar/{cod}")]
+        /// <response code="404">Identificador não encontrado!</response>
+        [HttpDelete("Desativar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DesativarTipoAreaAtendimento([FromRoute] int cod)
+        public async Task<IActionResult> DesativarTipoAreaAtendimento([FromRoute] int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Ocorreu um erro ao tentar efetuar a desativação do tipo de área de atendimento.");
 
             TipoAreaAtendimento taa = await _context.TiposAreasAtendimento
                 .AsNoTracking()
-                .FirstOrDefaultAsync(taa => taa.COD == cod);
+                .FirstOrDefaultAsync(taa => taa.Id == id);
 
             if (taa != null)
             {

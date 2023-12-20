@@ -24,36 +24,36 @@
         </member>
         <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.SelecionarAreaAtendimento(System.Int32)">
             <summary>
-                Seleciona a área de atendimento através de seu número de indentificação 
+                Seleciona a área de atendimento
             </summary>
-            <param name="num">Número de indentificação do tipo de área de atendimento a ser selecionada</param>
+            <param name="id">Indentificador do tipo de área de atendimento a ser selecionada</param>
             <returns>Área de atendimento selecionado</returns>
             <response code="200">Área de atendimento retornado com sucesso!</response>
             <response code="401">Erro de autorização!</response>
-            <response code="404">Número de indentificação não encontrado!</response>
+            <response code="404">Indentificador não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.EditarAreaAtendimento(System.Int32,DesafioFinal.Server.Models.AreaAtendimento)">
             <summary>
-                Altera a área de atendimento através de seu número de indentificação
+                Altera a área de atendimento
             </summary>
-            <param name="num">Número da área de atendimento a ser alterado</param>
+            <param name="id">Identificador da área de atendimento a ser alterado</param>
             <param name="input">Área de atendimento a ser alterado</param>
             <returns>Nada</returns>
             <response code="204">Alterado com sucesso!</response>
             <response code="400">Erro ao efetuar a alteração!</response>
             <response code="401">Erro de autorização!</response>
-            <response code="404">Número de identificação não encontrado!</response>
+            <response code="404">Indentificador não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.DesativarAreaAtendimento(System.Int32)">
             <summary>
                 Desativa a área de atendimento
             </summary>
-            <param name="num">Número de indentificação da área de atendimento</param>
+            <param name="id">Indentificador da área de atendimento</param>
             <returns>Nada</returns>
             <response code="204">Desativdo com sucesso!</response>
             <response code="400">Erro ao efetuar a dasativação!</response>
             <response code="401">Erro de autorização!</response>
-            <response code="404">Número de indentificação não encontrado!</response>
+            <response code="404">Indentificador não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.CargosController.AdicionarCargo(DesafioFinal.Server.Models.Cargo)">
             <summary>
@@ -77,17 +77,17 @@
             <summary>
                 Seleciona o cargo adicionado
             </summary>
-            <param name="num">Número de identificação do cargo</param>
+            <param name="id">Indentificador do cargo</param>
             <returns>Cargo selecionado</returns>
-            <response code="200">Cargo selcionado com sucesso!</response>
+            <response code="200">Cargo selecionado com sucesso!</response>
             <response code="401">Erro de autorização!</response>
             <response code="404">Cargo não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.CargosController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Cargo)">
             <summary>
-                Altera o cargo através de seu numero de identificação
+                Altera o cargo
             </summary>
-            <param name="num">Número de indetificação do cargo a ser alterado</param>
+            <param name="id">Indentificador do cargo a ser alterado</param>
             <param name="input">Cargo a ser alterado</param>
             <returns>Nada</returns>
             <response code="204">Alterado com sucesso!</response>
@@ -99,12 +99,12 @@
             <summary>
                 Desativa o cargo (Guarda o resultado em outra tabela)
             </summary>
-            <param name="num">Número de identificador do cargo</param>
+            <param name="id">Identificador do cargo</param>
             <returns>Nada</returns>
             <response code="204">Desativdo com sucesso!</response>
             <response code="400">Erro ao efetuar a dasativação!</response>
-            <response code="401">Erro de autorização!</response>
-            <response code="404">Número de identificação não encontrado!</response>
+            <response code="401">Erroautorização!</response>
+            <response code="404">Indentificador não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.HistoricosController.ExibirHistoricoUsuarios">
             <summary>
@@ -140,7 +140,7 @@
             <summary>
                 Seleciona a senha gerada
             </summary>
-            <param name="id">Número de identificação da senha</param>
+            <param name="id">Indentificador da senha</param>
             <returns>Senha selecionada</returns>
             <response code="200">Senha selecionada com sucesso!</response>
             <response code="404">Senha não encontrada!</response>
@@ -149,7 +149,7 @@
             <summary>
                 Altera a ordem
             </summary>
-            <param name="id">Número de identificação</param>
+            <param name="id">Indentificador</param>
             <param name="senhaPatch">Ordem desejada</param>
             <remarks>
             **Código:**
@@ -170,7 +170,7 @@
             <summary>
                 Altera o tipo de prioridade
             </summary>
-            <param name="id">Número de identificação</param>
+            <param name="id">Indentificador</param>
             <param name="senhaPatch">Prioridade desejada</param>
             <remarks>
             **Código:**
@@ -186,7 +186,7 @@
             </remarks>
             <returns>Nada</returns>
             <response code="204">Alterado com sucesso!</response>
-            <response code="404">Número de identificação não encontrado!</response>
+            <response code="404">Indentificador não encontrado!</response>
             <response code="400">Erro ao alterar a senha!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.SenhasController.CancelarSenha(System.Int32)">
@@ -195,7 +195,7 @@
             </summary>
             <param name="id">Número do identificador</param>
             <returns>Nada</returns>
-            <response code="404">Número de identificação não encontrado!</response>
+            <response code="404">Indentificador não encontrado!</response>
             <response code="204">Cancelado com sucesso!</response>
             <response code="400">Erro ao efetuar a dasativação!</response>
         </member>
@@ -221,34 +221,34 @@
             <summary>
                 Seleciona o tipo de área de atendimento através de seu código
             </summary>
-            <param name="cod">Código do tipo de área de atendimento a ser selecionada</param>
+            <param name="id">Identificador da área de atendimento a ser selecionada</param>
             <returns>Tipo de área de atendimento selecionado</returns>
             <response code="200">Tipo de área de atendimento retornado com sucesso!</response>
             <response code="401">Erro de autorização!</response>
-            <response code="404">Código não encontrado!</response>
+            <response code="404">Identificador não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.EditarTipoAreaAtendimento(System.Int32,DesafioFinal.Server.Models.TipoAreaAtendimento)">
             <summary>
                 Altera o tipo de área de atendimento através de seu código
             </summary>
-            <param name="cod">Código do tipo de área de atendimento a ser alterado</param>
+            <param name="id">Identificador do tipo de área de atendimento a ser alterado</param>
             <param name="input">Tipo de área de atendimento a ser alterado</param>
             <returns>Nada</returns>
             <response code="204">Alterado com sucesso!</response>
             <response code="400">Erro ao efetuar a alteração!</response>
             <response code="401">Erro de autorização!</response>
-            <response code="404">Código não encontrado!</response>
+            <response code="404">Identificador não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.DesativarTipoAreaAtendimento(System.Int32)">
             <summary>
                 Desativa o Tipo de área de atendimento
             </summary>
-            <param name="cod">Código do Tipo de área de atendimento</param>
+            <param name="id">Identificador do Tipo de área de atendimento</param>
             <returns>Nada</returns>
             <response code="204">Desativdo com sucesso!</response>
             <response code="400">Erro ao efetuar a dasativação!</response>
             <response code="401">Erro de autorização!</response>
-            <response code="404">Código não encontrado!</response>
+            <response code="404">Identificador não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.UsuarioController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
             <summary>
@@ -270,9 +270,9 @@
         </member>
         <member name="M:DesafioFinal.Server.Controllers.UsuarioController.SelecionarUsuario(System.Int32)">
             <summary>
-                Seleciona o usuário através de seu numero de identificação
+                Seleciona o usuário através de seu numero de Indentificador
             </summary>
-            <param name="id">Numero de identificação da pessoa a ser selecionada</param>
+            <param name="id">Numero de Indentificador da pessoa a ser selecionada</param>
             <returns>Usuário selecionado</returns>
             <response code="200">Usuário retornado com sucesso!</response>
             <response code="401">Erro de autorização!</response>
@@ -280,7 +280,7 @@
         </member>
         <member name="M:DesafioFinal.Server.Controllers.UsuarioController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Usuario)">
             <summary>
-                Altera o usuário através de seu numero de identificação
+                Altera o usuário através de seu numero de Indentificador
             </summary>
             <param name="id">Indetificador do Usuário a ser alterado</param>
             <param name="input">Usuário a ser alterado</param>
@@ -300,16 +300,6 @@
             <response code="400">Erro ao efetuar a dasativação!</response>
             <response code="401">Erro de autorização!</response>
             <response code="404">Identificador não encontrado!</response>
-        </member>
-        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.Logar(DesafioFinal.Server.Models.Login)">
-            <summary>
-                Efetua login
-            </summary>
-            <param name="login">Login</param>
-            <returns>Usuário que condiz com o login</returns>
-            <response code="200">Logado!</response>
-            <response code="400">Erro ao efetuar o login!</response>
-            <response code="404">Erro de login!</response>
         </member>
         <member name="T:DesafioFinal.Server.Migrations.Initial">
             <inheritdoc />

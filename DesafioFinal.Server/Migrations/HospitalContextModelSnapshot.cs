@@ -24,20 +24,20 @@ namespace DesafioFinal.Server.Migrations
 
             modelBuilder.Entity("DesafioFinal.Server.Models.AreaAtendimento", b =>
                 {
-                    b.Property<int>("Numero")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Numero"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<int>("TipoAreaAtendimentoId")
                         .HasColumnType("int");
 
-                    b.HasKey("Numero");
+                    b.HasKey("Id");
 
                     b.HasIndex("TipoAreaAtendimentoId");
 
@@ -46,34 +46,34 @@ namespace DesafioFinal.Server.Migrations
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Cargo", b =>
                 {
-                    b.Property<int>("Numero")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Numero"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(50)");
 
-                    b.HasKey("Numero");
+                    b.HasKey("Id");
 
                     b.ToTable("Cargos");
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.HistoricoCargo", b =>
                 {
-                    b.Property<int>("Numero")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Numero"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(50)");
 
-                    b.HasKey("Numero");
+                    b.HasKey("Id");
 
                     b.ToTable("HistoricoCargos");
                 });
@@ -122,10 +122,35 @@ namespace DesafioFinal.Server.Migrations
                     b.ToTable("HistoricoUsuarios");
                 });
 
+            modelBuilder.Entity("DesafioFinal.Server.Models.Login", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(80)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logins");
+                });
+
             modelBuilder.Entity("DesafioFinal.Server.Models.Senha", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Numero")
                         .HasColumnType("int");
@@ -137,22 +162,24 @@ namespace DesafioFinal.Server.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(20)");
 
+                    b.HasKey("Id");
+
                     b.ToTable("Senhas");
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.TipoAreaAtendimento", b =>
                 {
-                    b.Property<int>("COD")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("COD"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(50)");
 
-                    b.HasKey("COD");
+                    b.HasKey("Id");
 
                     b.ToTable("TiposAreasAtendimento");
                 });
@@ -177,7 +204,7 @@ namespace DesafioFinal.Server.Migrations
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Senha")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(20)");
 
                     b.HasKey("Id");
 

@@ -14,39 +14,40 @@ builder.Services.AddControllers().AddNewtonsoftJson(opts =>
     opts.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
 
-string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-builder.Services.AddCors(
+//string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+//builder.Services.AddCors(
 
-    opt =>
-    {
-        opt.AddPolicy(MyAllowSpecificOrigins,
-                policy =>
-                {
-                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
-    });
+//    opt =>
+//    {
+//        opt.AddPolicy(MyAllowSpecificOrigins,
+//                policy =>
+//                {
+//                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+//                });
+//    });
 
-string tokenKey = "HospitalSGS";
-var key = Encoding.ASCII.GetBytes(tokenKey);
+//string tokenKey = "HospitalSGSGerenciamento";
+//var key = Encoding.ASCII.GetBytes(tokenKey);
 
-builder.Services.AddAuthentication(Auth =>
-{
-    Auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    Auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(jwt =>
-{
-    jwt.RequireHttpsMetadata = false;
-    jwt.SaveToken = true;
-    jwt.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = false,
-        ValidateAudience = false
-    };
-});
+//builder.Services.AddAuthentication(Auth =>
+//{
+//    Auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    Auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//}).AddJwtBearer(jwt =>
+//{
+//    // Comente essa linha ao publicar
+//    jwt.RequireHttpsMetadata = false;
+//    jwt.SaveToken = true;
+//    jwt.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuerSigningKey = true,
+//        IssuerSigningKey = new SymmetricSecurityKey(key),
+//        // Comente essas duas linhas ao publicar
+//        ValidateIssuer = false,
+//        ValidateAudience = false
+//    };
+//});
 
-builder.Services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthManager(tokenKey));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -69,8 +70,11 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(xmlPath);
 });
 
+
 string strCon = builder.Configuration.GetConnectionString("HospitalDBcon");
 builder.Services.AddDbContext<HospitalContext>(opt => opt.UseSqlServer(strCon));
+
+//builder.Services.AddSingleton<IJWTAuthManager>(new JWTAuthManager(tokenKey));
 
 var app = builder.Build();
 
@@ -82,11 +86,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
+//app.UseCors(MyAllowSpecificOrigins);
+//app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors(MyAllowSpecificOrigins);
 
 app.MapControllers();
 

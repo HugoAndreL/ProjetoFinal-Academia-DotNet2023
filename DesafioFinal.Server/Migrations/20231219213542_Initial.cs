@@ -14,26 +14,26 @@ namespace DesafioFinal.Server.Migrations
                 name: "Cargos",
                 columns: table => new
                 {
-                    Numero = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cargos", x => x.Numero);
+                    table.PrimaryKey("PK_Cargos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "HistoricoCargos",
                 columns: table => new
                 {
-                    Numero = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HistoricoCargos", x => x.Numero);
+                    table.PrimaryKey("PK_HistoricoCargos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,29 +66,45 @@ namespace DesafioFinal.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Logins",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "VARCHAR(80)", nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logins", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Senhas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Ordem = table.Column<int>(type: "int", nullable: false),
                     Numero = table.Column<int>(type: "int", nullable: false),
                     Prioridade = table.Column<string>(type: "VARCHAR(20)", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Senhas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "TiposAreasAtendimento",
                 columns: table => new
                 {
-                    COD = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TiposAreasAtendimento", x => x.COD);
+                    table.PrimaryKey("PK_TiposAreasAtendimento", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,7 +116,7 @@ namespace DesafioFinal.Server.Migrations
                     Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(80)", nullable: false),
                     CargoId = table.Column<int>(type: "int", nullable: true),
-                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Senha = table.Column<string>(type: "VARCHAR(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -109,26 +125,26 @@ namespace DesafioFinal.Server.Migrations
                         name: "FK_Usuarios_Cargos_CargoId",
                         column: x => x.CargoId,
                         principalTable: "Cargos",
-                        principalColumn: "Numero");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "AreasAtendimento",
                 columns: table => new
                 {
-                    Numero = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     TipoAreaAtendimentoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AreasAtendimento", x => x.Numero);
+                    table.PrimaryKey("PK_AreasAtendimento", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AreasAtendimento_TiposAreasAtendimento_TipoAreaAtendimentoId",
                         column: x => x.TipoAreaAtendimentoId,
                         principalTable: "TiposAreasAtendimento",
-                        principalColumn: "COD",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -157,6 +173,9 @@ namespace DesafioFinal.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "HistoricoUsuarios");
+
+            migrationBuilder.DropTable(
+                name: "Logins");
 
             migrationBuilder.DropTable(
                 name: "Senhas");

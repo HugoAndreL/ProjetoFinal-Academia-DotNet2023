@@ -1,25 +1,20 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace DesafioFinal.Server.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private readonly IJWTAuthenticationManager _jwtAuthenticationManager;
         private readonly HospitalContext _context;
 
-        public UsuarioController(HospitalContext context, IJWTAuthenticationManager jwtAuthenticationManager)
+        public UsuarioController(HospitalContext context)
         {
             _context = context;
-            _jwtAuthenticationManager = jwtAuthenticationManager;
         }
 
         /// <summary>
@@ -44,13 +39,14 @@ namespace DesafioFinal.Server.Controllers
 
                 await _context.Usuarios.AddAsync(user);
                 await _context.SaveChangesAsync();
-                Login login = new()
-                {
-                    Email = user.Email,
-                    Senha = user.Senha,
-                };
+                //Login login = new()
+                //{
+                //    Username = user.Nome,
+                //    Password = user.Senha,
+                //};
+
                 return CreatedAtAction(nameof(SelecionarUsuario),
-                    new { id = user.Id }, login);
+                    new { id = user.Id }, user);
             }
             catch (Exception ex)
             {
@@ -78,9 +74,9 @@ namespace DesafioFinal.Server.Controllers
         }
 
         /// <summary>
-        ///     Seleciona o usuário através de seu numero de identificação
+        ///     Seleciona o usuário através de seu numero de Indentificador
         /// </summary>
-        /// <param name="id">Numero de identificação da pessoa a ser selecionada</param>
+        /// <param name="id">Numero de Indentificador da pessoa a ser selecionada</param>
         /// <returns>Usuário selecionado</returns>
         /// <response code="200">Usuário retornado com sucesso!</response>
         /// <response code="401">Erro de autorização!</response>
@@ -97,7 +93,7 @@ namespace DesafioFinal.Server.Controllers
         }
 
         /// <summary>
-        ///     Altera o usuário através de seu numero de identificação
+        ///     Altera o usuário através de seu numero de Indentificador
         /// </summary>
         /// <param name="id">Indetificador do Usuário a ser alterado</param>
         /// <param name="input">Usuário a ser alterado</param>
@@ -167,62 +163,6 @@ namespace DesafioFinal.Server.Controllers
                         Nome = user.Nome,
                         Email = user.Email
                     });
-                    _context.Usuarios.Remove(user);
-                    await _context.SaveChangesAsync();
-                    return NoContent();
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar o cadastro do usuário.\n" +
-                        "Erro:\n\t" + ex.Message);
-                }
-            }
-            return NotFound("Usuário não encontrado!");
-        }
-
-        /// <summary>
-        ///     Efetua login
-        /// </summary>
-        /// <param name="login">Login</param>
-        /// <returns>Usuário que condiz com o login</returns>
-        /// <response code="200">Logado!</response>
-        /// <response code="400">Erro ao efetuar o login!</response>
-        /// <response code="404">Erro de login!</response>
-        [AllowAnonymous]
-        [HttpPost("Login")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Logar([FromBody] Login login)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao efetuar o login!");
-
-            Usuario user = _context.Usuarios
-                .AsNoTracking()
-                .FirstOrDefault(
-                    user => user.Email == login.Email && user.Senha == login.Senha
-                );
-
-            if (user != null) 
-                return Ok(user);
-
-            return NotFound("Esse usuario não exite!");
-        }
-
-        [HttpPost("Logout/{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Logout([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar o log-out do usuário.");
-
-            Usuario user = await _context.Usuarios
-                .AsNoTracking()
-                .FirstOrDefaultAsync(user => user.Id == id);
-
-            if (user != null)
-            {
-                try
-                {
                     _context.Usuarios.Remove(user);
                     await _context.SaveChangesAsync();
                     return NoContent();

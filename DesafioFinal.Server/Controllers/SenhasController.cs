@@ -44,7 +44,7 @@ namespace DesafioFinal.Server.Controllers
         /// <summary>
         ///     Seleciona a senha gerada
         /// </summary>
-        /// <param name="id">Número de identificação da senha</param>
+        /// <param name="id">Indentificador da senha</param>
         /// <returns>Senha selecionada</returns>
         /// <response code="200">Senha selecionada com sucesso!</response>
         /// <response code="404">Senha não encontrada!</response>
@@ -64,7 +64,7 @@ namespace DesafioFinal.Server.Controllers
         /// <summary>
         ///     Altera a ordem
         /// </summary>
-        /// <param name="id">Número de identificação</param>
+        /// <param name="id">Indentificador</param>
         /// <param name="senhaPatch">Ordem desejada</param>
         /// <remarks>
         /// **Código:**
@@ -100,7 +100,7 @@ namespace DesafioFinal.Server.Controllers
         /// <summary>
         ///     Altera o tipo de prioridade
         /// </summary>
-        /// <param name="id">Número de identificação</param>
+        /// <param name="id">Indentificador</param>
         /// <param name="senhaPatch">Prioridade desejada</param>
         /// <remarks>
         /// **Código:**
@@ -116,7 +116,7 @@ namespace DesafioFinal.Server.Controllers
         /// </remarks>
         /// <returns>Nada</returns>
         /// <response code="204">Alterado com sucesso!</response>
-        /// <response code="404">Número de identificação não encontrado!</response>
+        /// <response code="404">Indentificador não encontrado!</response>
         /// <response code="400">Erro ao alterar a senha!</response>
         [HttpPatch("Prioridade/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -140,7 +140,7 @@ namespace DesafioFinal.Server.Controllers
         /// </summary>
         /// <param name="id">Número do identificador</param>
         /// <returns>Nada</returns>
-        /// <response code="404">Número de identificação não encontrado!</response>
+        /// <response code="404">Indentificador não encontrado!</response>
         /// <response code="204">Cancelado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
         [HttpDelete("Cancelar/{id}")]
