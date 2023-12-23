@@ -4,9 +4,10 @@
     <div class="card-body">
       <form id="add-form" (ngSubmit)="f.form.valid && addUser()" #f="ngForm" novalidate>
         <section class="form-group mb-3">
-          <!-- Nome -->
-          <label class="form-label" for="nome">Nome do Cargo:</label>
-          <input 
+           <!-- Nome -->
+           <div class="my-3">
+            <label class="form-label" for="nome">Nome do Usuario:</label>
+            <input 
             type="text"
             [(ngModel)]="user.nome"
             id="nome"
@@ -14,9 +15,11 @@
             class="form-control"
             placeholder="Digite o Nome Completo"
             required />
+          </div>
           <!-- Email -->
-          <label for="email" class="form-label">Email do Usuario:</label>
-          <input 
+          <div class="my-3">
+            <label for="email" class="form-label">Email do Usuario:</label>
+            <input 
             type="email" 
             [(ngModel)]="user.email"
             id="email"
@@ -24,19 +27,22 @@
             class="form-control" 
             placeholder="email@dominio.com"
             required />
+          </div>
           <!-- CargoId -->
-          <label for="cargoId" class="form-label">Identificador do Usuario:</label>
-          <input 
+          <div class="my-3">
+            <label for="cargoId" class="form-label">Identificador do Usuario:</label>
+            <input 
             type="number" 
             [(ngModel)]="user.cargoId"
             name="email"
             class="form-control"
             placeholder="Identificador do Cargo"
             required />
+          </div>
           <!-- Senha -->
           <label for="senha" class="form-label">Senha do Usuario</label>
           <input type="password" class="form-control" disabled>
-          <span id="emailHelp" class="form-text">A senha do usuario será gerada a partir do nome completo do usuario.</span>
+          <span id="senhaHelp" class="form-text">A senha do usuario será gerada a partir do nome completo do usuario.</span>
         </section>
           <div class="d-flex justify-content-between">
             <button type="reset" class="btn btn-danger" routerLink="../">

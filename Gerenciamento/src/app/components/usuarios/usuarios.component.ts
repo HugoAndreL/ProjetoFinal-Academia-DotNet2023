@@ -28,5 +28,4 @@ export class UsuariosComponent {
       this.users = users;
     });
   }
-
 }

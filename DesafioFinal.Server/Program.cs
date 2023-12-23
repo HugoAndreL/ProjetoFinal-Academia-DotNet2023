@@ -14,17 +14,16 @@ builder.Services.AddControllers().AddNewtonsoftJson(opts =>
     opts.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
 
-//string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-//builder.Services.AddCors(
-
-//    opt =>
-//    {
-//        opt.AddPolicy(MyAllowSpecificOrigins,
-//                policy =>
-//                {
-//                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-//                });
-//    });
+string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(
+    opt =>
+    {
+        opt.AddPolicy(MyAllowSpecificOrigins,
+                policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+    });
 
 //string tokenKey = "HospitalSGSGerenciamento";
 //var key = Encoding.ASCII.GetBytes(tokenKey);
@@ -86,7 +85,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-//app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(MyAllowSpecificOrigins);
 //app.UseAuthentication();
 app.UseAuthorization();
 

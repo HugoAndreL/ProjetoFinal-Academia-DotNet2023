@@ -83,7 +83,7 @@
             <response code="401">Erro de autorização!</response>
             <response code="404">Cargo não encontrado!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.CargosController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Cargo)">
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.EditarCargo(System.Int32,DesafioFinal.Server.Models.Cargo)">
             <summary>
                 Altera o cargo
             </summary>
@@ -250,7 +250,7 @@
             <response code="401">Erro de autorização!</response>
             <response code="404">Identificador não encontrado!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
+        <member name="M:DesafioFinal.Server.Controllers.UsuariosController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
             <summary>
                 Cadastra um novo usuário
             </summary>
@@ -260,7 +260,7 @@
             <response code="400">Erro ao efetuar o cadastro!</response>
             <response code="401">Erro de autorização!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.ExibirUsuarios">
+        <member name="M:DesafioFinal.Server.Controllers.UsuariosController.ExibirUsuarios">
             <summary>
                 Exibe todos os usuários cadastrados
             </summary>
@@ -268,7 +268,7 @@
             <response code="200">Sucesso!</response>
             <response code="401">Erro de autorização!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.SelecionarUsuario(System.Int32)">
+        <member name="M:DesafioFinal.Server.Controllers.UsuariosController.SelecionarUsuario(System.Int32)">
             <summary>
                 Seleciona o usuário através de seu numero de Indentificador
             </summary>
@@ -278,7 +278,7 @@
             <response code="401">Erro de autorização!</response>
             <response code="404">Erro ao selecionar o usuário!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Usuario)">
+        <member name="M:DesafioFinal.Server.Controllers.UsuariosController.EditarUsuario(System.Int32,DesafioFinal.Server.Models.Usuario)">
             <summary>
                 Altera o usuário através de seu numero de Indentificador
             </summary>
@@ -290,7 +290,7 @@
             <response code="401">Erro de autorização!</response>
             <response code="404">Identificador não encontrado!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.UsuarioController.DesativarUsuario(System.Int32)">
+        <member name="M:DesafioFinal.Server.Controllers.UsuariosController.DesativarUsuario(System.Int32)">
             <summary>
                 Desativa o usuário (Guarda o resultado em outra tabela)
             </summary>

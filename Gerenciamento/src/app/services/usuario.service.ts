@@ -11,7 +11,7 @@ import { Usuario } from '../models/usuario';
 export class UsuarioService {
   url = 'https://localhost:7222/api/Usuarios';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   httpOptions = {
     headers: new HttpHeaders ({ 'content-type': 'application/json'})
@@ -27,12 +27,27 @@ export class UsuarioService {
   }
 
   getUsuarios(): Observable<Usuario[]> {
-    return this.httpClient.get<Usuario[]>(this.url)
-      .pipe(retry(2), catchError(this.handleErr));
+    return this.http.get<Usuario[]>(this.url)
+      .pipe(catchError(this.handleErr));
+  }
+
+  getCargobyId(id: number | undefined): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.url}/Selecionar/${id}`)
+      .pipe(catchError(this.handleErr));
   }
 
   postUsuario(user: Usuario): Observable<Usuario> {
-    return this.httpClient.post<Usuario>(`${this.url}/Cadastrar`, JSON.stringify(user), this.httpOptions)
-      .pipe(retry(2), catchError(this.handleErr));
+    return this.http.post<Usuario>(`${this.url}/Cadastrar`, JSON.stringify(user), this.httpOptions)
+      .pipe(catchError(this.handleErr));
+  }
+
+  putUsuario(user: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.url}/Editar/${user.id}`, JSON.stringify(user), this.httpOptions)
+        .pipe(catchError(this.handleErr));
+  }
+
+  deleteUsuario(user: Usuario): Observable<Usuario> {
+    return this.http.delete<Usuario>(`${this.url}/Desativar/${user.id}`)
+      .pipe(catchError(this.handleErr))
   }
 }

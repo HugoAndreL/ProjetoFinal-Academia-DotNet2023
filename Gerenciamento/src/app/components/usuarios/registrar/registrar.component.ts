@@ -22,7 +22,7 @@ export class RegistrarComponent {
   addUser(): void {
     this.service.postUsuario(this.user)
       .subscribe(() => {
-        alert('Cadastrado com Sucesso!');
+        alert('Usuário cadastrado com sucesso!');
         this.router.navigate(['/Usuarios']);
       });
   }

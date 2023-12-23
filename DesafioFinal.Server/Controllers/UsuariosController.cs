@@ -8,11 +8,11 @@ namespace DesafioFinal.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class UsuariosController : ControllerBase
     {
         private readonly HospitalContext _context;
 
-        public UsuarioController(HospitalContext context)
+        public UsuariosController(HospitalContext context)
         {
             _context = context;
         }
@@ -102,7 +102,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="400">Erro ao efetuar a alteração!</response>
         /// <response code="401">Erro de autorização!</response>
         /// <response code="404">Identificador não encontrado!</response>
-        [HttpPut("Alterar/{id}")]
+        [HttpPut("Editar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> EditarUsuario([FromRoute] int id, [FromBody] Usuario input)
         {
@@ -120,10 +120,11 @@ namespace DesafioFinal.Server.Controllers
                     user.Nome = input.Nome;
                     user.Email = input.Email;
                     user.CargoId = input.CargoId;
+                    user.Senha = input.Senha;
 
                     _context.Usuarios.Update(user);
                     await _context.SaveChangesAsync();
-                    return NoContent();
+                    return Ok(user);
                 }
                 catch (Exception ex)
                 {

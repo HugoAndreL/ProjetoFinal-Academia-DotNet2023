@@ -1,0 +1,33 @@
+<section class="container">
+  <div class="card list-pessoa">
+    <h5 class="card-header">Adicionar Cargo</h5>
+    <div class="card-body">
+      <form id="add-form" (ngSubmit)="f.form.valid && addUser()" #f="ngForm" novalidate>
+        <section class="form-group mb-3">
+           <!-- Nome -->
+           <div class="my-3">
+            <label class="form-label" for="nome">Nome do Usuario:</label>
+            <input 
+            type="text"
+            [(ngModel)]="cargo.nome"
+            id="nome"
+            name="nome"
+            class="form-control"
+            placeholder="Digite o Nome Completo"
+            required />
+          </div>
+        </section>
+          <div class="d-flex justify-content-between">
+            <button type="reset" class="btn btn-danger" routerLink="/Cargos">
+              Cancelar
+              <fa-icon [icon]="icCancel"></fa-icon>
+            </button>
+            <button type="submit" class="btn btn-success">
+              Registrar 
+              <fa-icon [icon]="icAdd"></fa-icon>
+            </button>
+          </div>
+        </form>
+    </div>
+  </div>
+</section>

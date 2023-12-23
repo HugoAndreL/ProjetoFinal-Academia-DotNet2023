@@ -92,7 +92,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="404">Identificador não encontrado!</response>
         [HttpPut("Alterar/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> EditarUsuario([FromRoute] int id, [FromBody] Cargo input)
+        public async Task<IActionResult> EditarCargo([FromRoute] int id, [FromBody] Cargo input)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -109,7 +109,7 @@ namespace DesafioFinal.Server.Controllers
 
                     _context.Cargos.Update(cargo);
                     await _context.SaveChangesAsync();
-                    return NoContent();
+                    return Ok(cargo);
                 }
                 catch (Exception ex)
                 {

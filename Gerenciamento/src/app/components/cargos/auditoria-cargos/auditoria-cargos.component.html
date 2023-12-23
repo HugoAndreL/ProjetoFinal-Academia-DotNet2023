@@ -1,0 +1,21 @@
+<section class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Auditoria de Cargos</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-light table-hover align-middle table-sm" >
+        <thead class="table-light">
+          <th class="text-center">Id</th>
+          <th class="text-center">Nome</th>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let cargo of cargos">
+            <td class="text-center">{{ cargo.id }}</td>
+            <td class="text-center">{{ cargo.nome }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

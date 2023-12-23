@@ -1,0 +1,67 @@
+<section class="container">
+  <div class="card list-pessoa">
+    <h5 class="card-header">Alterar Usuario: {{this.form.value.nome}}</h5>
+    <div class="card-body">
+      <form [formGroup]="form">
+        <section class="form-group">
+          <!-- Nome -->
+          <div class="my-3">
+            <label for="nome" class="form-label">Nome do Usuário:</label>
+            <input 
+              type="text" 
+              formControlName="nome"
+              id="nome"
+              class="form-control"
+              placeholder="Digite o Nome Completo"
+              required 
+            />
+          </div>
+          <!-- Email -->
+          <div class="my-3">
+            <label for="email" class="form-label">Email do Usuario:</label>
+            <input 
+              type="email" 
+              formControlName="email"
+              id="email"
+              class="form-control" 
+              placeholder="email@dominio.com"
+              required 
+            />
+          </div>
+          <!-- CargoId -->
+          <div class="my-3">
+            <label for="cargoId" class="form-label">Identificador do Usuario:</label>
+            <input 
+              type="number" 
+              formControlName="cargoId"
+              class="form-control"
+              placeholder="Identificador do Cargo"
+              required 
+            />
+          </div>
+          <!-- Senha -->
+          <label for="senha" class="form-label">Senha do Usuario</label>
+          <input 
+            type="text"
+            formControlName="senha"
+            class="form-control"
+          />
+          <div class="my-1 d-flex justify-content-end form-check my-3">
+            <input type="checkbox" class="form-check-input" id="AlterarSenha">
+            <label class="form-check-label ms-2" for="AlterarSenha">Alterar Senha</label>
+          </div>
+        </section>
+          <div class="d-flex justify-content-between">
+            <button type="reset" class="btn btn-danger" routerLink="/Usuarios">
+              Cancelar
+              <fa-icon [icon]="icCancel"></fa-icon>
+            </button>
+            <button type="submit" class="btn btn-success" (click)="updateUser()">
+              Alterar 
+              <fa-icon [icon]="icCheck"></fa-icon>
+            </button>
+          </div>
+        </form>
+    </div>
+  </div>
+</section>
