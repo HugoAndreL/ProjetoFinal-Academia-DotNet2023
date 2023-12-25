@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
+import { Cargo } from '../../../models/cargo';
+import { CargoService } from '../../../services/cargo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CargoService } from '../../../services/cargo.service';
-import { Cargo } from '../../../models/cargo';
-
 @Component({
-  selector: 'app-remover',
-  templateUrl: './remover.component.html',
-  styleUrl: './remover.component.scss'
+  selector: 'app-desativar-cargo',
+  templateUrl: './desativar-cargo.component.html',
+  styleUrl: './desativar-cargo.component.scss'
 })
-export class RemoverComponent {
-  cargo = {} as Cargo
+export class DesativarCargoComponent {
+  cargo = {} as Cargo;
   
   constructor(private route: ActivatedRoute, private router: Router, private service: CargoService) {}
   
@@ -21,7 +20,7 @@ export class RemoverComponent {
     });
   }
 
-  removerCargo() {
+  desativarCargo() {
     this.service.deleteCargo(this.cargo).subscribe(() => {
       alert(`${this.cargo.nome} deletado com sucesso`);
       this.router.navigate(['/Cargos']);

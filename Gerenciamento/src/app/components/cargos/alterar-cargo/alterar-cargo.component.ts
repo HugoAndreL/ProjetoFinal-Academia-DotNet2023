@@ -1,18 +1,18 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { CargoService } from '../../../services/cargo.service';
 import { Cargo } from '../../../models/cargo';
+import { CargoService } from '../../../services/cargo.service';
 
 @Component({
-  selector: 'app-editar',
-  templateUrl: './editar.component.html',
-  styleUrl: './editar.component.scss'
+  selector: 'app-alterar-cargo',
+  templateUrl: './alterar-cargo.component.html',
+  styleUrl: './alterar-cargo.component.scss'
 })
-export class EditarComponent {
+export class AlterarCargoComponent {
   cargo = {} as Cargo;
   form!: FormGroup;
 
@@ -22,7 +22,10 @@ export class EditarComponent {
   constructor(private route: ActivatedRoute, private router: Router, private service: CargoService, private builder: FormBuilder) {
     this.form = this.builder.group({
       id: null,
-      nome: null
+      nome: null,
+      email: null,
+      cargoId: null,
+      senha: null
     });
   }
   
@@ -36,7 +39,7 @@ export class EditarComponent {
     });
   }
 
-  updateUser(): void {
+  updateCargo(): void {
     this.service.putCargo(this.form.value).subscribe(() => {
       alert('Cargo alterado com sucesso!');
       this.router.navigate(['/Cargos']);

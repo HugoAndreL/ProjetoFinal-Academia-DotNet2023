@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
+import { Cargo } from '../../../models/cargo';
+import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { CargoService } from '../../../services/cargo.service';
 import { Router } from '@angular/router';
 
-import { faArrowLeft, faCheck, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
-
-import { Cargo } from '../../../models/cargo';
-import { CargoService } from '../../../services/cargo.service';
-
 @Component({
-  selector: 'app-adicionar',
-  templateUrl: './adicionar.component.html',
-  styleUrl: './adicionar.component.scss'
+  selector: 'app-adicionar-cargo',
+  templateUrl: './adicionar-cargo.component.html',
+  styleUrl: './adicionar-cargo.component.scss'
 })
-export class AdicionarComponent {
+export class AdicionarCargoComponent {
   cargo = {} as Cargo;
 
   icCancel = faXmark;
@@ -19,7 +17,7 @@ export class AdicionarComponent {
 
   constructor(private service: CargoService, private router: Router) {}
 
-  addUser(): void {
+  addCargo(): void {
     this.service.postCargo(this.cargo)
       .subscribe(() => {
         console.log(this.cargo);
