@@ -37,13 +37,14 @@ namespace DesafioFinal.Server.Controllers
                 string[] nome = user.Nome.ToLower().Split();
                 user.Senha = $"Hospital@{nome[0]}.{nome[nome.Length - 1]}";
 
+                Login login = new()
+                {
+                    Username = user.Nome,
+                    Password = user.Senha,
+                };
+                await _context.Logins.AddAsync(login);
                 await _context.Usuarios.AddAsync(user);
                 await _context.SaveChangesAsync();
-                //Login login = new()
-                //{
-                //    Username = user.Nome,
-                //    Password = user.Senha,
-                //};
 
                 return CreatedAtAction(nameof(SelecionarUsuario),
                     new { id = user.Id }, user);
@@ -122,6 +123,13 @@ namespace DesafioFinal.Server.Controllers
                     user.CargoId = input.CargoId;
                     user.Senha = input.Senha;
 
+                    Login login = new()
+                    {
+                        Username = user.Nome,
+                        Password = user.Senha
+                    };
+
+                    _context.Logins.Update(login);
                     _context.Usuarios.Update(user);
                     await _context.SaveChangesAsync();
                     return Ok(user);

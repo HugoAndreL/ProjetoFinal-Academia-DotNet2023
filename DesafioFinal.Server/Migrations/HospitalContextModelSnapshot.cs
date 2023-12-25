@@ -130,18 +130,51 @@ namespace DesafioFinal.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(80)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Senha")
+                    b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Logins");
+                });
+
+            modelBuilder.Entity("DesafioFinal.Server.Models.Relatorio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DataRelatorio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(30)");
+
+                    b.Property<int>("TaxaUtilizacaoConsultorio")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TaxaUtilizacaoGuiche")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TaxaUtilizacaoTriagem")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TempoEspera")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(10)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Relatorios");
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Senha", b =>

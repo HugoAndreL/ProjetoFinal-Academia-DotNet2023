@@ -1,9 +1,15 @@
-﻿namespace DesafioFinal.Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DesafioFinal.Server.Models
 {
     public class Login
     {
-        //public string Username { get; set; }
+        [Key]
+        [Required]
+        public int Id { get; set; }
 
-        //public string Password { get; set; }
+        public string Username { get; set; }
+
+        public string Password { get; set; }
     }
 }

@@ -19,6 +19,10 @@ namespace DesafioFinal.Server.Data
 
         public DbSet<TipoAreaAtendimento> TiposAreasAtendimento { get; set; }
 
+        public DbSet<Login> Logins { get; set; }
+
+        public DbSet<Relatorio> Relatorios { get; set; }
+
         public HospitalContext(DbContextOptions<HospitalContext> opt) : base(opt) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
