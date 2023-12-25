@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Usuario } from '../../../models/usuario';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { UsuarioService } from '../../../services/usuario.service';
-import { Usuario } from '../../../models/usuario';
 
 @Component({
-  selector: 'app-alterar',
-  templateUrl: './alterar.component.html',
-  styleUrl: './alterar.component.scss'
+  selector: 'app-alterar-usuario',
+  templateUrl: './alterar-usuario.component.html',
+  styleUrl: './alterar-usuario.component.scss'
 })
-export class AlterarComponent {
+export class AlterarUsuarioComponent {
   user = {} as Usuario;
   form!: FormGroup;
 
@@ -31,7 +31,7 @@ export class AlterarComponent {
   
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.getCargobyId(parseInt(id!)).subscribe((user) => {
+    this.service.getUsuariobyId(parseInt(id!)).subscribe((user) => {
       this.form.patchValue({
         id: id,
         nome: user.nome,

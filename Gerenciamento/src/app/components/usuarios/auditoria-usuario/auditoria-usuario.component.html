@@ -1,1 +1,23 @@
-<p>auditoria-usuario works!</p>
+<section class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Auditoria de Usuarios</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-light table-hover align-middle table-sm" >
+        <thead class="table-light">
+          <th class="text-center">Id</th>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Email</th>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let user of users">
+            <td class="text-center">{{ user.id }}</td>
+            <td class="text-center">{{ user.nome }}</td>
+            <td class="text-center">{{ user.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

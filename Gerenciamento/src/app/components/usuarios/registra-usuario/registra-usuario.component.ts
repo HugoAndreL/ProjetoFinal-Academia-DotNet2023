@@ -3,15 +3,15 @@ import { Router } from '@angular/router';
 
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
+import { Usuario } from '../../../models/usuario';
 
 @Component({
-  selector: 'app-registrar',
-  templateUrl: './registrar.component.html',
-  styleUrl: './registrar.component.scss'
+  selector: 'app-registra-usuario',
+  templateUrl: './registra-usuario.component.html',
+  styleUrl: './registra-usuario.component.scss'
 })
-export class RegistrarComponent {
+export class RegistraUsuarioComponent {
   user = {} as Usuario;
 
   icCancel = faXmark;
@@ -22,7 +22,8 @@ export class RegistrarComponent {
   addUser(): void {
     this.service.postUsuario(this.user)
       .subscribe(() => {
-        alert('Usuário cadastrado com sucesso!');
+        console.log(this.user);
+        alert('Usuario cadastrado com sucesso!');
         this.router.navigate(['/Usuarios']);
       });
   }

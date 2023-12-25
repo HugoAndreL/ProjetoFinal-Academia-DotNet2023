@@ -4,12 +4,11 @@
       <h5>Desativar Usuario: {{user.nome}}</h5>
     </div>
     <div class="card-body">
-      Voce concorda em desativar o usuário: {{user.nome}}? (Ele ficará em auditoria, mas não será possivel reativar-lo)
+      Voce concorda em desativar o usuário: {{user.nome}}? (Ele ficará em auditoria, mas não será possivel reativa-lo)
     </div>
     <div class="card-footer d-flex justify-content-between">
       <button class="btn btn-secondary" routerLink="/Usuarios">Não. Cancelar</button>
-      <button class="btn btn-danger" (click)="desativarCargo()">Sim. Desativar</button>
+      <button class="btn btn-danger" (click)="desativarUsuario()">Sim. Desativar</button>
     </div>
   </div>
 </section>
-
