@@ -31,7 +31,7 @@ export class UsuarioService {
       .pipe(catchError(this.handleErr));
   }
 
-  getCargobyId(id: number | undefined): Observable<Usuario> {
+  getUsuariobyId(id: number | undefined): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.url}/Selecionar/${id}`)
       .pipe(catchError(this.handleErr));
   }
