@@ -37,6 +37,10 @@ import { AdicionarAaComponent } from './components/area-atendimento/adicionar-aa
 import { AlterarAaComponent } from './components/area-atendimento/alterar-aa/alterar-aa.component';
 import { ExcluirAaComponent } from './components/area-atendimento/excluir-aa/excluir-aa.component';
 import { RelatoriosComponent } from './components/relatorios/relatorios.component';
+import { AdicionarDocComponent } from './components/relatorios/adicionar-doc/adicionar-doc.component';
+import { TipoAreaAtendimentoService } from './services/tipo-area-atendimento.service';
+import { AreaAtendimentoService } from './services/area-atendimento.service';
+import { RelatorioService } from './services/relatorio.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,9 @@ import { RelatoriosComponent } from './components/relatorios/relatorios.componen
     AdicionarTaaComponent,
     AlterarTaaComponent,
     ExcluirTaaComponent,
+
     RelatoriosComponent,
+    AdicionarDocComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,10 @@ import { RelatoriosComponent } from './components/relatorios/relatorios.componen
   providers: [
     provideClientHydration(),
     CargoService,
-    UsuarioService
+    UsuarioService,
+    AreaAtendimentoService,
+    TipoAreaAtendimentoService,
+    RelatorioService
   ],
   bootstrap: [AppComponent]
 })

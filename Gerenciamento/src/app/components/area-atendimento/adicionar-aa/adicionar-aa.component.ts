@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { AreaAtendimento } from '../../../models/area-atendimento';
-import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { AreaAtendimentoService } from '../../../services/area-atendimento.service';
 import { Router } from '@angular/router';
+
+import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+
+import { AreaAtendimento } from '../../../models/area-atendimento';
+import { AreaAtendimentoService } from '../../../services/area-atendimento.service';
 
 @Component({
   selector: 'app-adicionar-aa',
@@ -20,7 +22,6 @@ export class AdicionarAaComponent {
   addAreaAtendimento(): void {
     this.service.postAreaAtendimento(this.aa)
       .subscribe(() => {
-        console.log(this.aa);
         alert('Area de Atendimento cadastrado com sucesso!');
         this.router.navigate(['/AreasAtendimento']);
       });

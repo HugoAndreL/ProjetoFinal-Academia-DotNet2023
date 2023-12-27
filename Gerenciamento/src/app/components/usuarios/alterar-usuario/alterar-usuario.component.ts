@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
+import emailjs from '@emailjs/browser';
+
 import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({

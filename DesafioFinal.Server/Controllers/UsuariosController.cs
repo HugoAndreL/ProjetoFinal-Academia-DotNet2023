@@ -51,9 +51,7 @@ namespace DesafioFinal.Server.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Ocorreu um erro interno ao tentar efetuar o cadastro do usuário.\n" +
-                    "Error:\n\t" +
-                    ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 

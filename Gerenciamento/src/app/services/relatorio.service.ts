@@ -31,13 +31,18 @@ export class RelatorioService {
       .pipe(catchError(this.handleErr));
   }
 
-  // getAreaAtendimentobyId(id: number | undefined): Observable<AreaAtendimento> {
-  //   return this.http.get<AreaAtendimento>(`${this.url}/Selecionar/${id}`)
-  //     .pipe(catchError(this.handleErr));
-  // }
+  getRelatoriobyId(id: number | undefined): Observable<Relatorio> {
+    return this.http.get<Relatorio>(`${this.url}/Selecionar/${id}`)
+      .pipe(catchError(this.handleErr));
+  }
   
-  // postAreaAtendimento(aa: AreaAtendimento): Observable<AreaAtendimento> {
-  //   return this.http.post<AreaAtendimento>(`${this.url}/Adicionar`, JSON.stringify(aa), this.httpOptions)
-  //     .pipe(catchError(this.handleErr));
-  // }
+  postRelatorio(rel: Relatorio): Observable<Relatorio> {
+    return this.http.post<Relatorio>(`${this.url}/Adicionar`, JSON.stringify(rel), this.httpOptions)
+      .pipe(catchError(this.handleErr));
+  }
+
+  public getCsv(rel: Relatorio) {
+    return this.http.get<Relatorio>(`${this.url}/${rel.id}`)
+        .pipe(catchError(this.handleErr));
+  }
 }

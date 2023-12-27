@@ -25,28 +25,27 @@ builder.Services.AddCors(
                 });
     });
 
-//string tokenKey = "HospitalSGSGerenciamento";
-//var key = Encoding.ASCII.GetBytes(tokenKey);
+string tokenKey = "HospitalSGSGerenciamento";
+var key = Encoding.ASCII.GetBytes(tokenKey);
 
-//builder.Services.AddAuthentication(Auth =>
-//{
-//    Auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    Auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//}).AddJwtBearer(jwt =>
-//{
-//    // Comente essa linha ao publicar
-//    jwt.RequireHttpsMetadata = false;
-//    jwt.SaveToken = true;
-//    jwt.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidateIssuerSigningKey = true,
-//        IssuerSigningKey = new SymmetricSecurityKey(key),
-//        // Comente essas duas linhas ao publicar
-//        ValidateIssuer = false,
-//        ValidateAudience = false
-//    };
-//});
-
+builder.Services.AddAuthentication(Auth =>
+{
+    Auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    Auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(jwt =>
+{
+    // Comente essa linha ao publicar
+    jwt.RequireHttpsMetadata = false;
+    jwt.SaveToken = true;
+    jwt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        // Comente essas duas linhas ao publicar
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -86,7 +85,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors(MyAllowSpecificOrigins);
-//app.UseAuthentication();
+app.UseAuthentication();
 app.UseAuthorization();
 
 

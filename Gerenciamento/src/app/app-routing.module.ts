@@ -24,7 +24,9 @@ import { AreaAtendimentoComponent } from './components/area-atendimento/area-ate
 import { AdicionarAaComponent } from './components/area-atendimento/adicionar-aa/adicionar-aa.component';
 import { AlterarAaComponent } from './components/area-atendimento/alterar-aa/alterar-aa.component';
 import { ExcluirAaComponent } from './components/area-atendimento/excluir-aa/excluir-aa.component';
+
 import { RelatoriosComponent } from './components/relatorios/relatorios.component';
+import { AdicionarDocComponent } from './components/relatorios/adicionar-doc/adicionar-doc.component';
 
 const routes: Routes = [
   {path: 'Usuarios', component: UsuariosComponent},
@@ -50,7 +52,8 @@ const routes: Routes = [
   {path: 'AreasAtendimento/Alterar/:id', component: AlterarAaComponent},
   {path: 'AreasAtendimento/Desativar/:id', component: ExcluirAaComponent},
 
-  {path: 'Relatorios', component: RelatoriosComponent}
+  {path: 'Relatorios', component: RelatoriosComponent},
+  {path: 'Relatorios/Adicionar', component: AdicionarDocComponent}
 ];
 
 @NgModule({

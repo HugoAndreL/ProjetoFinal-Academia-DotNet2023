@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TipoAreaAtendimento } from '../models/tipo-area-atendimento';
+
 import { Observable, catchError, throwError } from 'rxjs';
+
+import { TipoAreaAtendimento } from '../models/tipo-area-atendimento';
 
 @Injectable({
   providedIn: 'root'

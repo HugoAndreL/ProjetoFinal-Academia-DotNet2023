@@ -23,7 +23,7 @@ namespace DesafioFinal.Server.Controllers
         /// <returns>CSV Criado</returns>
         /// <response code="200">Arquivo gerado!</response>
         /// <response code="404">Dados para o relatório não encontrado!</response>
-        [HttpPost("GerarCSV/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GerarCSV([FromRoute] int id)
         {
@@ -32,11 +32,11 @@ namespace DesafioFinal.Server.Controllers
             if (rel != null)
             {
                 StreamWriter writer = new($@"C:\workspace\DesafioFinal\CSVs\{rel.Nome}.csv", true);
-                writer.WriteLine("Tempo de Espera; Taxa de Utilização (Guiche); Taxa de Utilização (Triagem); Taxa de Utilização (Consultório)");
+                writer.WriteLine("Tempo de Espera; Taxa de Utilizacao (Guiche); Taxa de Utilizacao (Triagem); Taxa de Utilizacao (Consultorio)");
                 writer.WriteLine($"{rel}");
                 writer.Close();
 
-                return Ok($@"{rel.Nome}.csv gerado em C:\workspace\DesafioFinal\CSVs");
+                return Ok();
             }
 
             return NotFound();
@@ -50,7 +50,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="201">Relatório criado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a adição!</response>
         /// <response code="401">Erro de autorização!</response>
-        [HttpPost("Gerar")]
+        [HttpPost("Adicionar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> PostRelatorio([FromBody] Relatorio rel)
         {

@@ -1,7 +1,8 @@
 export interface Relatorio {
   id?: number,
+  nome: string,
   tempoEspera: string,
-  taxaUtilizacaoGuiche: string,
-  taxaUtilizacaoTriagem: string,
-  taxaUtilizacaoConsultorio: string
+  taxaUtilizacaoGuiche: number,
+  taxaUtilizacaoTriagem: number,
+  taxaUtilizacaoConsultorio: number
 }

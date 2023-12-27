@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { faFileCirclePlus, faFileCsv } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,6 +13,7 @@ import { RelatorioService } from '../../services/relatorio.service';
 })
 export class RelatoriosComponent {
   rels: Relatorio[] = [];
+  rel = {} as Relatorio;
 
   icAdd = faFileCirclePlus;
   icCsv = faFileCsv;
@@ -21,10 +23,16 @@ export class RelatoriosComponent {
   ngOnInit() {
     this.readTiposAreasAtendimento();
   }
-
+  
   readTiposAreasAtendimento() {
     this.service.getRelatorios().subscribe((rels: Relatorio[]) => {
       this.rels = rels;
     });
+  }
+  
+  GerarCsv(rel: Relatorio) {
+    this.service.getCsv(rel).subscribe(() => {
+      alert(`Arquivo gerado com nome de ${rel.nome}.csv!`);
+    })
   }
 }

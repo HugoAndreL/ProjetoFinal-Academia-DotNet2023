@@ -20,7 +20,6 @@ export class AdicionarCargoComponent {
   addCargo(): void {
     this.service.postCargo(this.cargo)
       .subscribe(() => {
-        console.log(this.cargo);
         alert('Cargo cadastrado com sucesso!');
         this.router.navigate(['/Cargos']);
       });
