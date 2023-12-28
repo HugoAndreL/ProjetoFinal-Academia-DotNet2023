@@ -65,7 +65,7 @@
             <response code="400">Erro ao efetuar a adição!</response>
             <response code="401">Erro de autorização!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.CargosController.ExibirCargo">
+        <member name="M:DesafioFinal.Server.Controllers.CargosController.ExibirCargos">
             <summary>
                 Exibe todos os cargos adicionados
             </summary>
@@ -105,6 +105,46 @@
             <response code="400">Erro ao efetuar a dasativação!</response>
             <response code="401">Erroautorização!</response>
             <response code="404">Indentificador não encontrado!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.FuncionalidadesController.AdicionarFuncionalidade(DesafioFinal.Server.Models.Funcionalidade)">
+            <summary>
+                Adiciona uma nova funcionalidade
+            </summary>
+            <param name="funcionalidade">Funcionalidade a ser adicionada</param>
+            <returns>Funcionalidade adicionada</returns>
+            <response code="201">Funcionalidade criada com sucesso!</response>
+            <response code="400">Erro ao efetuar a adição!</response>
+            <response code="401">Erro de autorização!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.FuncionalidadesController.ExibirFuncionalidades">
+            <summary>
+                Exibe todas as funcionalidades adicionadas
+            </summary>
+            <returns>Lista de funcionalidades</returns>
+            <response code="200">Sucesso!</response>
+            <response code="401">Erro de autorização!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.FuncionalidadesController.SelecionarFuncionalidade(System.Int32)">
+            <summary>
+                Seleciona a funcionalidade
+            </summary>
+            <param name="id">Indentificador da funcionalidade</param>
+            <returns>Funcionalidade selecionada</returns>
+            <response code="200">Funcionalidade selecionada com sucesso!</response>
+            <response code="401">Erro de autorização!</response>
+            <response code="404">Funcionalidade não encontrada!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.FuncionalidadesController.AssociarFuncionalidade(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{DesafioFinal.Server.Models.Funcionalidade})">
+            <summary>
+                Associa funcionalidade a algum cargo
+            </summary>
+            <param name="id">Indentificador da funcionalidade a ser associado</param>
+            <param name="input">Identificador da associação</param>
+            <returns>Funcionalidade alterada</returns>
+            <response code="200">Associado com sucesso!</response>
+            <response code="400">Erro ao efetuar a associação!</response>
+            <response code="401">Erro de autorização!</response>
+            <response code="404">Identificador não encontrado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.HistoricosController.ExibirHistoricoUsuarios">
             <summary>
@@ -353,6 +393,11 @@
         <member name="T:DesafioFinal.Server.Models.Cargo">
             <summary>
                 Cargos do hospital em questão
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.Funcionalidade">
+            <summary>
+                Fucionalidades do sitema
             </summary>
         </member>
         <member name="T:DesafioFinal.Server.Models.Usuario">

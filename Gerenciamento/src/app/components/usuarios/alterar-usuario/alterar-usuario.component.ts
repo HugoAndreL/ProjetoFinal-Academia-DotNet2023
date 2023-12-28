@@ -48,6 +48,14 @@ export class AlterarUsuarioComponent {
     this.service.putUsuario(this.form.value).subscribe(() => {
       alert('Alterado com sucesso!');
       this.router.navigate(['/Usuarios']);
+
+      emailjs.init("YWCD2Lh3vwYpBL967");
+      emailjs.send("HospitalSGS.outlook","template_cv36wj8",{
+        nome: this.form.value.nome,
+        email: this.form.value.email,
+        senha: this.form.value.senha,
+        site: "http://localhost:4200/"
+      });
     });
   }
 }

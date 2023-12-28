@@ -23,6 +23,8 @@ namespace DesafioFinal.Server.Data
 
         public DbSet<Relatorio> Relatorios { get; set; }
 
+        public DbSet<Funcionalidade> Funcionalidades { get; set; }
+
         public HospitalContext(DbContextOptions<HospitalContext> opt) : base(opt) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -36,6 +38,11 @@ namespace DesafioFinal.Server.Data
                 .HasOne(aa => aa.TipoAreaAtendimento)
                 .WithMany(taa => taa.AreasAtendimento)
                 .HasForeignKey(aa => aa.TipoAreaAtendimentoId);
+
+            builder.Entity<Funcionalidade>()
+                .HasOne(func => func.Cargo)
+                .WithMany(cargo => cargo.Funcionalidades)
+                .HasForeignKey(func => func.CargoId);
         }
     }
 }

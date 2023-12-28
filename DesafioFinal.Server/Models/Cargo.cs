@@ -22,5 +22,9 @@ namespace DesafioFinal.Server.Models
         [JsonIgnore]
         [Browsable(false)]
         public virtual ICollection<Usuario>? Usuarios { get; set; }
+
+        [JsonIgnore]
+        [Browsable(false)]
+        public virtual ICollection<Funcionalidade>? Funcionalidades { get; set; }
     }
 }

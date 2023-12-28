@@ -126,6 +126,26 @@ namespace DesafioFinal.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Funcionalidades",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CargoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Funcionalidades", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Funcionalidades_Cargos_CargoId",
+                        column: x => x.CargoId,
+                        principalTable: "Cargos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -172,6 +192,11 @@ namespace DesafioFinal.Server.Migrations
                 column: "TipoAreaAtendimentoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Funcionalidades_CargoId",
+                table: "Funcionalidades",
+                column: "CargoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_CargoId",
                 table: "Usuarios",
                 column: "CargoId");
@@ -182,6 +207,9 @@ namespace DesafioFinal.Server.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AreasAtendimento");
+
+            migrationBuilder.DropTable(
+                name: "Funcionalidades");
 
             migrationBuilder.DropTable(
                 name: "HistoricoCargos");

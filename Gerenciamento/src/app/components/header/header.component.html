@@ -1,4 +1,8 @@
-<header class="container-sm d-flex justify-content-evenly modal-dialog modal-dialog-centered bg-success text-white border-bottom border-2 border-black">
-  <h1>{{ title }}</h1>
+<header class="container-fluid d-flex justify-content-evenly modal-dialog-centered bg-success text-white border-bottom border-2 border-black">
   <h2 class="fs-4 mt-2">Bem vindo</h2>
+  <h1>{{ title }}</h1>
+  <button class="btn btn-primary" routerLink="/Login">
+    Fazer login
+    <fa-icon [icon]="icLogin"></fa-icon>
+  </button>
 </header>

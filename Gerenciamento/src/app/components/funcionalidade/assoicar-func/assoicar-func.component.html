@@ -1,0 +1,33 @@
+<section class="container">
+  <div class="card list-pessoa">
+    <!-- pensar em como deixo o nome ali -->
+    <h5 class="card-header">Associar permissão: {{this.form.value.nome}}</h5>
+    <div class="card-body">
+      <form [formGroup]="form">
+        <section class="form-group">
+          <!-- Indentificador do cargo -->
+          <div class="my-3">
+            <label for="cargoId" class="form-label">Identificador do cargo:</label>
+            <input 
+              type="number" 
+              formControlName="cargoId"
+              id="cargoId"
+              class="form-control"
+              required 
+            />
+            </div>
+          </section>
+          <div class="d-flex justify-content-between">
+            <button type="reset" class="btn btn-danger" routerLink="/Funcionalidades">
+              Cancelar
+              <fa-icon [icon]="icCancel"></fa-icon>
+            </button>
+            <button type="submit" class="btn btn-success ms-3s" (click)="associar()">
+              Alterar 
+              <fa-icon [icon]="icCheck"></fa-icon>
+            </button>
+          </div>
+        </form>
+    </div>
+  </div>
+</section>

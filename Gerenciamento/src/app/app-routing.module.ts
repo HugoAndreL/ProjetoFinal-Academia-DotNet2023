@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LoginComponent } from './components/login/login.component';
+   
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { RegistraUsuarioComponent } from './components/usuarios/registra-usuario/registra-usuario.component';
 import { AlterarUsuarioComponent } from './components/usuarios/alterar-usuario/alterar-usuario.component';
@@ -28,7 +30,13 @@ import { ExcluirAaComponent } from './components/area-atendimento/excluir-aa/exc
 import { RelatoriosComponent } from './components/relatorios/relatorios.component';
 import { AdicionarDocComponent } from './components/relatorios/adicionar-doc/adicionar-doc.component';
 
+import { FuncionalidadeComponent } from './components/funcionalidade/funcionalidade.component';
+import { AdicionarFuncComponent } from './components/funcionalidade/adicionar-func/adicionar-func.component';
+import { AssoicarFuncComponent } from './components/funcionalidade/assoicar-func/assoicar-func.component';
+
 const routes: Routes = [
+  {path: 'Login', component: LoginComponent},
+
   {path: 'Usuarios', component: UsuariosComponent},
   {path: 'Usuarios/Registrar', component: RegistraUsuarioComponent},
   {path: 'Usuarios/Alterar/:id', component: AlterarUsuarioComponent},
@@ -53,7 +61,11 @@ const routes: Routes = [
   {path: 'AreasAtendimento/Desativar/:id', component: ExcluirAaComponent},
 
   {path: 'Relatorios', component: RelatoriosComponent},
-  {path: 'Relatorios/Adicionar', component: AdicionarDocComponent}
+  {path: 'Relatorios/Adicionar', component: AdicionarDocComponent},
+
+  {path: 'Funcionalidades', component: FuncionalidadeComponent},
+  {path: 'Funcionalidades/Adicionar', component: AdicionarFuncComponent},
+  {path: 'Funcionalidades/Associar/:id', component: AssoicarFuncComponent}
 ];
 
 @NgModule({

@@ -61,6 +61,28 @@ namespace DesafioFinal.Server.Migrations
                     b.ToTable("Cargos");
                 });
 
+            modelBuilder.Entity("DesafioFinal.Server.Models.Funcionalidade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CargoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CargoId");
+
+                    b.ToTable("Funcionalidades");
+                });
+
             modelBuilder.Entity("DesafioFinal.Server.Models.HistoricoCargo", b =>
                 {
                     b.Property<int>("Id")
@@ -257,6 +279,17 @@ namespace DesafioFinal.Server.Migrations
                     b.Navigation("TipoAreaAtendimento");
                 });
 
+            modelBuilder.Entity("DesafioFinal.Server.Models.Funcionalidade", b =>
+                {
+                    b.HasOne("DesafioFinal.Server.Models.Cargo", "Cargo")
+                        .WithMany("Funcionalidades")
+                        .HasForeignKey("CargoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cargo");
+                });
+
             modelBuilder.Entity("DesafioFinal.Server.Models.Usuario", b =>
                 {
                     b.HasOne("DesafioFinal.Server.Models.Cargo", "Cargo")
@@ -268,6 +301,8 @@ namespace DesafioFinal.Server.Migrations
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Cargo", b =>
                 {
+                    b.Navigation("Funcionalidades");
+
                     b.Navigation("Usuarios");
                 });
 

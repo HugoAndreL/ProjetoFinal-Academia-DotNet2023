@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { AreaAtendimento } from '../../models/area-atendimento';
+
 import { faPenToSquare, faPlus, faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
+
+import { AreaAtendimento } from '../../models/area-atendimento';
 import { AreaAtendimentoService } from '../../services/area-atendimento.service';
 
 @Component({

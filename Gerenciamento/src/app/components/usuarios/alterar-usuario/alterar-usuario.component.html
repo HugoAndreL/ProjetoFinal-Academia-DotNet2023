@@ -11,8 +11,8 @@
               type="text" 
               formControlName="nome"
               id="nome"
+              name="nomeUser"
               class="form-control"
-              placeholder="Digite o Nome Completo"
               required 
             />
           </div>
@@ -23,19 +23,19 @@
               type="email" 
               formControlName="email"
               id="email"
+              name="emailUser"
               class="form-control" 
-              placeholder="email@dominio.com"
               required 
             />
           </div>
           <!-- CargoId -->
           <div class="my-3">
-            <label for="cargoId" class="form-label">Identificador do Usuario:</label>
+            <label for="cargoId" class="form-label">Identificador do Cargo:</label>
             <input 
               type="number" 
               formControlName="cargoId"
               class="form-control"
-              placeholder="Identificador do Cargo"
+              name="emailCargoIdUser"
               required 
             />
           </div>
@@ -46,6 +46,7 @@
               type="text"
               formControlName="senha"
               class="form-control"
+              name="senhaUser"
             />
           </div>
         </section>

@@ -11,7 +11,7 @@
             type="text"
             [(ngModel)]="user.nome"
             id="nome"
-            name="nome"
+            name="nomeUser"
             class="form-control"
             placeholder="Digite o Nome Completo"
             required />
@@ -23,7 +23,7 @@
             type="email" 
             [(ngModel)]="user.email"
             id="email"
-            name="email"
+            name="emailUser"
             class="form-control" 
             placeholder="email@dominio.com"
             required />
@@ -34,14 +34,14 @@
             <input 
             type="number" 
             [(ngModel)]="user.cargoId"
-            name="email"
+            name="emailCargoIdUser"
             class="form-control"
             placeholder="Identificador do Cargo"
             required />
           </div>
           <!-- Senha -->
           <label for="senha" class="form-label">Senha do Usuario</label>
-          <input type="text" name="senha" class="form-control" disabled>
+          <input type="text" name="senhaUser" class="form-control" disabled>
           <span id="senhaHelp" class="form-text">A senha do usuario será gerada a partir do nome completo do usuario.</span>
         </section>
           <div class="d-flex justify-content-between">

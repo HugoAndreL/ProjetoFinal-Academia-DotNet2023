@@ -1,6 +1,5 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,7 +24,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="201">Criado com Sucesso!</response>
         /// <response code="400">Erro ao efetuar o cadastro!</response>
         /// <response code="401">Erro de autorização!</response>
-        [HttpPost("Cadastrar")]
+        [HttpPost("Adicionar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AdicionarAreaAtendimento([FromBody] AreaAtendimento aa)
         {
@@ -109,6 +108,8 @@ namespace DesafioFinal.Server.Controllers
                 try
                 {
                     aa.Nome = input.Nome;
+                    aa.TipoAreaAtendimentoId = input.TipoAreaAtendimentoId;
+
                     _context.AreasAtendimento.Update(aa);
                     await _context.SaveChangesAsync();
                     return NoContent();

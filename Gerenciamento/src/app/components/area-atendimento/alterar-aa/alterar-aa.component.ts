@@ -23,9 +23,7 @@ export class AlterarAaComponent {
     this.form = this.builder.group({
       id: null,
       nome: null,
-      email: null,
-      cargoId: null,
-      senha: null
+      tipoAreaAtendimentoId: null,
     });
   }
   
@@ -34,7 +32,8 @@ export class AlterarAaComponent {
     this.service.getAreaAtendimentobyId(parseInt(id!)).subscribe((taa) => {
       this.form.patchValue({
         id: id,
-        nome: taa.nome
+        nome: taa.nome,
+        tipoAreaAtendimentoId: taa.tipoAreaAtendimentoId
       });
     });
   }

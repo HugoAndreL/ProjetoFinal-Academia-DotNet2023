@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { faBriefcase, faFile, faHospital, faLaptopMedical, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faFile, faHospital, faKey, faLaptopMedical, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav',
@@ -12,5 +12,6 @@ export class NavComponent {
   icCargo = faBriefcase;
   icTAA = faLaptopMedical;
   icAA = faHospital;
+  icPermissoes = faKey;
   icRelatorio = faFile;
 }

@@ -37,17 +37,27 @@ import { AdicionarAaComponent } from './components/area-atendimento/adicionar-aa
 import { AlterarAaComponent } from './components/area-atendimento/alterar-aa/alterar-aa.component';
 import { ExcluirAaComponent } from './components/area-atendimento/excluir-aa/excluir-aa.component';
 import { RelatoriosComponent } from './components/relatorios/relatorios.component';
-import { AdicionarDocComponent } from './components/relatorios/adicionar-doc/adicionar-doc.component';
+
+import { FuncionalidadeComponent } from './components/funcionalidade/funcionalidade.component';
+import { AdicionarFuncComponent } from './components/funcionalidade/adicionar-func/adicionar-func.component';
+import { AssoicarFuncComponent } from './components/funcionalidade/assoicar-func/assoicar-func.component';
+
 import { TipoAreaAtendimentoService } from './services/tipo-area-atendimento.service';
 import { AreaAtendimentoService } from './services/area-atendimento.service';
 import { RelatorioService } from './services/relatorio.service';
+import { AdicionarDocComponent } from './components/relatorios/adicionar-doc/adicionar-doc.component';
+import { FuncionalidadeService } from './services/funcionalidade.service';
+
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     NavComponent,
-
+    
+    LoginComponent,
+    
     CargosComponent,
     AdicionarCargoComponent,
     AlterarCargoComponent,
@@ -73,7 +83,11 @@ import { RelatorioService } from './services/relatorio.service';
     ExcluirTaaComponent,
 
     RelatoriosComponent,
-    AdicionarDocComponent
+    AdicionarDocComponent,
+    FuncionalidadeComponent,
+    AdicionarFuncComponent,
+    AssoicarFuncComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -89,7 +103,8 @@ import { RelatorioService } from './services/relatorio.service';
     UsuarioService,
     AreaAtendimentoService,
     TipoAreaAtendimentoService,
-    RelatorioService
+    RelatorioService,
+    FuncionalidadeService
   ],
   bootstrap: [AppComponent]
 })

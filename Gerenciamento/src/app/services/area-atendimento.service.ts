@@ -9,7 +9,7 @@ import { AreaAtendimento } from '../models/area-atendimento';
   providedIn: 'root'
 })
 export class AreaAtendimentoService {
-  private url = 'https://localhost:7222/api/Cargos';
+  private url = 'https://localhost:7222/api/AreasAtendimento';
 
   constructor(private http: HttpClient) {}
 

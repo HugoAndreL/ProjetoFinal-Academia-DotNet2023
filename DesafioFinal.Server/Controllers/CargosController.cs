@@ -49,7 +49,7 @@ namespace DesafioFinal.Server.Controllers
         /// <response code="401">Erro de autorização!</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> ExibirCargo()
+        public async Task<IActionResult> ExibirCargos()
         {
             List<Cargo> lstCargos = await _context.Cargos
                 .AsNoTracking()

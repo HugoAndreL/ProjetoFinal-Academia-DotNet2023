@@ -1,6 +1,6 @@
 <section class="container">
   <div class="card list-pessoa">
-    <h5 class="card-header">Alterar Usuario: {{this.form.value.nome}}</h5>
+    <h5 class="card-header">Alterar Area de Atendimento: {{this.form.value.nome}}</h5>
     <div class="card-body">
       <form [formGroup]="form">
         <section class="form-group">
@@ -12,9 +12,20 @@
               formControlName="nome"
               id="nome"
               class="form-control"
-              placeholder="Digite o Nome Completo"
+              name="nomeTaa"
               required 
             />
+          </div>
+          <!-- Indetificador do Tipo de area de atendimento -->
+          <div class="my-3">
+            <label class="form-label" for="taaId">Identificador do Tipo de Area de Atendimento:</label>
+            <input 
+            type="number"
+            formControlName="tipoAreaAtendimentoId"
+            id="taaIdAA"
+            name="taaId"
+            class="form-control"
+            required />
           </div>
         </section>
           <div class="d-flex justify-content-between">
