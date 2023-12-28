@@ -2,14 +2,12 @@
 **Sistema de Senhas Hospitalar**
 
 ## Introdução:
-Este projeto visa desenvolver um sistema robusto de gerenciamento de senhas para hospitais, melhorando a eficiência e a experiência do paciente durante o atendimento. 
+Este projeto visa desenvolver um sistema robusto de um erp de gerenciamento de senhas para hospitais, melhorando a eficiência e a experiência do paciente durante o atendimento. 
 
 ## Requisitos de Negócios:
-1. **Display de Senhas de Triagem:** Mostrar a senha atual, juntamente com o local específico da triagem.
-2. **Informações do Consultório:** Exibir a senha para consulta e indicar o consultório correspondente.
-3. **Orientação de Guichê:** Apresentar a senha do paciente e direcioná-lo ao guichê apropriado.
-4. **Histórico de Chamadas:** Exibir as últimas senhas (que foram canceladas) chamadas antes da atual.
-5. **Cronometragem:** Mostrar o tempo de espera em formato hh:mm:ss.
+1. **Informações do Consultório:** Exibir a senha para consulta e indicar o consultório correspondente.
+2. **Orientação de Guichê:** Apresentar a senha do paciente e direcioná-lo ao guichê apropriado.
+3. **Histórico de Chamadas:** Exibir as últimas senhas (que foram canceladas) chamadas antes da atual.
 
 ## Tecnologias Utilizadas:
 - **Back-end:** ASP.NET CORE
