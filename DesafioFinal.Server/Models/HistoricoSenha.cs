@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Histórico de senha para ficar no display
+    /// </summary>
     public class HistoricoSenha
     {
         [Key]

@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Histórico de cargo para auditoria
+    /// </summary>
     public class HistoricoCargo
     {
         [Key]

@@ -45,7 +45,9 @@ namespace DesafioFinal.Server.Controllers
 
                 await _context.Logins.AddAsync(login);
                 await _context.SaveChangesAsync();
+
                 user.LoginId = login.Id;
+
                 await _context.Usuarios.AddAsync(user);
                 await _context.SaveChangesAsync();
 
@@ -71,7 +73,9 @@ namespace DesafioFinal.Server.Controllers
             List<Usuario> lstUsuarios = await _context.Usuarios
                 .AsNoTracking()
                 .Include(user => user.Cargo)
+                .Include(user => user.Login)
                 .ToListAsync();
+
             return Ok(lstUsuarios);
         }
 
@@ -90,7 +94,9 @@ namespace DesafioFinal.Server.Controllers
             Usuario user = await _context.Usuarios
                 .AsNoTracking()
                 .Include(user => user.Cargo)
+                .Include(user => user.Login)
                 .FirstOrDefaultAsync(user => user.Id == id);
+
             return user != null ? Ok(user) : NotFound("Usuário não encontrado!");
         }
 
@@ -100,7 +106,7 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="id">Indetificador do Usuário a ser alterado</param>
         /// <param name="input">Usuário a ser alterado</param>
         /// <returns>Nada</returns>
-        /// <response code="204">Alterado com sucesso!</response>
+        /// <response code="200">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
         /// <response code="401">Erro de autorização!</response>
         /// <response code="404">Identificador não encontrado!</response>
@@ -114,6 +120,10 @@ namespace DesafioFinal.Server.Controllers
             Usuario user = await _context.Usuarios
                 .AsNoTracking()
                 .FirstOrDefaultAsync(user => user.Id == id);
+            
+            Login log = await _context.Logins
+                .AsNoTracking()
+                .FirstOrDefaultAsync(log => log.Id == user.LoginId);
 
             if (user != null)
             {
@@ -124,13 +134,10 @@ namespace DesafioFinal.Server.Controllers
                     user.CargoId = input.CargoId;
                     user.Senha = input.Senha;
 
-                    Login login = new()
-                    {
-                        Username = user.Nome,
-                        Password = user.Senha
-                    };
+                    log.Username = user.Nome;
+                    log.Password = user.Senha;
 
-                    _context.Logins.Update(login);
+                    _context.Logins.Update(log);
                     _context.Usuarios.Update(user);
                     await _context.SaveChangesAsync();
                     return Ok(user);
@@ -164,6 +171,10 @@ namespace DesafioFinal.Server.Controllers
                 .AsNoTracking()
                 .FirstOrDefaultAsync(user => user.Id == id);
 
+            Login log = await _context.Logins
+                .AsNoTracking()
+                .FirstOrDefaultAsync(log => log.Id == user.LoginId);
+
             if (user != null)
             {
                 try
@@ -173,6 +184,8 @@ namespace DesafioFinal.Server.Controllers
                         Nome = user.Nome,
                         Email = user.Email
                     });
+
+                    _context.Logins.Remove(log);
 
                     _context.Usuarios.Remove(user);
                     await _context.SaveChangesAsync();

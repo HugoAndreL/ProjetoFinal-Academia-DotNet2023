@@ -29,6 +29,7 @@ export class RegistraUsuarioComponent {
 
         // Gerando a senha para o email
         let nomeSenha = this.user.nome.toLowerCase().split(" ");
+        
         // Gerando o email
         emailjs.init("YWCD2Lh3vwYpBL967");
         emailjs.send("HospitalSGS.outlook","template_9ilfrge",{

@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Relatórios do hopistal
+    /// </summary>
     [Serializable]
     public class Relatorio
     {

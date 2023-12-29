@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace DesafioFinal.Server.Models
 {
     /// <summary>
-    ///     Fucionalidades do sitema
+    ///     Permissões do sitema
     /// </summary>
     public class Funcionalidade
     {

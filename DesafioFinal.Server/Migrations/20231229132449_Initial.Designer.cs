@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioFinal.Server.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20231229024250_Initial")]
+    [Migration("20231229132449_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Tipo de Area de Atendimento do Hospital
+    /// </summary>
     public class TipoAreaAtendimento
     {
         [Key]

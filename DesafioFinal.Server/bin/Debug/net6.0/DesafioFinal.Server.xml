@@ -362,7 +362,7 @@
             <param name="id">Indetificador do Usuário a ser alterado</param>
             <param name="input">Usuário a ser alterado</param>
             <returns>Nada</returns>
-            <response code="204">Alterado com sucesso!</response>
+            <response code="200">Alterado com sucesso!</response>
             <response code="400">Erro ao efetuar a alteração!</response>
             <response code="401">Erro de autorização!</response>
             <response code="404">Identificador não encontrado!</response>
@@ -390,19 +390,59 @@
         <member name="M:DesafioFinal.Server.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:DesafioFinal.Server.Models.AreaAtendimento">
+            <summary>
+                Areas de Atendimento do hospital
+            </summary>
+        </member>
         <member name="T:DesafioFinal.Server.Models.Cargo">
             <summary>
-                Cargos do hospital em questão
+                Cargos do hospital
             </summary>
         </member>
         <member name="T:DesafioFinal.Server.Models.Funcionalidade">
             <summary>
-                Fucionalidades do sitema
+                Permissões do sitema
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.HistoricoCargo">
+            <summary>
+                Histórico de cargo para auditoria
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.HistoricoSenha">
+            <summary>
+                Histórico de senha para ficar no display
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.HistoricoUsuario">
+            <summary>
+                Histórico de Usuario para fins de auditoria
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.Login">
+            <summary>
+                Todos os logins dos usuarios 
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.Relatorio">
+            <summary>
+                Relatórios do hopistal
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.Senha">
+            <summary>
+                Senha emitida pelo gerador
+            </summary>
+        </member>
+        <member name="T:DesafioFinal.Server.Models.TipoAreaAtendimento">
+            <summary>
+                Tipo de Area de Atendimento do Hospital
             </summary>
         </member>
         <member name="T:DesafioFinal.Server.Models.Usuario">
             <summary>
-                Trabalhadores (Atendentes, Enfermeiros(as), Médicos(as)) do hospital em questão
+                Trabalhadores (Atendentes, Enfermeiros(as), Médicos(as)) do hospital
             </summary>
         </member>
     </members>

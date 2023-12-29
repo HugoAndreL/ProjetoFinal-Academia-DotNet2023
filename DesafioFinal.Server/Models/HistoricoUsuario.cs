@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Histórico de Usuario para fins de auditoria
+    /// </summary>
     public class HistoricoUsuario
     {
         [Key]

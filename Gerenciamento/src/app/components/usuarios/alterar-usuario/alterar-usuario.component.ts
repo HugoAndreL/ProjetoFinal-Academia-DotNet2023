@@ -49,6 +49,7 @@ export class AlterarUsuarioComponent {
       alert('Alterado com sucesso!');
       this.router.navigate(['/Usuarios']);
 
+      // Gerando o email com o novo usuário e senha para login
       emailjs.init("YWCD2Lh3vwYpBL967");
       emailjs.send("HospitalSGS.outlook","template_cv36wj8",{
         nome: this.form.value.nome,

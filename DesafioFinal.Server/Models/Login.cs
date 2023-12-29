@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Todos os logins dos usuarios 
+    /// </summary>
     public class Login
     {
         [Key]

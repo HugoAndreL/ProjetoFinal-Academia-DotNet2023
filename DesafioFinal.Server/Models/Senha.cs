@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
+    /// <summary>
+    ///     Senha emitida pelo gerador
+    /// </summary>
     public class Senha
     {
         [Key]
