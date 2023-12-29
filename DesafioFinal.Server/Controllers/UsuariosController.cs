@@ -28,11 +28,7 @@ namespace DesafioFinal.Server.Controllers
         [HttpPost("Cadastrar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario user)
-        {
-            int id = 1;
-            foreach (Login log in _context.Logins)
-                id++;
-            
+        {   
             if (!ModelState.IsValid)
                 return BadRequest("Ocorreu um erro ao tentar efetuar o cadastro do usuário.");
 
@@ -49,7 +45,7 @@ namespace DesafioFinal.Server.Controllers
 
                 await _context.Logins.AddAsync(login);
                 await _context.SaveChangesAsync();
-                user.LoginId = id;
+                user.LoginId = login.Id;
                 await _context.Usuarios.AddAsync(user);
                 await _context.SaveChangesAsync();
 
@@ -177,6 +173,7 @@ namespace DesafioFinal.Server.Controllers
                         Nome = user.Nome,
                         Email = user.Email
                     });
+
                     _context.Usuarios.Remove(user);
                     await _context.SaveChangesAsync();
                     return NoContent();
