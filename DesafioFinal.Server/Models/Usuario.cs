@@ -23,7 +23,6 @@ namespace DesafioFinal.Server.Models
         [Column(TypeName = "VARCHAR(80)")]
         public string Email { get; set; }
 
-        [JsonIgnore]
         [Column(TypeName = "VARCHAR(20)")]
         public string? Senha { get; set; }
 
