@@ -34,6 +34,8 @@ import { FuncionalidadeComponent } from './components/funcionalidade/funcionalid
 import { AdicionarFuncComponent } from './components/funcionalidade/adicionar-func/adicionar-func.component';
 import { AssoicarFuncComponent } from './components/funcionalidade/assoicar-func/assoicar-func.component';
 
+import { SenhaComponent } from './components/senha/senha.component';
+
 const routes: Routes = [
   {path: 'Login', component: LoginComponent},
 
@@ -65,7 +67,9 @@ const routes: Routes = [
 
   {path: 'Funcionalidades', component: FuncionalidadeComponent},
   {path: 'Funcionalidades/Adicionar', component: AdicionarFuncComponent},
-  {path: 'Funcionalidades/Associar/:id', component: AssoicarFuncComponent}
+  {path: 'Funcionalidades/Associar/:id', component: AssoicarFuncComponent},
+
+  {path: 'Senhas', component: SenhaComponent},
 ];
 
 @NgModule({

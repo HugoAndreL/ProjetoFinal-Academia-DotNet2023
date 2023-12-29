@@ -22,7 +22,6 @@ namespace DesafioFinal.Server.Models
         [JsonIgnore]
         public int Numero { get; set; }
 
-        [Column(TypeName = "VARCHAR(20)")]
-        public string Prioridade { get; set; }
+        public int Prioridade { get; set; }
     }
 }

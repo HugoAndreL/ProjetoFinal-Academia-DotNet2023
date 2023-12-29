@@ -44,7 +44,7 @@ namespace DesafioFinal.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ordem = table.Column<int>(type: "int", nullable: false),
                     Numero = table.Column<int>(type: "int", nullable: false),
-                    Prioridade = table.Column<string>(type: "VARCHAR(20)", nullable: false)
+                    Prioridade = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

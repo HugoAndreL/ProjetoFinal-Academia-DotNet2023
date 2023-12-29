@@ -48,7 +48,12 @@ import { RelatorioService } from './services/relatorio.service';
 import { AdicionarDocComponent } from './components/relatorios/adicionar-doc/adicionar-doc.component';
 import { FuncionalidadeService } from './services/funcionalidade.service';
 
+import { SenhaComponent } from './components/senha/senha.component';
+
 import { LoginComponent } from './components/login/login.component';
+import { LoginService } from './services/login.service';
+import { SenhaService } from './services/senha.service';
+import { AuditoriaService } from './services/auditoria.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +92,8 @@ import { LoginComponent } from './components/login/login.component';
     FuncionalidadeComponent,
     AdicionarFuncComponent,
     AssoicarFuncComponent,
-    
+
+    SenhaComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,12 +105,15 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [
     provideClientHydration(),
-    CargoService,
-    UsuarioService,
     AreaAtendimentoService,
-    TipoAreaAtendimentoService,
+    AuditoriaService,
+    CargoService,
+    FuncionalidadeService,
+    LoginService,
     RelatorioService,
-    FuncionalidadeService
+    SenhaService,
+    TipoAreaAtendimentoService,
+    UsuarioService,
   ],
   bootstrap: [AppComponent]
 })

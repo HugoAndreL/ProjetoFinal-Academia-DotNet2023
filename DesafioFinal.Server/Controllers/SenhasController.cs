@@ -30,6 +30,11 @@ namespace DesafioFinal.Server.Controllers
         {
             try
             {
+                int order = 1;
+                foreach (Senha ordem in _context.Senhas.ToList())
+                    order++;
+
+                senha.Ordem = order;
                 await _context.Senhas.AddAsync(senha);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction(nameof(ChamarSenha),
@@ -37,8 +42,26 @@ namespace DesafioFinal.Server.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Ocorreu um erro ao tentar efetuar a geração da senha.");
+                return BadRequest();
             }
+        }
+
+        /// <summary>
+        ///     Exibe todos os relatórios adicionados
+        /// </summary>
+        /// <returns>Lista de relatórios</returns>
+        /// <response code="200">Sucesso!</response>
+        /// <response code="401">Erro de autorização!</response>
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> ExibirSenhas()
+        {
+            List<Senha> lstSenhas = await _context.Senhas
+                .AsNoTracking()
+                .OrderBy(senha => senha.Ordem)
+                .ToListAsync();
+
+            return Ok(lstSenhas);
         }
 
         /// <summary>

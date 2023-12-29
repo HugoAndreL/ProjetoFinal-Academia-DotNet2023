@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioFinal.Server.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20231229132449_Initial")]
+    [Migration("20231229202329_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -117,9 +117,8 @@ namespace DesafioFinal.Server.Migrations
                     b.Property<int>("Ordem")
                         .HasColumnType("int");
 
-                    b.Property<string>("Prioridade")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(20)");
+                    b.Property<int>("Prioridade")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

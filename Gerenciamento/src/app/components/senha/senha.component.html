@@ -1,0 +1,55 @@
+<section class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Lista de Senhas</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-light table-hover align-middle table-sm" >
+        <thead class="table-light">
+          <th class="text-center">Identificador</th>
+          <th class="text-center">Ordem</th>
+          <th class="text-center">Número</th>
+          <th class="text-center">Prioridade</th>
+          <th class="text-center" colspan="2">Ação</th>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let senha of senhas">
+            <td class="text-center">{{ senha.id }}</td>
+            <td class="text-center">{{ senha.ordem }}</td>
+            <td class="text-center">{{ senha.numero }}</td>
+            <td class="text-center">{{ senha.prioridade }}</td>
+            <td class="table-primary text-center">
+              <button class="btn btn-outline-primary">
+                <fa-icon [icon]="icOrdemAcima"></fa-icon>
+              </button>
+            </td>
+            <td class="table-secondary text-center">
+              <button class="btn btn-outline-secondary">
+                <fa-icon [icon]="icOrdemAbaixo"></fa-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section class="container mt-3 text-center">
+  <div class="card list-pessoa">
+    <h5 class="card-header fs-1">Adicionar Senha</h5>
+    <div class="card-body">
+      <form id="add-form" (ngSubmit)="f.form.valid && addSenha()" #f="ngForm" novalidate>
+        <section class="form-group mb-3">
+          <!-- Prioridade -->
+          <div class="my-3">
+            <label class="form-label fs-2" for="prioridade">Escolha a prioridade:</label>
+            <div class="d-flex justify-content-evenly">
+              <button class="btn btn-primary fs-1 btn-slg">Normal</button>
+              <button class="btn btn-primary fs-1 btn-slg">Prioritário</button>
+            </div>
+          </div>
+        </section>
+      </form>
+    </div>
+  </div>
+</section>

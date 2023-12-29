@@ -114,9 +114,8 @@ namespace DesafioFinal.Server.Migrations
                     b.Property<int>("Ordem")
                         .HasColumnType("int");
 
-                    b.Property<string>("Prioridade")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(20)");
+                    b.Property<int>("Prioridade")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
