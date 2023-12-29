@@ -30,6 +30,11 @@ namespace DesafioFinal.Server.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Usuario>()
+                .HasOne(user => user.Login)
+                .WithOne(log => log.Usuario)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Usuario>()
                 .HasOne(s => s.Cargo)
                 .WithMany(h => h.Usuarios)
                 .HasForeignKey(s => s.CargoId);

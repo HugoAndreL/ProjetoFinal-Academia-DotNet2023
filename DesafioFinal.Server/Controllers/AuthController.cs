@@ -32,7 +32,10 @@ namespace DesafioFinal.Server.Controllers
             return Unauthorized();
         }
 
-        //[HttpPatch("AutoAtribuir/{id}")]
-        //public IActionResult AutoAtribuir() { }
+        [HttpPatch("AutoAtribuir/{id}")]
+        public async Task<IActionResult> AutoAtribuir()
+        {
+            return NoContent();
+        }
     }
 }

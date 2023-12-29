@@ -154,11 +154,11 @@ namespace DesafioFinal.Server.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(20)");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Id");
 
@@ -254,6 +254,9 @@ namespace DesafioFinal.Server.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(80)");
 
+                    b.Property<int>("LoginId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
@@ -264,6 +267,9 @@ namespace DesafioFinal.Server.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CargoId");
+
+                    b.HasIndex("LoginId")
+                        .IsUnique();
 
                     b.ToTable("Usuarios");
                 });
@@ -296,7 +302,15 @@ namespace DesafioFinal.Server.Migrations
                         .WithMany("Usuarios")
                         .HasForeignKey("CargoId");
 
+                    b.HasOne("DesafioFinal.Server.Models.Login", "Login")
+                        .WithOne("Usuario")
+                        .HasForeignKey("DesafioFinal.Server.Models.Usuario", "LoginId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Cargo");
+
+                    b.Navigation("Login");
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Cargo", b =>
@@ -304,6 +318,11 @@ namespace DesafioFinal.Server.Migrations
                     b.Navigation("Funcionalidades");
 
                     b.Navigation("Usuarios");
+                });
+
+            modelBuilder.Entity("DesafioFinal.Server.Models.Login", b =>
+                {
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.TipoAreaAtendimento", b =>

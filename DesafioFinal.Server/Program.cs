@@ -72,7 +72,7 @@ builder.Services.AddSwaggerGen(c =>
 string strCon = builder.Configuration.GetConnectionString("HospitalDBcon");
 builder.Services.AddDbContext<HospitalContext>(opt => opt.UseSqlServer(strCon));
 
-//builder.Services.AddSingleton<IJWTAuthManager>(new JWTAuthManager(tokenKey));
+builder.Services.AddSingleton<IJWTAuthManager>(new JWTAuthManager(tokenKey));
 
 var app = builder.Build();
 
