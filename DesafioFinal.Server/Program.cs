@@ -25,27 +25,6 @@ builder.Services.AddCors(
                 });
     });
 
-string tokenKey = "HospitalSGSGerenciamento";
-var key = Encoding.ASCII.GetBytes(tokenKey);
-
-builder.Services.AddAuthentication(Auth =>
-{
-    Auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    Auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(jwt =>
-{
-    // Comente essa linha ao publicar
-    jwt.RequireHttpsMetadata = false;
-    jwt.SaveToken = true;
-    jwt.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
-        // Comente essas duas linhas ao publicar
-        ValidateIssuer = false,
-        ValidateAudience = false
-    };
-});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -68,11 +47,33 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(xmlPath);
 });
 
-
 string strCon = builder.Configuration.GetConnectionString("HospitalDBcon");
-builder.Services.AddDbContext<HospitalContext>(opt => opt.UseSqlServer(strCon));
+
+string tokenKey = "Hospital SGS Gerenciamento Privado Secreto";
+byte[] key = Encoding.ASCII.GetBytes(tokenKey);
+
+builder.Services.AddAuthentication(auth =>
+{
+    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(jwt =>
+{
+    // Comente essa linha ao publicar
+    jwt.RequireHttpsMetadata = false;
+    jwt.SaveToken = true;
+    jwt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        // Comente essas duas linhas ao publicar
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
 
 builder.Services.AddSingleton<IJWTAuthManager>(new JWTAuthManager(tokenKey));
+
+builder.Services.AddDbContext<HospitalContext>(opt => opt.UseSqlServer(strCon));
 
 var app = builder.Build();
 
@@ -85,6 +86,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors(MyAllowSpecificOrigins);
+
 app.UseAuthentication();
 app.UseAuthorization();
 

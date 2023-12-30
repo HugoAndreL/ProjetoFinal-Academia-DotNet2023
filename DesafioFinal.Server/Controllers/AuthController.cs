@@ -2,7 +2,6 @@
 using DesafioFinal.Server.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DesafioFinal.Server.Controllers
 {
@@ -21,10 +20,11 @@ namespace DesafioFinal.Server.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("Login")]
+        [HttpGet("Login")]
         public IActionResult Logar([FromBody] Login login)
         {
-            string token = _jwtAuth.Authenticate(login.Username, login.Password);
+            Login log = _context.Logins.FirstOrDefault(log => log.Username == login.Username && log.Password == login.Password);
+            string token = _jwtAuth.Authenticate(log.Username, log.Password);
 
             if (token != null)
                 return Ok(token);

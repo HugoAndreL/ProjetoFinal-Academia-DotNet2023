@@ -1,1 +1,45 @@
-<p>login works!</p>
+<section class="container">
+  <div class="card list-pessoa">
+    <h5 class="card-header">Adicionar Usuario</h5>
+    <div class="card-body">
+      <form id="add-form" (ngSubmit)="f.form.valid && addLogin()" #f="ngForm" novalidate>
+        <section class="form-group mb-3">
+           <!-- Nome -->
+           <div class="my-3">
+            <label class="form-label" for="username">Nome:</label>
+            <input 
+            type="text"
+            [(ngModel)]="login.username"
+            id="username"
+            name="usernameLogin"
+            class="form-control"
+            placeholder="Username"
+            required />
+          </div>
+          <!-- Username -->
+          <div class="my-3">
+            <label for="password" class="form-label">Senha:</label>
+            <input 
+            type="password" 
+            [(ngModel)]="login.password"
+            id="password"
+            name="passwordLogin"
+            class="form-control" 
+            placeholder="Username"
+            required />
+          </div>
+        </section>
+          <div class="d-flex justify-content-between">
+            <button type="reset" class="btn btn-danger" routerLink="../">
+              Cancelar
+              <fa-icon [icon]="icCancel"></fa-icon>
+            </button>
+            <button type="submit" class="btn btn-success">
+              Entrar 
+              <fa-icon [icon]="icEntrar"></fa-icon>
+            </button>
+          </div>
+        </form>
+    </div>
+  </div>
+</section>

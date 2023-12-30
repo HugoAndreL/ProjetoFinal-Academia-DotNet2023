@@ -17,7 +17,7 @@
             <td class="text-center">{{ senha.id }}</td>
             <td class="text-center">{{ senha.ordem }}</td>
             <td class="text-center">{{ senha.numero }}</td>
-            <td class="text-center">{{ senha.prioridade }}</td>
+            <td class="text-center">{{ senha.prioridade == '1' ? "Normal" : "Prioritario" }}</td>
             <td class="table-primary text-center">
               <button class="btn btn-outline-primary">
                 <fa-icon [icon]="icOrdemAcima"></fa-icon>
@@ -25,7 +25,7 @@
             </td>
             <td class="table-secondary text-center">
               <button class="btn btn-outline-secondary">
-                <fa-icon [icon]="icOrdemAbaixo"></fa-icon>
+                <fa-icon [icon]="icOrdemAbaixo"></fa-icon> <!-- Fazer essa funcionalidade e o acima -->
               </button>
             </td>
           </tr>
@@ -38,14 +38,14 @@
   <div class="card list-pessoa">
     <h5 class="card-header fs-1">Adicionar Senha</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && addSenha()" #f="ngForm" novalidate>
+      <form id="add-form" novalidate>
         <section class="form-group mb-3">
           <!-- Prioridade -->
           <div class="my-3">
             <label class="form-label fs-2" for="prioridade">Escolha a prioridade:</label>
             <div class="d-flex justify-content-evenly">
-              <button class="btn btn-primary fs-1 btn-slg">Normal</button>
-              <button class="btn btn-primary fs-1 btn-slg">Prioritário</button>
+              <button type="submit" class="btn btn-primary fs-1 btn-slg" (click)="addSenha('1')">Normal</button>
+              <button type="submit" class="btn btn-primary fs-1 btn-slg" (click)="addSenha('2')">Prioritário</button>
             </div>
           </div>
         </section>

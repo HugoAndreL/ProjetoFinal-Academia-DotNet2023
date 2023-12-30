@@ -12,7 +12,7 @@ import { faArrowDown, faArrowUp, faFileCirclePlus } from '@fortawesome/free-soli
 })
 export class SenhaComponent {
   senhas: Senha[] = [];
-  rel = {} as Senha;
+  senha = {} as Senha;
 
   icAdd = faFileCirclePlus;
   icOrdemAcima = faArrowUp;
@@ -30,5 +30,12 @@ export class SenhaComponent {
     });
   }
 
-  addSenha() {}
+  addSenha(value: string) {
+    value == '1' ? "Normal" : "Prioritario";
+    this.senha.prioridade = value;
+    this.service.postSenha(this.senha)
+    .subscribe(() => {
+      this.readSenhas();
+    })
+  }
 }

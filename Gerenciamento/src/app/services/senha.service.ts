@@ -35,16 +35,18 @@ export class SenhaService {
   }
   
   postSenha(senha: Senha): Observable<Senha> {
-    return this.http.post<Senha>(`${this.url}/Adicionar`, JSON.stringify(senha), this.httpOptions)
+    return this.http.post<Senha>(`${this.url}/Gerar`, JSON.stringify(senha), this.httpOptions)
       .pipe(catchError(this.handleErr));
   }
 
-  putSenha(senha: Senha): Observable<Senha> {
-    return this.http.put<Senha>(`${this.url}/Alterar/${senha.id}`, JSON.stringify(senha), this.httpOptions)
+  patchSenha(senha: Senha): Observable<Senha> {
+    return this.http.patch<Senha>(`${this.url}/Ordem/${senha.id}`, JSON.stringify(senha), this.httpOptions)
         .pipe(catchError(this.handleErr));
   }
 
+  
+
   deleteSenha(senha: Senha): Observable<Senha> {
-    return this.http.delete<Senha>(`${this.url}/Desativar/${senha.id}`);
+    return this.http.delete<Senha>(`${this.url}/Cancelar/${senha.id}`);
   }
 }

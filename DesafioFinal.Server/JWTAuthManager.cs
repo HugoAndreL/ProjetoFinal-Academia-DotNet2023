@@ -1,4 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using DesafioFinal.Server.Data;
+using DesafioFinal.Server.Models;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -12,6 +14,7 @@ namespace DesafioFinal.Server
 
     public class JWTAuthManager : IJWTAuthManager
     {
+        //private readonly HospitalContext _context = new();
         private readonly string _tokenKey;
 
         public JWTAuthManager(string tokenKey)
@@ -21,20 +24,22 @@ namespace DesafioFinal.Server
 
         public string Authenticate(string username, string password)
         {
-            if (username == null || password == null)
-                return null;
+            //Login login = _context.Logins.FirstOrDefault(log => log.Username == username && log.Password == password);
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+            //if (login == null)
+            //    return null;
+
+            JwtSecurityTokenHandler tokenHandler = new();
             var key = Encoding.ASCII.GetBytes(_tokenKey);
-            var tokenDescriptor = new SecurityTokenDescriptor
+            SecurityTokenDescriptor tokenDescriptor = new()
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, username),
                     // Não é recomendado guardar a senha no JWT
                 }),
-                Expires = DateTime.UtcNow.AddHours(12),
-                SigningCredentials = new SigningCredentials(
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
