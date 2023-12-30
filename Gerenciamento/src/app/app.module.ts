@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -104,7 +104,6 @@ import { AuditoriaService } from './services/auditoria.service';
     ReactiveFormsModule
   ],
   providers: [
-    provideClientHydration(),
     AreaAtendimentoService,
     AuditoriaService,
     CargoService,
