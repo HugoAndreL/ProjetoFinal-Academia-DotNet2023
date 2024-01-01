@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Senha } from '../models/senha';
+import { Historico } from '../models/historico';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +30,16 @@ export class SenhaService {
       .pipe(catchError(this.handleErr));
   }
 
-  getSenhabyId(id: number | undefined): Observable<Senha> {
-    return this.http.get<Senha>(`${this.url}/Selecionar/${id}`)
+  getSenha(): Observable<Senha> {
+    return this.http.get<Senha>(`${this.url}/Proxima`)
       .pipe(catchError(this.handleErr));
   }
-  
+
+  getHistorico(): Observable<Historico> {
+    return this.http.get<Historico>(`${this.url}/Rechamar`)
+      .pipe(catchError(this.handleErr))
+  }
+
   postSenha(senha: Senha): Observable<Senha> {
     return this.http.post<Senha>(`${this.url}/Gerar`, JSON.stringify(senha), this.httpOptions)
       .pipe(catchError(this.handleErr));

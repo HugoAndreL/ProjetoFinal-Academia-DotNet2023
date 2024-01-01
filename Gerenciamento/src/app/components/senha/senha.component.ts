@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { Senha } from '../../models/senha';
 import { SenhaService } from '../../services/senha.service';
 
-import { faArrowDown, faArrowUp, faFileCirclePlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Historico } from '../../models/historico';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-senha',
@@ -13,12 +15,14 @@ import { faArrowDown, faArrowUp, faFileCirclePlus, faTrash } from '@fortawesome/
 export class SenhaComponent {
   senhas: Senha[] = [];
   senha = {} as Senha;
-
+  historico = {} as Historico;
+  senhaChamada = {} as Senha;
+  
   icTrash = faTrash;
   icOrdemAcima = faArrowUp;
   icOrdemAbaixo = faArrowDown;
 
-  constructor(private service: SenhaService) {}
+  constructor(private service: SenhaService, private router: Router) {}
 
   ngOnInit() {
     this.readSenhas();
@@ -36,13 +40,25 @@ export class SenhaComponent {
     this.service.postSenha(this.senha)
     .subscribe(() => {
       this.readSenhas();
-    })
+    });
   }
 
   excluirSenha(senha: Senha) {
     this.service.deleteSenha(senha).subscribe(() => {
       alert(`Senha: ${senha.numero} deletado com sucesso`);
       this.readSenhas();
-    })
+    });
+  }
+  
+  proximaSenha() {
+    this.service.getSenha().subscribe((senha: Senha) => {
+      this.senhaChamada.numero = senha.numero;
+      this.senhaChamada.prioridade = senha.prioridade == '1' ? "Normal" : "Prioritario";
+      this.readSenhas();
+    });
+  }
+
+  rechamarSenha() {
+
   }
 }

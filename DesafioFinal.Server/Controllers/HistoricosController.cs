@@ -47,9 +47,9 @@ namespace DesafioFinal.Server.Controllers
         }
 
         /// <summary>
-        ///     Exibe todos as senhas que foram desativados
+        ///     Exibe todos as senhas que foram canceladas
         /// </summary>
-        /// <returns>Lista de senhas desativados</returns>
+        /// <returns>Lista de senhas canceladas</returns>
         /// <response code="200">Sucesso!</response>
         [HttpGet("Senhas")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -57,6 +57,8 @@ namespace DesafioFinal.Server.Controllers
         {
             List<HistoricoSenha> lstSenhas = await _context.HistoricoSenhas
                 .AsNoTracking()
+                .OrderByDescending(lstSenha => lstSenha.Prioridade)
+                .ThenBy(lstSenha => lstSenha.Numero)
                 .ToListAsync();
             return Ok(lstSenhas);
         }

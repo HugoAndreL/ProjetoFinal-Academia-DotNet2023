@@ -1,0 +1,25 @@
+<section class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Historico de Senhas</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-hover align-middle table-sm">
+        <thead>
+          <tr class="table-dark">
+            <th class="text-center">Identificador</th>
+            <th class="text-center">Número</th>
+            <th class="text-center">Prioridade</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let his of historicos">
+            <td class="text-center">{{ his.id }}</td>
+            <td class="text-center">{{ his.numero }}</td>
+            <td class="text-center">{{ his.prioridade }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -162,9 +162,9 @@
         </member>
         <member name="M:DesafioFinal.Server.Controllers.HistoricosController.ExibirHistoricoSenhas">
             <summary>
-                Exibe todos as senhas que foram desativados
+                Exibe todos as senhas que foram canceladas
             </summary>
-            <returns>Lista de senhas desativados</returns>
+            <returns>Lista de senhas canceladas</returns>
             <response code="200">Sucesso!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.RelatoriosController.GerarCSV(System.Int32)">
@@ -215,19 +215,26 @@
         </member>
         <member name="M:DesafioFinal.Server.Controllers.SenhasController.ExibirSenhas">
             <summary>
-                Exibe todos os relatórios adicionados
+                Exibe todos as senhas geradas
             </summary>
-            <returns>Lista de relatórios</returns>
+            <returns>Lista de senhas</returns>
             <response code="200">Sucesso!</response>
             <response code="401">Erro de autorização!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.SenhasController.ChamarSenha(System.Int32)">
+        <member name="M:DesafioFinal.Server.Controllers.SenhasController.ProximaSenha">
             <summary>
-                Seleciona a senha gerada
+                Seleciona a próxima senha
             </summary>
-            <param name="id">Indentificador da senha</param>
             <returns>Senha selecionada</returns>
-            <response code="200">Senha selecionada com sucesso!</response>
+            <response code="200">Senha seguinte selecionada com sucesso!</response>
+            <response code="404">Senha não encontrada!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.SenhasController.RecharmarSenha">
+            <summary>
+                Rechama a senha
+            </summary>
+            <returns>Senha selecionada</returns>
+            <response code="200">Senha rechamada com sucesso!</response>
             <response code="404">Senha não encontrada!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.SenhasController.AlterarOrdem(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{DesafioFinal.Server.Models.Senha})">
@@ -250,29 +257,6 @@
             </remarks>
             <returns>Nada</returns>
             <response code="204">Alterado com Sucesso!</response>
-        </member>
-        <member name="M:DesafioFinal.Server.Controllers.SenhasController.AlterarPrioridade(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{DesafioFinal.Server.Models.Senha})">
-            <summary>
-                Altera o tipo de prioridade
-            </summary>
-            <param name="id">Indentificador</param>
-            <param name="senhaPatch">Prioridade desejada</param>
-            <remarks>
-            **Código:**
-            ```
-            [
-                {
-                    "path": "/Prioridade",
-                    "op": "replace",
-                    "value": "Prioritaria"    
-                }
-            ]
-            ```
-            </remarks>
-            <returns>Nada</returns>
-            <response code="204">Alterado com sucesso!</response>
-            <response code="404">Indentificador não encontrado!</response>
-            <response code="400">Erro ao alterar a senha!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.SenhasController.CancelarSenha(System.Int32)">
             <summary>
@@ -396,6 +380,30 @@
             <inheritdoc />
         </member>
         <member name="M:DesafioFinal.Server.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.HistoricoSenhaAtualizado">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenhaAtualizado.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenhaAtualizado.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenhaAtualizado.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.RemovendoColunaHistoricoSenha">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.RemovendoColunaHistoricoSenha.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.RemovendoColunaHistoricoSenha.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.RemovendoColunaHistoricoSenha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:DesafioFinal.Server.Models.AreaAtendimento">

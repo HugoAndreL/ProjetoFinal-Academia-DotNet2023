@@ -49,6 +49,8 @@ import { AdicionarDocComponent } from './components/relatorios/adicionar-doc/adi
 import { FuncionalidadeService } from './services/funcionalidade.service';
 
 import { SenhaComponent } from './components/senha/senha.component';
+import { HistoricoComponent } from './components/senha/historico/historico.component';
+import { HistoricoService } from './services/historico.service';
 
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
@@ -94,6 +96,7 @@ import { AuditoriaService } from './services/auditoria.service';
     AssoicarFuncComponent,
 
     SenhaComponent,
+    HistoricoComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,6 +116,7 @@ import { AuditoriaService } from './services/auditoria.service';
     SenhaService,
     TipoAreaAtendimentoService,
     UsuarioService,
+    HistoricoService
   ],
   bootstrap: [AppComponent]
 })

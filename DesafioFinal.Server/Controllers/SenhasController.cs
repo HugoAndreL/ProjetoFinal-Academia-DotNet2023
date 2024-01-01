@@ -43,7 +43,7 @@ namespace DesafioFinal.Server.Controllers
                 senha.Numero = num;
                 await _context.Senhas.AddAsync(senha);
                 await _context.SaveChangesAsync();
-                return CreatedAtAction(nameof(ChamarSenha),
+                return CreatedAtAction(nameof(ProximaSenha),
                     new { id = senha.Id }, senha);
             }
             catch (Exception ex)
@@ -53,9 +53,9 @@ namespace DesafioFinal.Server.Controllers
         }
 
         /// <summary>
-        ///     Exibe todos os relatórios adicionados
+        ///     Exibe todos as senhas geradas
         /// </summary>
-        /// <returns>Lista de relatórios</returns>
+        /// <returns>Lista de senhas</returns>
         /// <response code="200">Sucesso!</response>
         /// <response code="401">Erro de autorização!</response>
         [HttpGet]
@@ -72,23 +72,57 @@ namespace DesafioFinal.Server.Controllers
         }
 
         /// <summary>
-        ///     Seleciona a senha gerada
+        ///     Seleciona a próxima senha
         /// </summary>
-        /// <param name="id">Indentificador da senha</param>
         /// <returns>Senha selecionada</returns>
-        /// <response code="200">Senha selecionada com sucesso!</response>
+        /// <response code="200">Senha seguinte selecionada com sucesso!</response>
         /// <response code="404">Senha não encontrada!</response>
-        [HttpGet("Selecionar/{id}")]
+        [HttpGet("Proxima")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> ChamarSenha([FromRoute] int id)
+        public async Task<IActionResult> ProximaSenha()
         {
             Senha senha = await _context.Senhas
                 .AsNoTracking()
-                .FirstOrDefaultAsync(senha => senha.Id == id);
+                .OrderByDescending(senha => senha.Prioridade)
+                .ThenBy(senha => senha.Numero)
+                .FirstAsync();
 
             if (senha != null)
+            {
+                _context.Senhas.Remove(senha);
+                await _context.HistoricoSenhas.AddAsync(new()
+                {
+                    Numero = senha.Numero,
+                    Prioridade = senha.Prioridade,
+                });
+                await _context.SaveChangesAsync();
                 return Ok(senha);
+            }
             return NotFound("Essa senha não existe! Tente novamente.");
+        }
+
+        /// <summary>
+        ///     Rechama a senha
+        /// </summary>
+        /// <returns>Senha selecionada</returns>
+        /// <response code="200">Senha rechamada com sucesso!</response>
+        /// <response code="404">Senha não encontrada!</response>
+        [HttpGet("Rechamar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> RecharmarSenha()
+        {
+            HistoricoSenha senhaRechamada = await _context.HistoricoSenhas
+                .AsNoTracking()
+                .OrderByDescending(senha => senha.Prioridade)
+                .ThenBy(senha => senha.Numero)
+                .FirstAsync();
+            if (senhaRechamada != null)
+            {
+                _context.HistoricoSenhas.Remove(senhaRechamada);
+                await _context.SaveChangesAsync();
+                return Ok(senhaRechamada);
+            }
+            return NotFound();
         }
 
         /// <summary>
@@ -116,44 +150,6 @@ namespace DesafioFinal.Server.Controllers
         {
             Senha senha = await _context.Senhas.FirstOrDefaultAsync(senha => senha.Id == id);
 
-            if (senha != null)
-            {
-                senhaPatch.ApplyTo(senha, ModelState);
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
-                _context.SaveChanges();
-                return NoContent();
-            }
-            return NotFound("Essa senha não existe! Tente novamente.");
-        }
-
-        /// <summary>
-        ///     Altera o tipo de prioridade
-        /// </summary>
-        /// <param name="id">Indentificador</param>
-        /// <param name="senhaPatch">Prioridade desejada</param>
-        /// <remarks>
-        /// **Código:**
-        /// ```
-        /// [
-        ///     {
-        ///         "path": "/Prioridade",
-        ///         "op": "replace",
-        ///         "value": "Prioritaria"    
-        ///     }
-        /// ]
-        /// ```
-        /// </remarks>
-        /// <returns>Nada</returns>
-        /// <response code="204">Alterado com sucesso!</response>
-        /// <response code="404">Indentificador não encontrado!</response>
-        /// <response code="400">Erro ao alterar a senha!</response>
-        [HttpPatch("Prioridade/{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> AlterarPrioridade([FromRoute] int id, [FromBody] JsonPatchDocument<Senha> senhaPatch)
-        {
-            Senha senha = _context.Senhas.FirstOrDefault(senha => senha.Id == id);
-            
             if (senha != null)
             {
                 senhaPatch.ApplyTo(senha, ModelState);

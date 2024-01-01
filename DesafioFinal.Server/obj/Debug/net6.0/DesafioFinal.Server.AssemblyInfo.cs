@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DesafioFinal.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a84aca6593125d10cf083f2609c50da98d9aee1b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1a4944839de54f332136a2916dfacc6959f3423")]
 [assembly: System.Reflection.AssemblyProductAttribute("DesafioFinal.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DesafioFinal.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

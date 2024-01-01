@@ -35,6 +35,7 @@ import { AdicionarFuncComponent } from './components/funcionalidade/adicionar-fu
 import { AssoicarFuncComponent } from './components/funcionalidade/assoicar-func/assoicar-func.component';
 
 import { SenhaComponent } from './components/senha/senha.component';
+import { HistoricoComponent } from './components/senha/historico/historico.component';
 
 const routes: Routes = [
   {path: 'Login', component: LoginComponent},
@@ -70,6 +71,7 @@ const routes: Routes = [
   {path: 'Funcionalidades/Associar/:id', component: AssoicarFuncComponent},
 
   {path: 'Senhas', component: SenhaComponent},
+  {path: 'Senhas/Historico', component: HistoricoComponent},
 ];
 
 @NgModule({

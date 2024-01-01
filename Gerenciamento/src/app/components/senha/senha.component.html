@@ -2,14 +2,21 @@
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h5>Lista de Senhas</h5>
+      <div class="d-flex justify-content-between btns">
+        <button class="btn btn-primary" (click)="proximaSenha()">Chamar próxima senha</button>
+        <button class="btn btn-secondary" (click)="rechamarSenha()">Rechamar senha</button>
+        <button class="btn btn-warning" routerLink="/Senhas/Historico">Histórico de senhas</button>
+      </div>
     </div>
     <div class="card-body">
-      <table class="table table-light table-hover align-middle table-sm" >
-        <thead class="table-light">
-          <th class="text-center">Identificador</th>
-          <th class="text-center">Número</th>
-          <th class="text-center">Prioridade</th>
-          <th class="text-center" colspan="3">Ação</th>
+      <table class="table table-striped table-hover align-middle table-sm">
+        <thead>
+          <tr class="table-dark">
+            <th class="text-center">Identificador</th>
+            <th class="text-center">Número</th>
+            <th class="text-center">Prioridade</th>
+            <th class="text-center" colspan="3">Ação</th>
+          </tr>
         </thead>
         <tbody class="table-group-divider">
           <tr *ngFor="let senha of senhas">
@@ -36,6 +43,10 @@
       </table>
     </div>
   </div>
+</section>
+<section class="text-center">
+  <h1 class="text-danger">Senha: {{ this.senhaChamada.numero }}</h1>
+  <h2>Prioridade: {{ this.senhaChamada.prioridade }}</h2>
 </section>
 <section class="container mt-3 text-center">
   <div class="card list-pessoa">
