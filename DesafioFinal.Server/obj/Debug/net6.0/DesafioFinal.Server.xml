@@ -382,30 +382,6 @@
         <member name="M:DesafioFinal.Server.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:DesafioFinal.Server.Migrations.HistoricoSenhaAtualizado">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenhaAtualizado.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenhaAtualizado.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.HistoricoSenhaAtualizado.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:DesafioFinal.Server.Migrations.RemovendoColunaHistoricoSenha">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.RemovendoColunaHistoricoSenha.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.RemovendoColunaHistoricoSenha.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:DesafioFinal.Server.Migrations.RemovendoColunaHistoricoSenha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
         <member name="T:DesafioFinal.Server.Models.AreaAtendimento">
             <summary>
                 Areas de Atendimento do hospital

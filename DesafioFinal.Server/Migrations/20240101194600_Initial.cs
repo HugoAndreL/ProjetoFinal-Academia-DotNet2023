@@ -42,9 +42,8 @@ namespace DesafioFinal.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ordem = table.Column<int>(type: "int", nullable: false),
                     Numero = table.Column<int>(type: "int", nullable: false),
-                    Prioridade = table.Column<int>(type: "int", nullable: false)
+                    Prioridade = table.Column<string>(type: "VARCHAR(20)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,10 +100,10 @@ namespace DesafioFinal.Server.Migrations
                 name: "Senhas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Ordem = table.Column<int>(type: "int", nullable: false),
-                    Numero = table.Column<int>(type: "int", nullable: false),
+                    Numero = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Prioridade = table.Column<string>(type: "VARCHAR(20)", nullable: false)
                 },
                 constraints: table =>

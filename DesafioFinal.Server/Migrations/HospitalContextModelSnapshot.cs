@@ -199,13 +199,13 @@ namespace DesafioFinal.Server.Migrations
             modelBuilder.Entity("DesafioFinal.Server.Models.Senha", b =>
                 {
                     b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Numero")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Numero"));
 
                     b.Property<int>("Ordem")
                         .HasColumnType("int");

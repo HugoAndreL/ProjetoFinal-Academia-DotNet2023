@@ -30,17 +30,17 @@ namespace DesafioFinal.Server.Controllers
         {
             try
             {
-                // Auto preenchendo a ordem e o numero
+                // Auto preenchendo a ordem e o id
                 int order = 1;
                 foreach (Senha ordem in _context.Senhas.ToList())
                     order++;
 
-                int num = 1;
-                foreach (Senha numero in _context.Senhas.ToList())
-                    num++;
+                int id = 1;
+                foreach (Senha identificador in _context.Senhas.ToList())
+                    id++;
 
+                senha.Id = id;
                 senha.Ordem = order;
-                senha.Numero = num;
                 await _context.Senhas.AddAsync(senha);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction(nameof(ProximaSenha),

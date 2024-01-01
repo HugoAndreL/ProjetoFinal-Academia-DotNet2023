@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class SenhaComponent {
   senhas: Senha[] = [];
   senha = {} as Senha;
-  historico = {} as Historico;
+  senhaRechamada = {} as Historico;
   senhaChamada = {} as Senha;
   
   icTrash = faTrash;
@@ -26,6 +26,7 @@ export class SenhaComponent {
 
   ngOnInit() {
     this.readSenhas();
+    console.log(this.senhaChamada);
   }
   
   readSenhas() {
@@ -35,7 +36,7 @@ export class SenhaComponent {
   }
 
   addSenha(value: string) {
-    value == '1' ? "Normal" : "Prioritario";
+    value == '1' ? "Normal" : "Prioritaria";
     this.senha.prioridade = value;
     this.service.postSenha(this.senha)
     .subscribe(() => {
@@ -52,13 +53,18 @@ export class SenhaComponent {
   
   proximaSenha() {
     this.service.getSenha().subscribe((senha: Senha) => {
+      this.senhaChamada.id = senha.id;
       this.senhaChamada.numero = senha.numero;
-      this.senhaChamada.prioridade = senha.prioridade == '1' ? "Normal" : "Prioritario";
+      this.senhaChamada.prioridade = senha.prioridade == '2' ? "Prioritaria" : "Normal";
       this.readSenhas();
     });
   }
 
   rechamarSenha() {
-
+    this.service.getHistorico().subscribe((senha: Historico) => {
+      this.senhaChamada.numero = senha.numero;
+      this.senhaChamada.prioridade = senha.prioridade == '2' ? "Prioritaria" : "Normal";
+      this.readSenhas();
+    })
   }
 }

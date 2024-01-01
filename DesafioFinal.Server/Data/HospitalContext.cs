@@ -48,6 +48,16 @@ namespace DesafioFinal.Server.Data
                 .HasOne(func => func.Cargo)
                 .WithMany(cargo => cargo.Funcionalidades)
                 .HasForeignKey(func => func.CargoId);
+
+            // Removendo o auto-incremento do Id
+            builder.Entity<Senha>()
+                .Property(senha => senha.Id)
+                .ValueGeneratedNever();
+
+            // Definindo o campo numero como auto-incremento sem primary key 
+            builder.Entity<Senha>()
+                .Property(senha => senha.Numero)
+                .ValueGeneratedOnAdd();
         }
     }
 }
