@@ -64,7 +64,8 @@ namespace DesafioFinal.Server.Controllers
         {
             List<Senha> lstSenhas = await _context.Senhas
                 .AsNoTracking()
-                .OrderBy(senha => senha.Ordem)
+                .OrderByDescending(senha => senha.Prioridade)
+                .ThenBy(senha => senha.Numero)
                 .ToListAsync();
 
             return Ok(lstSenhas);

@@ -44,8 +44,6 @@ export class SenhaService {
         .pipe(catchError(this.handleErr));
   }
 
-  
-
   deleteSenha(senha: Senha): Observable<Senha> {
     return this.http.delete<Senha>(`${this.url}/Cancelar/${senha.id}`);
   }

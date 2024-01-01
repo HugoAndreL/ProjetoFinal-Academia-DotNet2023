@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Senha } from '../../models/senha';
 import { SenhaService } from '../../services/senha.service';
 
-import { faArrowDown, faArrowUp, faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp, faFileCirclePlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-senha',
@@ -14,7 +14,7 @@ export class SenhaComponent {
   senhas: Senha[] = [];
   senha = {} as Senha;
 
-  icAdd = faFileCirclePlus;
+  icTrash = faTrash;
   icOrdemAcima = faArrowUp;
   icOrdemAbaixo = faArrowDown;
 
@@ -35,6 +35,13 @@ export class SenhaComponent {
     this.senha.prioridade = value;
     this.service.postSenha(this.senha)
     .subscribe(() => {
+      this.readSenhas();
+    })
+  }
+
+  excluirSenha(senha: Senha) {
+    this.service.deleteSenha(senha).subscribe(() => {
+      alert(`Senha: ${senha.numero} deletado com sucesso`);
       this.readSenhas();
     })
   }

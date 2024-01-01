@@ -7,25 +7,28 @@
       <table class="table table-light table-hover align-middle table-sm" >
         <thead class="table-light">
           <th class="text-center">Identificador</th>
-          <th class="text-center">Ordem</th>
           <th class="text-center">Número</th>
           <th class="text-center">Prioridade</th>
-          <th class="text-center" colspan="2">Ação</th>
+          <th class="text-center" colspan="3">Ação</th>
         </thead>
         <tbody class="table-group-divider">
           <tr *ngFor="let senha of senhas">
             <td class="text-center">{{ senha.id }}</td>
-            <td class="text-center">{{ senha.ordem }}</td>
             <td class="text-center">{{ senha.numero }}</td>
             <td class="text-center">{{ senha.prioridade == '1' ? "Normal" : "Prioritario" }}</td>
             <td class="table-primary text-center">
-              <button class="btn btn-outline-primary">
+              <button class="btn btn-outline-primary btn-sm">
                 <fa-icon [icon]="icOrdemAcima"></fa-icon>
               </button>
             </td>
             <td class="table-secondary text-center">
-              <button class="btn btn-outline-secondary">
+              <button class="btn btn-outline-secondary btn-sm">
                 <fa-icon [icon]="icOrdemAbaixo"></fa-icon> <!-- Fazer essa funcionalidade e o acima -->
+              </button>
+            </td>
+            <td class="table-danger text-center">
+              <button class="btn btn-outline-danger btn-sm" (click)="excluirSenha(senha)">
+                <fa-icon [icon]="icTrash"></fa-icon> <!-- Fazer essa funcionalidade e o acima -->
               </button>
             </td>
           </tr>
