@@ -58,7 +58,7 @@ namespace DesafioFinal.Server.Controllers
             List<HistoricoSenha> lstSenhas = await _context.HistoricoSenhas
                 .AsNoTracking()
                 .OrderByDescending(lstSenha => lstSenha.Prioridade)
-                .ThenBy(lstSenha => lstSenha.Numero)
+                .ThenBy(lstSenha => lstSenha.Id)
                 .ToListAsync();
             return Ok(lstSenhas);
         }

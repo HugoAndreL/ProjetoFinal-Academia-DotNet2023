@@ -6,25 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace DesafioFinal.Server.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    [Route("api/[controller]")]
+    public class TokenController : ControllerBase
     {
-        private readonly JWTAuthManager _jwtAuth;
+        private readonly IJWTAuthManager _jwtAuth;
         private readonly HospitalContext _context;
 
-        public AuthController(JWTAuthManager jwtAuth, HospitalContext context)
+        public TokenController(IJWTAuthManager jwtAuth, HospitalContext context)
         {
             _jwtAuth = jwtAuth;
             _context = context;
         }
 
         [AllowAnonymous]
-        [HttpGet("Login")]
+        [HttpPost("Login")]
         public IActionResult Logar([FromBody] Login login)
         {
-            Login log = _context.Logins.FirstOrDefault(log => log.Username == login.Username && log.Password == login.Password);
-            string token = _jwtAuth.Authenticate(log.Username, log.Password);
+            string token = _jwtAuth.Authenticate(login.Username, login.Password, _context);
 
             if (token != null)
                 return Ok(token);

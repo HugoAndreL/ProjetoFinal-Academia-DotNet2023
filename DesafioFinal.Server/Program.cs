@@ -47,31 +47,34 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(xmlPath);
 });
 
-string strCon = builder.Configuration.GetConnectionString("HospitalDBcon");
-
-string tokenKey = "Hospital SGS Gerenciamento Privado Secreto";
-byte[] key = Encoding.ASCII.GetBytes(tokenKey);
+var tokenKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Ikh1Z28gQW5kcsOpIiwibmJmIjoxNzA0MjA3NTMxLCJleHAiOjE3MDQyMTExMzEsImlhdCI6MTcwNDIwNzUzMX0.LLubk9_RaCKCGTsh71jSASsHg0_o1VL4iz027D0hj68";
+var key = Encoding.ASCII.GetBytes(tokenKey);
 
 builder.Services.AddAuthentication(auth =>
 {
     auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(jwt =>
-{
-    // Comente essa linha ao publicar
-    jwt.RequireHttpsMetadata = false;
-    jwt.SaveToken = true;
-    jwt.TokenValidationParameters = new TokenValidationParameters
+    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; 
+}).AddJwtBearer(
+    auth =>
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
-        // Comente essas duas linhas ao publicar
-        ValidateIssuer = false,
-        ValidateAudience = false
-    };
-});
+        // remova essa parte ao publicar
+        auth.RequireHttpsMetadata = false;
+
+        auth.SaveToken = true;
+        auth.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            // Remova essas duas linhas ao publicar
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    }
+);
 
 builder.Services.AddSingleton<IJWTAuthManager>(new JWTAuthManager(tokenKey));
+
+string strCon = builder.Configuration.GetConnectionString("HospitalDBcon");
 
 builder.Services.AddDbContext<HospitalContext>(opt => opt.UseSqlServer(strCon));
 
@@ -89,7 +92,6 @@ app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 
 app.MapControllers();
 

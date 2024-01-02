@@ -35,11 +35,6 @@ namespace DesafioFinal.Server.Controllers
                 foreach (Senha ordem in _context.Senhas.ToList())
                     order++;
 
-                int id = 1;
-                foreach (Senha identificador in _context.Senhas.ToList())
-                    id++;
-
-                senha.Id = id;
                 senha.Ordem = order;
                 await _context.Senhas.AddAsync(senha);
                 await _context.SaveChangesAsync();
@@ -65,7 +60,7 @@ namespace DesafioFinal.Server.Controllers
             List<Senha> lstSenhas = await _context.Senhas
                 .AsNoTracking()
                 .OrderByDescending(senha => senha.Prioridade)
-                .ThenBy(senha => senha.Numero)
+                .ThenBy(senha => senha.Id)
                 .ToListAsync();
 
             return Ok(lstSenhas);
@@ -84,7 +79,7 @@ namespace DesafioFinal.Server.Controllers
             Senha senha = await _context.Senhas
                 .AsNoTracking()
                 .OrderByDescending(senha => senha.Prioridade)
-                .ThenBy(senha => senha.Numero)
+                .ThenBy(senha => senha.Id)
                 .FirstAsync();
 
             if (senha != null)
@@ -92,7 +87,6 @@ namespace DesafioFinal.Server.Controllers
                 _context.Senhas.Remove(senha);
                 await _context.HistoricoSenhas.AddAsync(new()
                 {
-                    Numero = senha.Numero,
                     Prioridade = senha.Prioridade,
                 });
                 await _context.SaveChangesAsync();
@@ -114,7 +108,7 @@ namespace DesafioFinal.Server.Controllers
             HistoricoSenha senhaRechamada = await _context.HistoricoSenhas
                 .AsNoTracking()
                 .OrderByDescending(senha => senha.Prioridade)
-                .ThenBy(senha => senha.Numero)
+                .ThenBy(senha => senha.Id)
                 .FirstAsync();
             if (senhaRechamada != null)
             {
@@ -186,7 +180,6 @@ namespace DesafioFinal.Server.Controllers
                 {
                     _context.HistoricoSenhas.AddAsync(new()
                     {
-                        Numero = senha.Numero,
                         Prioridade = senha.Prioridade
                     });
                     _context.Senhas.Remove(senha);

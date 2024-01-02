@@ -13,7 +13,7 @@ namespace DesafioFinal.Server.Models
         [Required]
         [JsonIgnore]
         public int Id { get; set; }
-
+        
         [Column(TypeName = "VARCHAR(50)")]
         public string Username { get; set; }
 

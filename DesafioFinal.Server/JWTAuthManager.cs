@@ -1,5 +1,6 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,12 +10,11 @@ namespace DesafioFinal.Server
 {
     public interface IJWTAuthManager
     {
-        string Authenticate(string username, string password);
+        string Authenticate(string username, string password, HospitalContext context);
     }
 
     public class JWTAuthManager : IJWTAuthManager
     {
-        //private readonly HospitalContext _context = new();
         private readonly string _tokenKey;
 
         public JWTAuthManager(string tokenKey)
@@ -22,24 +22,22 @@ namespace DesafioFinal.Server
             _tokenKey = tokenKey;
         }
 
-        public string Authenticate(string username, string password)
+        public string Authenticate(string username, string password, HospitalContext context)
         {
-            //Login login = _context.Logins.FirstOrDefault(log => log.Username == username && log.Password == password);
+            Login login = context.Logins.FirstOrDefault(log => log.Username == username && log.Password == password);
+            if (login == null)
+                return null;
 
-            //if (login == null)
-            //    return null;
-
-            JwtSecurityTokenHandler tokenHandler = new();
+            var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_tokenKey);
-            SecurityTokenDescriptor tokenDescriptor = new()
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, username),
-                    // Não é recomendado guardar a senha no JWT
+                    new Claim(ClaimTypes.Name, username)
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new(
+                SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };

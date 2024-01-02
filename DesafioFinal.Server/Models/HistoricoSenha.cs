@@ -14,10 +14,6 @@ namespace DesafioFinal.Server.Models
         [JsonIgnore]
         public int Id { get; set; }
 
-        [Required]
-        [JsonIgnore]
-        public int Numero { get; set; }
-
         [Column(TypeName = "VARCHAR(20)")]
         public int Prioridade { get; set; }
     }
