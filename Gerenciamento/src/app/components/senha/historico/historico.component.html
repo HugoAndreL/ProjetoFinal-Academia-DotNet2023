@@ -8,14 +8,12 @@
         <thead>
           <tr class="table-dark">
             <th class="text-center">Identificador</th>
-            <th class="text-center">Número</th>
             <th class="text-center">Prioridade</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
           <tr *ngFor="let his of historicos">
             <td class="text-center">{{ his.id }}</td>
-            <td class="text-center">{{ his.numero }}</td>
             <td class="text-center">{{ his.prioridade }}</td>
           </tr>
         </tbody>

@@ -26,7 +26,6 @@ export class SenhaComponent {
 
   ngOnInit() {
     this.readSenhas();
-    console.log(this.senhaChamada);
   }
   
   readSenhas() {
@@ -46,7 +45,7 @@ export class SenhaComponent {
 
   excluirSenha(senha: Senha) {
     this.service.deleteSenha(senha).subscribe(() => {
-      alert(`Senha: ${senha.numero} deletado com sucesso`);
+      alert(`Senha: ${senha.id} deletado com sucesso`);
       this.readSenhas();
     });
   }
@@ -54,7 +53,6 @@ export class SenhaComponent {
   proximaSenha() {
     this.service.getSenha().subscribe((senha: Senha) => {
       this.senhaChamada.id = senha.id;
-      this.senhaChamada.numero = senha.numero;
       this.senhaChamada.prioridade = senha.prioridade == '2' ? "Prioritaria" : "Normal";
       this.readSenhas();
     });
@@ -62,7 +60,7 @@ export class SenhaComponent {
 
   rechamarSenha() {
     this.service.getHistorico().subscribe((senha: Historico) => {
-      this.senhaChamada.numero = senha.numero;
+      this.senhaChamada.id = senha.id;
       this.senhaChamada.prioridade = senha.prioridade == '2' ? "Prioritaria" : "Normal";
       this.readSenhas();
     })

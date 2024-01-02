@@ -13,7 +13,6 @@
         <thead>
           <tr class="table-dark">
             <th class="text-center">Identificador</th>
-            <th class="text-center">Número</th>
             <th class="text-center">Prioridade</th>
             <th class="text-center" colspan="3">Ação</th>
           </tr>
@@ -21,7 +20,6 @@
         <tbody class="table-group-divider">
           <tr *ngFor="let senha of senhas">
             <td class="text-center">{{ senha.id }}</td>
-            <td class="text-center">{{ senha.numero }}</td>
             <td class="text-center">{{ senha.prioridade == '1' ? "Normal" : "Prioritario" }}</td>
             <td class="table-primary text-center">
               <button class="btn btn-outline-primary btn-sm">
@@ -45,7 +43,7 @@
   </div>
 </section>
 <section class="text-center">
-  <h1 class="text-danger">Senha: {{ this.senhaChamada.numero }}</h1>
+  <h1 class="text-danger">Senha: {{ this.senhaChamada.id }}</h1>
   <h2>Prioridade: {{ this.senhaChamada.prioridade }}</h2>
 </section>
 <section class="container mt-3 text-center">
