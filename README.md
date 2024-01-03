@@ -20,7 +20,7 @@ Este projeto visa desenvolver um sistema robusto de um ERP de gerenciamento de s
   - Sistema de gerenciamento de banco de dados relacional para armazenamento e recuperação eficiente de dados.
 
 ## Status do Projeto:
-- **[ ]** Vídeo de Demonstração: *A gravação está pendente e será disponibilizada em breve*.
+- **[X]** Vídeo de Demonstração: [Youtube](https://youtu.be/-6IBH8oTU3w).
 
 ## Conclusão:
 Este sistema visa otimizar o processo de atendimento em hospitais, garantindo uma gestão de senhas mais eficiente e uma melhor orientação aos pacientes. Com a implementação de tecnologias modernas e uma interface amigável, esperamos contribuir significativamente para a melhoria dos serviços de saúde.
