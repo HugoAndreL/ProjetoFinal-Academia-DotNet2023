@@ -1,6 +1,5 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,11 +29,17 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario user)
         {   
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar o cadastro do usuário.");
+                return BadRequest();
 
             try
             {
+                // Gerando a senha do usuario
+                // Hugo Andre Lucena
                 string[] nome = user.Nome.ToLower().Split();
+                // hugo andre lucena
+                // nome[0] = hugo
+                // nome[2] = lucena
+                // Hugo Andre Lucena = 3 Hugo Andre = 2 Hugo = 1
                 user.Senha = $"Hospital@{nome[0]}.{nome[nome.Length - 1]}";
 
                 Login login = new()
@@ -56,7 +61,7 @@ namespace DesafioFinal.Server.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest();
             }
         }
 
@@ -97,7 +102,7 @@ namespace DesafioFinal.Server.Controllers
                 .Include(user => user.Login)
                 .FirstOrDefaultAsync(user => user.Id == id);
 
-            return user != null ? Ok(user) : NotFound("Usuário não encontrado!");
+            return user != null ? Ok(user) : NotFound();
         }
 
         /// <summary>
@@ -115,7 +120,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> EditarUsuario([FromRoute] int id, [FromBody] Usuario input)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a alteração do usuário.");
+                return BadRequest();
 
             Usuario user = await _context.Usuarios
                 .AsNoTracking()
@@ -144,11 +149,10 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar a alteração do usuário.\n" +
-                        "Erro:\n\t" + ex.Message);
+                    return BadRequest();
                 }
             }
-            return NotFound("Usuário não encontrado!");
+            return NotFound();
         }
 
         /// <summary>
@@ -165,7 +169,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> DesativarUsuario([FromRoute] int id)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a desativação do usuário.");
+                return BadRequest();
 
             Usuario user = await _context.Usuarios
                 .AsNoTracking()
@@ -193,11 +197,10 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar o cadastro do usuário.\n" +
-                        "Erro:\n\t" + ex.Message);
+                    return BadRequest();
                 }
             }
-            return NotFound("Usuário não encontrado!");
+            return NotFound();
         }
     }
 }

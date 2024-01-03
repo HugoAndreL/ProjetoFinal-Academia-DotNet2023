@@ -1,6 +1,5 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,7 +29,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> AdicionarTipoAreaAtendimento([FromBody] TipoAreaAtendimento taa)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a adição do tipo de área de atendimento.");
+                return BadRequest();
 
             try
             {
@@ -41,9 +40,7 @@ namespace DesafioFinal.Server.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Ocorreu um erro interno ao tentar efetuar a adição do tipo de área de atendimento.\n" +
-                    "Error:\n\t" +
-                    ex.Message);
+                return BadRequest();
             }
         }
 
@@ -80,7 +77,7 @@ namespace DesafioFinal.Server.Controllers
                 .AsNoTracking()
                 .Include(taa => taa.AreasAtendimento)
                 .FirstOrDefaultAsync(taa => taa.Id == id);
-            return taa != null ? Ok(taa) : NotFound("Esse tipo de área de atendimento não existe! Tente Novamente.");
+            return taa != null ? Ok(taa) : NotFound();
         }
 
         /// <summary>
@@ -98,7 +95,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> EditarTipoAreaAtendimento([FromRoute] int id, [FromBody] TipoAreaAtendimento input)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a alteração do tipo de área de atendimento.");
+                return BadRequest();
 
             TipoAreaAtendimento taa = await _context.TiposAreasAtendimento
                 .AsNoTracking()
@@ -116,17 +113,16 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar a alteração do Tipo de área de atendimento.\n" +
-                        "Erro:\n\t" + ex.Message);
+                    return BadRequest();
                 }
             }
-            return NotFound("Tipo de área de atendimento não encontrado!");
+            return NotFound();
         }
 
         /// <summary>
-        ///     Desativa o Tipo de área de atendimento
+        ///     Desativa o tipo de área de atendimento
         /// </summary>
-        /// <param name="id">Identificador do Tipo de área de atendimento</param>
+        /// <param name="id">Identificador do tipo de área de atendimento</param>
         /// <returns>Nada</returns>
         /// <response code="204">Desativdo com sucesso!</response>
         /// <response code="400">Erro ao efetuar a dasativação!</response>
@@ -137,7 +133,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> DesativarTipoAreaAtendimento([FromRoute] int id)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a desativação do tipo de área de atendimento.");
+                return BadRequest();
 
             TipoAreaAtendimento taa = await _context.TiposAreasAtendimento
                 .AsNoTracking()
@@ -153,11 +149,10 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar o cadastro do Tipo de área de atendimento.\n" +
-                        "Erro:\n\t" + ex.Message);
+                    return BadRequest();
                 }
             }
-            return NotFound("Tipo de área de atendimento não encontrada!");
+            return NotFound();
         }
     }
 }

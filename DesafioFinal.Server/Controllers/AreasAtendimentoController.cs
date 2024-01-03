@@ -29,7 +29,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> AdicionarAreaAtendimento([FromBody] AreaAtendimento aa)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a adição do tipo de área de atendimento.");
+                return BadRequest();
 
             try
             {
@@ -40,9 +40,7 @@ namespace DesafioFinal.Server.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Ocorreu um erro interno ao tentar efetuar a adição do tipo de área de atendimento.\n" +
-                    "Error:\n\t" +
-                    ex.Message);
+                return BadRequest();
             }
         }
 
@@ -79,7 +77,7 @@ namespace DesafioFinal.Server.Controllers
                 .AsNoTracking()
                 .Include(aa => aa.TipoAreaAtendimento)
                 .FirstOrDefaultAsync(aa => aa.Id == id);
-            return aa != null ? Ok(aa) : NotFound("Esse tipo de área de atendimento não existe! Tente Novamente.");
+            return aa != null ? Ok(aa) : NotFound();
         }
 
         /// <summary>
@@ -97,7 +95,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> EditarAreaAtendimento([FromRoute] int id, [FromBody] AreaAtendimento input)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a alteração da área de atendimento.");
+                return BadRequest();
 
             AreaAtendimento aa = await _context.AreasAtendimento
                 .AsNoTracking()
@@ -119,7 +117,7 @@ namespace DesafioFinal.Server.Controllers
                     return BadRequest(ex.Message);
                 }
             }
-            return NotFound("Área de atendimento não encontrado!");
+            return NotFound();
         }
 
         /// <summary>
@@ -136,7 +134,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> DesativarAreaAtendimento([FromRoute] int id)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a desativação da área de atendimento.");
+                return BadRequest();
 
             AreaAtendimento aa = await _context.AreasAtendimento
                 .AsNoTracking()
@@ -152,11 +150,10 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar a desativação de área de atendimento.\n" +
-                        "Erro:\n\t" + ex.Message);
+                    return BadRequest();
                 }
             }
-            return NotFound("Área de atendimento não encontrada!");
+            return NotFound();
         }
     }
 }

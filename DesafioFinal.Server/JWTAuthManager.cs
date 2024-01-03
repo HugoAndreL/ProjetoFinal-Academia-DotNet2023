@@ -1,6 +1,5 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

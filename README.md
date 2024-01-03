@@ -2,7 +2,7 @@
 **Sistema de Senhas Hospitalar**
 
 ## Introdução:
-Este projeto visa desenvolver um sistema robusto de um erp de gerenciamento de senhas para hospitais, melhorando a eficiência e a experiência do paciente durante o atendimento. 
+Este projeto visa desenvolver um sistema robusto de um ERP de gerenciamento de senhas para hospitais, melhorando a eficiência e a experiência do paciente durante o atendimento. 
 
 ## Requisitos de Negócios:
 1. **Informações do Consultório:** Exibir a senha para consulta e indicar o consultório correspondente.

@@ -1,4 +1,8 @@
 <header class="container-fluid d-flex justify-content-evenly modal-dialog-centered bg-success text-white border-bottom border-2 border-black">
-  <h1>{{ title }}</h1>
   <h2 class="fs-4 mt-2">Bem vindo</h2>
+  <h1>{{ title }} <fa-icon [icon]="icHospital"></fa-icon></h1>
+  <button class="btn btn-primary" routerLink="">
+    Logar
+    <fa-icon [icon]="icLogin"></fa-icon>
+  </button>
 </header>

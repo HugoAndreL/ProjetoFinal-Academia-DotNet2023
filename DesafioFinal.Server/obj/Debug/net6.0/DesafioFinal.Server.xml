@@ -237,27 +237,6 @@
             <response code="200">Senha rechamada com sucesso!</response>
             <response code="404">Senha não encontrada!</response>
         </member>
-        <member name="M:DesafioFinal.Server.Controllers.SenhasController.AlterarOrdem(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{DesafioFinal.Server.Models.Senha})">
-            <summary>
-                Altera a ordem
-            </summary>
-            <param name="id">Indentificador</param>
-            <param name="senhaPatch">Ordem desejada</param>
-            <remarks>
-            **Código:**
-            ```
-            [
-                {
-                    "path": "/Ordem",
-                    "op": "replace",
-                    "value": 2
-                }
-            ]
-            ```
-            </remarks>
-            <returns>Nada</returns>
-            <response code="204">Alterado com Sucesso!</response>
-        </member>
         <member name="M:DesafioFinal.Server.Controllers.SenhasController.CancelarSenha(System.Int32)">
             <summary>
                 Cancela a senha (Guarda o resultado em outra tabela)
@@ -310,14 +289,23 @@
         </member>
         <member name="M:DesafioFinal.Server.Controllers.TiposAreasAtendimentoController.DesativarTipoAreaAtendimento(System.Int32)">
             <summary>
-                Desativa o Tipo de área de atendimento
+                Desativa o tipo de área de atendimento
             </summary>
-            <param name="id">Identificador do Tipo de área de atendimento</param>
+            <param name="id">Identificador do tipo de área de atendimento</param>
             <returns>Nada</returns>
             <response code="204">Desativdo com sucesso!</response>
             <response code="400">Erro ao efetuar a dasativação!</response>
             <response code="401">Erro de autorização!</response>
             <response code="404">Identificador não encontrado!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TokenController.Logar(DesafioFinal.Server.Models.Login)">
+            <summary>
+                Efetua o Login
+            </summary>
+            <param name="login">Login requerido</param>
+            <returns>Token criado</returns>
+            <response code="401">Username/Password incorrétos!</response>
+            <response code="200">Token criado!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.UsuariosController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
             <summary>

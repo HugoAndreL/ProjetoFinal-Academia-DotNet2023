@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faHospital, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -10,5 +10,6 @@ import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 export class HeaderComponent {
   title = "Hospital SGS Gerenciamento";
 
-  icLogin = faRightToBracket
+  icLogin = faRightToBracket;
+  icHospital = faHospital;
 }

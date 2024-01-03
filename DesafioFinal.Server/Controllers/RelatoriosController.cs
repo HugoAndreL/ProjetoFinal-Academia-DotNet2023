@@ -31,7 +31,7 @@ namespace DesafioFinal.Server.Controllers
             
             if (rel != null)
             {
-                StreamWriter writer = new($@"C:\workspace\DesafioFinal\CSVs\{rel.Nome}.csv", true);
+                StreamWriter writer = new($@"C:\workspace\DesafioFinal\CSVs\{rel.Nome}.csv");
                 writer.WriteLine("Tempo de Espera; Taxa de Utilizacao (Guiche); Taxa de Utilizacao (Triagem); Taxa de Utilizacao (Consultorio)");
                 writer.WriteLine($"{rel}");
                 writer.Close();
@@ -64,7 +64,7 @@ namespace DesafioFinal.Server.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest();
             }
         }
 

@@ -19,6 +19,13 @@ namespace DesafioFinal.Server.Controllers
             _context = context;
         }
 
+        /// <summary>
+        ///     Efetua o Login
+        /// </summary>
+        /// <param name="login">Login requerido</param>
+        /// <returns>Token criado</returns>
+        /// <response code="401">Username/Password incorrétos!</response>
+        /// <response code="200">Token criado!</response>
         [AllowAnonymous]
         [HttpPost("Login")]
         public IActionResult Logar([FromBody] Login login)

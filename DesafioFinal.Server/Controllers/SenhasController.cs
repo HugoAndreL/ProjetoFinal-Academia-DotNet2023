@@ -1,6 +1,5 @@
 ﻿using DesafioFinal.Server.Data;
 using DesafioFinal.Server.Models;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,7 +29,7 @@ namespace DesafioFinal.Server.Controllers
         {
             try
             {
-                // Auto preenchendo a ordem e o id
+                // Auto preenchendo a ordem
                 int order = 1;
                 foreach (Senha ordem in _context.Senhas.ToList())
                     order++;
@@ -82,17 +81,13 @@ namespace DesafioFinal.Server.Controllers
                 .ThenBy(senha => senha.Id)
                 .FirstAsync();
 
-            if (senha != null)
+            _context.Senhas.Remove(senha);
+            await _context.HistoricoSenhas.AddAsync(new()
             {
-                _context.Senhas.Remove(senha);
-                await _context.HistoricoSenhas.AddAsync(new()
-                {
-                    Prioridade = senha.Prioridade,
-                });
-                await _context.SaveChangesAsync();
-                return Ok(senha);
-            }
-            return NotFound("Essa senha não existe! Tente novamente.");
+                Prioridade = senha.Prioridade,
+            });
+            await _context.SaveChangesAsync();
+            return Ok(senha);
         }
 
         /// <summary>
@@ -110,49 +105,10 @@ namespace DesafioFinal.Server.Controllers
                 .OrderByDescending(senha => senha.Prioridade)
                 .ThenBy(senha => senha.Id)
                 .FirstAsync();
-            if (senhaRechamada != null)
-            {
-                _context.HistoricoSenhas.Remove(senhaRechamada);
-                await _context.SaveChangesAsync();
-                return Ok(senhaRechamada);
-            }
-            return NotFound();
-        }
 
-        /// <summary>
-        ///     Altera a ordem
-        /// </summary>
-        /// <param name="id">Indentificador</param>
-        /// <param name="senhaPatch">Ordem desejada</param>
-        /// <remarks>
-        /// **Código:**
-        /// ```
-        /// [
-        ///     {
-        ///         "path": "/Ordem",
-        ///         "op": "replace",
-        ///         "value": 2
-        ///     }
-        /// ]
-        /// ```
-        /// </remarks>
-        /// <returns>Nada</returns>
-        /// <response code="204">Alterado com Sucesso!</response>
-        [HttpPatch("Ordem/{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> AlterarOrdem([FromRoute] int id, [FromBody] JsonPatchDocument<Senha> senhaPatch)
-        {
-            Senha senha = await _context.Senhas.FirstOrDefaultAsync(senha => senha.Id == id);
-
-            if (senha != null)
-            {
-                senhaPatch.ApplyTo(senha, ModelState);
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
-                _context.SaveChanges();
-                return NoContent();
-            }
-            return NotFound("Essa senha não existe! Tente novamente.");
+            _context.HistoricoSenhas.Remove(senhaRechamada);
+            await _context.SaveChangesAsync();
+            return Ok(senhaRechamada);
         }
 
         /// <summary>
@@ -168,7 +124,7 @@ namespace DesafioFinal.Server.Controllers
         public async Task<IActionResult> CancelarSenha([FromRoute] int id)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Ocorreu um erro ao tentar efetuar a desativação da senha.");
+                return BadRequest();
 
             Senha senha = await _context.Senhas
                 .AsNoTracking()
@@ -188,13 +144,10 @@ namespace DesafioFinal.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Ocorreu um erro interno ao tentar efetuar cancelar a senha.\n" +
-                        "Erro:\n\t" + ex.Message);
+                    return BadRequest();
                 }
             }
-            return NotFound("Senha não encontrado!");
+            return NotFound();
         }
-
-
     }
 }
