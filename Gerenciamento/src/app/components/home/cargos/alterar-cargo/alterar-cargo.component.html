@@ -1,0 +1,33 @@
+<section class="container">
+  <div class="card list-pessoa">
+    <h5 class="card-header">Alterar Cargo: {{this.form.value.nome}}</h5>
+    <div class="card-body">
+      <form [formGroup]="form">
+        <section class="form-group">
+          <!-- Nome -->
+          <div class="my-3">
+            <label for="nome" class="form-label">Nome do Usuário:</label>
+            <input 
+              type="text" 
+              formControlName="nome"
+              id="nome"
+              name="nomeCargo"
+              class="form-control"
+              required 
+            />
+          </div>
+        </section>
+          <div class="d-flex justify-content-between">
+            <button type="reset" class="btn btn-danger" routerLink="../../">
+              Cancelar
+              <fa-icon [icon]="icCancel"></fa-icon>
+            </button>
+            <button type="submit" class="btn btn-success" (click)="updateCargo()">
+              Alterar 
+              <fa-icon [icon]="icCheck"></fa-icon>
+            </button>
+          </div>
+        </form>
+    </div>
+  </div>
+</section>

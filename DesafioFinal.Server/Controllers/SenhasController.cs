@@ -20,7 +20,7 @@ namespace DesafioFinal.Server.Controllers
         ///     Gera uma nova senha
         /// </summary>
         /// <param name="senha">Senha a ser adicionado</param>
-        /// <returns>Cargo adicionado</returns>
+        /// <returns>Senha adicionado</returns>
         /// <response code="201">Cargo criado com sucesso</response>
         /// <response code="400">Erro ao efetuar a adição</response>
         [HttpPost("Gerar")]

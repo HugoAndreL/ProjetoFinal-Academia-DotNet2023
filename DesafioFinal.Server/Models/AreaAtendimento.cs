@@ -21,5 +21,8 @@ namespace DesafioFinal.Server.Models
         public int TipoAreaAtendimentoId { get; set; }
         [JsonIgnore]
         public virtual TipoAreaAtendimento? TipoAreaAtendimento { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<Login>? Logins { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+<section class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Lista de Areas de Atendimento</h5>
+      <button class="btn btn-success" routerLink="/Home/AreasAtendimento/Adicionar">
+        <fa-icon [icon]="icAdd"></fa-icon>
+        Adicionar
+      </button>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-hover align-middle table-sm" >
+        <thead class="table-dark">
+          <tr class="table-dark">
+            <th class="text-center">Identificador</th>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Identificador do Tipo de Area de Atendimento</th>
+            <th class="text-center" colspan="2">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let aa of areasAtendimento">
+            <td class="text-center">{{ aa.id }}</td>
+            <td class="text-center">{{ aa.nome }}</td>
+            <td class="text-center">{{ aa.tipoAreaAtendimentoId }}</td>
+            <td class="table-warning text-center">
+              <button class="btn btn-outline-warning btn-sm" routerLink="/Home/AreasAtendimento/Alterar/{{aa.id}}">
+                <fa-icon [icon]="icEdit"></fa-icon>
+              </button>
+            </td>
+            <td class="table-danger text-center">
+              <button class="btn btn-outline-danger btn-sm" routerLink="/Home/AreasAtendimento/Desativar/{{aa.id}}">
+                <fa-icon [icon]="icDesativar"></fa-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

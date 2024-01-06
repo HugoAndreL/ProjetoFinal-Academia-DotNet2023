@@ -6,7 +6,7 @@
     <members>
         <member name="M:DesafioFinal.Server.Controllers.AreasAtendimentoController.AdicionarAreaAtendimento(DesafioFinal.Server.Models.AreaAtendimento)">
             <summary>
-                Cadastra uma nova área de atendimento
+                Adiciona uma nova área de atendimento
             </summary>
             <param name="aa">Área de atendimento a ser adicionado</param>
             <returns>Área de atendimento adicionado</returns>
@@ -209,7 +209,7 @@
                 Gera uma nova senha
             </summary>
             <param name="senha">Senha a ser adicionado</param>
-            <returns>Cargo adicionado</returns>
+            <returns>Senha adicionado</returns>
             <response code="201">Cargo criado com sucesso</response>
             <response code="400">Erro ao efetuar a adição</response>
         </member>
@@ -302,10 +302,35 @@
             <summary>
                 Efetua o Login
             </summary>
-            <param name="login">Login requerido</param>
+            <param name="log">Login requerido</param>
             <returns>Token criado</returns>
-            <response code="401">Username/Password incorrétos!</response>
             <response code="200">Token criado!</response>
+            <response code="401">Username/Password incorrétos!</response>
+            <response code="404">Username/Password não encontrados!</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TokenController.GetFuncionalidadeByToken">
+            <summary>
+                Confere as permissões do usuario logado
+            </summary>
+            <returns>Lista de permissões</returns>
+            <response code="200">Sucesso!</response>
+            <response code="404">Login não encontrado</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TokenController.GetUsuarioByToken">
+            <summary>
+                Seleciona o usuário logado
+            </summary>
+            <returns>Usuario logado</returns>
+            <response code="200">Sucesso!</response>
+            <response code="404">Login não encontrado</response>
+        </member>
+        <member name="M:DesafioFinal.Server.Controllers.TokenController.Logout(Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{DesafioFinal.Server.Models.Login})">
+            <summary>
+                Efetua logout
+            </summary>
+            <returns>Nada</returns>
+            <response code="204">Sucesso!</response>
+            <response code="400">Erro ao efetuar o logout!</response>
         </member>
         <member name="M:DesafioFinal.Server.Controllers.UsuariosController.CadastrarUsuario(DesafioFinal.Server.Models.Usuario)">
             <summary>
@@ -368,6 +393,66 @@
             <inheritdoc />
         </member>
         <member name="M:DesafioFinal.Server.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.ColocandoCampoToken">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.ColocandoCampoToken.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.ColocandoCampoToken.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.ColocandoCampoToken.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.LoginAreaAtendimento">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.LoginAreaAtendimento.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.LoginAreaAtendimento.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.LoginAreaAtendimento.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.AaIdNulo">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AaIdNulo.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AaIdNulo.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AaIdNulo.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.AumentandovalorPassword">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AumentandovalorPassword.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AumentandovalorPassword.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AumentandovalorPassword.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:DesafioFinal.Server.Migrations.AumentandoValorSenha">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AumentandoValorSenha.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AumentandoValorSenha.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:DesafioFinal.Server.Migrations.AumentandoValorSenha.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:DesafioFinal.Server.Models.AreaAtendimento">

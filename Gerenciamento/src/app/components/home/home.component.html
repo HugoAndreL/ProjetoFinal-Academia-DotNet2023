@@ -1,0 +1,18 @@
+<app-nav></app-nav>
+<router-outlet></router-outlet>
+<div class="container mt-3 text-center">
+  <p class="text-success">Bem Vindo(a): 
+    <strong>{{ user.nome }}</strong>
+  </p>
+  <p [ngClass]="permissoes.length <= 0 ? 'd-none' : ''">  Você tem permissão para:</p>
+  <ul class="container text-center navbar-nav">
+    <li *ngFor="let permissao of permissoes">
+      <strong class="nav-item">{{ permissao.nome }}{{ permissoes.length > 1 ? "," : ""}}</strong>
+    </li>
+  </ul>
+  <button class="btn btn-danger" (click)="Logout()">
+    Fazer Logout
+    <fa-icon [icon]="icLogout"></fa-icon>
+  </button>
+</div>
+<!-- Corrigir o resto das rotas -->

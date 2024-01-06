@@ -1,0 +1,43 @@
+<section class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Lista de Cargos</h5>
+      <div class="col-sm-3 d-flex justify-content-between">
+        <button class="btn btn-primary" routerLink="/Home/Auditoria/Cargos">
+          Auditoria
+        </button>
+        <button class="btn btn-success" routerLink="/Home/Cargos/Adicionar">
+          <fa-icon [icon]="icAdd"></fa-icon>
+          Adicionar
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-hover align-middle table-sm" >
+        <thead class="table-dark">
+          <tr class="table-dark">
+            <th class="text-center">Id</th>
+            <th class="text-center">Nome</th>
+            <th class="text-center" colspan="2">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let cargo of cargos">
+            <td class="text-center">{{ cargo.id }}</td>
+            <td class="text-center">{{ cargo.nome }}</td>
+            <td class="table-warning text-center">
+              <button class="btn btn-outline-warning btn-sm" routerLink="/Home/Cargos/Alterar/{{cargo.id}}">
+                <fa-icon [icon]="icEdit"></fa-icon>
+              </button>
+            </td>
+            <td class="table-danger text-center">
+              <button class="btn btn-outline-danger btn-sm" routerLink="/Home/Cargos/Desativar/{{cargo.id}}">
+                <fa-icon [icon]="icDesativar"></fa-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

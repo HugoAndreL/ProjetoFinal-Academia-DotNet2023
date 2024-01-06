@@ -146,15 +146,23 @@ namespace DesafioFinal.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("AaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(20)");
+                        .HasColumnType("VARCHAR(35)");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AaId");
 
                     b.ToTable("Logins");
                 });
@@ -253,7 +261,7 @@ namespace DesafioFinal.Server.Migrations
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Senha")
-                        .HasColumnType("VARCHAR(20)");
+                        .HasColumnType("VARCHAR(`35)");
 
                     b.HasKey("Id");
 
@@ -287,6 +295,15 @@ namespace DesafioFinal.Server.Migrations
                     b.Navigation("Cargo");
                 });
 
+            modelBuilder.Entity("DesafioFinal.Server.Models.Login", b =>
+                {
+                    b.HasOne("DesafioFinal.Server.Models.AreaAtendimento", "AreaAtendimento")
+                        .WithMany("Logins")
+                        .HasForeignKey("AaId");
+
+                    b.Navigation("AreaAtendimento");
+                });
+
             modelBuilder.Entity("DesafioFinal.Server.Models.Usuario", b =>
                 {
                     b.HasOne("DesafioFinal.Server.Models.Cargo", "Cargo")
@@ -302,6 +319,11 @@ namespace DesafioFinal.Server.Migrations
                     b.Navigation("Cargo");
 
                     b.Navigation("Login");
+                });
+
+            modelBuilder.Entity("DesafioFinal.Server.Models.AreaAtendimento", b =>
+                {
+                    b.Navigation("Logins");
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Cargo", b =>

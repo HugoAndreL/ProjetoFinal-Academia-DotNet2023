@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Identity.Client;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -17,10 +18,17 @@ namespace DesafioFinal.Server.Models
         [Column(TypeName = "VARCHAR(50)")]
         public string Username { get; set; }
 
-        [Column(TypeName = "VARCHAR(20)")]
+        [Column(TypeName = "VARCHAR(35)")]
         public string Password { get; set; }
 
         [JsonIgnore]
         public virtual Usuario? Usuario { get; set; }
+
+        [JsonIgnore]
+        public string? Token { get; set; }
+
+        public int? AaId { get; set; }
+        [JsonIgnore]
+        public virtual AreaAtendimento? AreaAtendimento { get; set; }
     }
 }

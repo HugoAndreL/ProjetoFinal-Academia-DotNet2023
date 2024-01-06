@@ -48,6 +48,11 @@ namespace DesafioFinal.Server.Data
                 .HasOne(func => func.Cargo)
                 .WithMany(cargo => cargo.Funcionalidades)
                 .HasForeignKey(func => func.CargoId);
+
+            builder.Entity<Login>()
+                .HasOne(log => log.AreaAtendimento)
+                .WithMany(aa => aa.Logins)
+                .HasForeignKey(log => log.AaId);
         }
     }
 }

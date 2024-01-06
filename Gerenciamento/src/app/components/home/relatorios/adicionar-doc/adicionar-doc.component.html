@@ -1,0 +1,66 @@
+<section class="container">
+  <div class="card list-pessoa">
+    <h5 class="card-header">Adicionar Cargo</h5>
+    <div class="card-body">
+      <form id="add-form" (ngSubmit)="f.form.valid && addRelatorio()" #f="ngForm" novalidate>
+        <section class="form-group mb-3">
+          <!-- Tempo de Espera -->
+          <div class="my-3">
+            <label class="form-label" for="tempoEspera">Tempo de Espera:</label>
+            <input 
+            type="text"
+            [(ngModel)]="rel.tempoEspera"
+            id="tempoEspera"
+            name="tempoEsperaDoc"
+            class="form-control"
+            placeholder="00:30:00"
+            required />
+          </div>
+        </section>
+          <!-- Taxa de Utilização do(s) Guiche(s) -->
+          <div class="my-3">
+            <label class="form-label" for="taxaGuiche">Taxa de Utilização do(s) Guiche(s):</label>
+            <input 
+            type="number"
+            [(ngModel)]="rel.taxaUtilizacaoGuiche"
+            id="nome"
+            name="nomeDoc"
+            class="form-control"
+            required />
+          </div>
+          <!-- Taxa de Utilização da(s) Triagem(ns) -->
+          <div class="my-3">
+            <label class="form-label" for="taxaTriagem">Taxa de Utilização da(s) Triagem(ns):</label>
+            <input 
+            type="number"
+            [(ngModel)]="rel.taxaUtilizacaoTriagem"
+            id="taxaTriagem"
+            name="taxaTriagemDoc"
+            class="form-control"
+            required />
+          </div>
+          <!-- Taxa de Utilização do(s) Consultório(s) -->
+          <div class="my-3">
+            <label class="form-label" for="taxaConsultorio">Taxa de Utilização do(s) Consultório(s):</label>
+            <input 
+            type="number"
+            [(ngModel)]="rel.taxaUtilizacaoConsultorio"
+            id="taxaConsultorio"
+            name="taxaConsultorioDoc"
+            class="form-control"
+            required />
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="reset" class="btn btn-danger" routerLink="../">
+              Cancelar
+              <fa-icon [icon]="icCancel"></fa-icon>
+            </button>
+            <button type="submit" class="btn btn-success">
+              Adicionar 
+              <fa-icon [icon]="icAdd"></fa-icon>
+            </button>
+          </div>
+        </form>
+      </div>
+  </div>
+</section>

@@ -17,7 +17,7 @@ namespace DesafioFinal.Server.Controllers
         }
 
         /// <summary>
-        ///     Cadastra uma nova área de atendimento
+        ///     Adiciona uma nova área de atendimento
         /// </summary>
         /// <param name="aa">Área de atendimento a ser adicionado</param>
         /// <returns>Área de atendimento adicionado</returns>
@@ -40,7 +40,7 @@ namespace DesafioFinal.Server.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Não foi possivel criar a area de atendimento");
             }
         }
 

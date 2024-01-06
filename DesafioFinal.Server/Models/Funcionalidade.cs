@@ -18,6 +18,6 @@ namespace DesafioFinal.Server.Models
 
         public int CargoId { get; set; }
         [JsonIgnore]
-        public virtual Cargo? Cargo { get; set;}
+        public virtual Cargo? Cargo { get; set; }
     }
 }

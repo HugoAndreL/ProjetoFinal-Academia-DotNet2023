@@ -1,8 +1,8 @@
-<section class="container">
+<section class="container mt-3">
   <div class="card list-pessoa">
-    <h5 class="card-header">Adicionar Usuario</h5>
+    <h5 class="card-header">Login</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && addLogin()" #f="ngForm" novalidate>
+      <form id="add-form" (ngSubmit)="f.form.valid && Logar()" #f="ngForm" novalidate>
         <section class="form-group mb-3">
            <!-- Nome -->
            <div class="my-3">
@@ -25,15 +25,23 @@
             id="password"
             name="passwordLogin"
             class="form-control" 
-            placeholder="Username"
+            placeholder="Password"
+            required />
+          </div>
+          <!-- areaAtendimentoId -->
+          <div class="my-3">
+            <label for="aaId" class="form-label">Identificador da área de atendimento:</label>
+            <input 
+            type="number" 
+            [(ngModel)]="login.aaId"
+            id="aaId"
+            name="aaIdLogin"
+            class="form-control" 
+            placeholder="A que área de atendimento você gostaria de se colocar?"
             required />
           </div>
         </section>
-          <div class="d-flex justify-content-between">
-            <button type="reset" class="btn btn-danger" routerLink="../">
-              Cancelar
-              <fa-icon [icon]="icCancel"></fa-icon>
-            </button>
+          <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-success">
               Entrar 
               <fa-icon [icon]="icEntrar"></fa-icon>

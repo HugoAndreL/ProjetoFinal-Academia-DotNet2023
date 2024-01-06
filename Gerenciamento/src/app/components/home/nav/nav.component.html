@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg">
+  <section class="container-fluid">
+    <span class="navbar-brand">O que gostaria de fazer?</span>
+    <section class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Home', 'Usuarios']">
+            Usuarios 
+            <fa-icon [icon]="icUser"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Home', 'Cargos']">
+            Cargos
+            <fa-icon [icon]="icCargo"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Home', 'TiposAreasAtendimento']">
+            Tipos de Areas de Atendimento
+            <fa-icon [icon]="icTAA"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Home', 'AreasAtendimento']">
+            Areas de Atendimento
+            <fa-icon [icon]="icAA"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Home', 'Funcionalidades']">
+            Permissoes
+            <fa-icon [icon]="icPermissoes"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Home', 'Relatorios']">
+            Relatorios
+            <fa-icon [icon]="icRelatorio"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Home', 'Senhas']">
+            Senhas
+            <fa-icon [icon]="icSenha"></fa-icon>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </section>
+</nav>
