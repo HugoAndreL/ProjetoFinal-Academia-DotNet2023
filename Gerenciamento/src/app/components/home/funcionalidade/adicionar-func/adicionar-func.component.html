@@ -2,29 +2,42 @@
   <div class="card list-pessoa">
     <h5 class="card-header">Adicionar Permissão</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && addFuncionalidade()" #f="ngForm" novalidate>
+      <form [formGroup]="frmFunc" (ngSubmit)="addFuncionalidade()" #frm="ngForm">
         <section class="form-group mb-3">
            <!-- Nome -->
            <div class="my-3">
             <label class="form-label" for="nome">Nome da Permissão:</label>
             <input 
             type="text"
-            [(ngModel)]="func.nome"
             id="nome"
-            name="nomeRole"
+            name="nome"
+            formControlName="nome"
+            [(ngModel)]="func.nome"
             class="form-control"
             placeholder="Digite o Nome Completo"
             required />
+          </div>
+          <div class="text-end text-danger">
+            <span *ngIf="this.frmFunc.get('nome')?.touched &&
+            this.frmFunc.get('nome')?.errors?.['required']">
+            *O campo 'Nome' se faz obrigátorio!</span>
           </div>
           <!-- Identificador do Cargo -->
            <div class="my-3">
             <label class="form-label" for="cargoId">Identificador do Cargo:</label>
             <input 
             type="number"
-            [(ngModel)]="func.cargoId"
             id="cargoId"
             name="cargoIdRole"
-            class="form-control" />
+            formControlName="cargoId"
+            [(ngModel)]="func.cargoId"
+            class="form-control" 
+            required />
+          </div>
+          <div class="text-end text-danger">
+            <span *ngIf="this.frmFunc.get('cargoId')?.touched &&
+            this.frmFunc.get('cargoId')?.errors?.['required']">
+            *O campo 'Identificador do Cargo' se faz obrigátorio!</span>
           </div>
         </section>
           <div class="d-flex justify-content-between">
@@ -32,7 +45,7 @@
               Cancelar
               <fa-icon [icon]="icCancel"></fa-icon>
             </button>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn" [ngClass]="this.frmFunc.valid ? 'btn-success' : 'btn-danger'" [disabled]="this.frmFunc.invalid">
               Registrar 
               <fa-icon [icon]="icAdd"></fa-icon>
             </button>

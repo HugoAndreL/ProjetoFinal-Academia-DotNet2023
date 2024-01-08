@@ -14,35 +14,35 @@ import { TipoAreaAtendimentoService } from '../../../../services/tipo-area-atend
 })
 export class AlterarTaaComponent {
   taa = {} as TipoAreaAtendimento;
-  form!: FormGroup;
+  frmTaa!: FormGroup;
 
   icCancel = faXmark;
   icCheck = faCheck;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: TipoAreaAtendimentoService, private builder: FormBuilder) {
-    this.form = this.builder.group({
+    this.frmTaa = this.builder.group({
       id: null,
-      nome: null,
-      email: null,
-      cargoId: null,
-      senha: null
+      nome: null
     });
   }
   
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.getTipoAreaAtendimentobyId(parseInt(id!)).subscribe((taa) => {
-      this.form.patchValue({
-        id: id,
-        nome: taa.nome
+    this.service.getTipoAreaAtendimentobyId(parseInt(id!))
+      .subscribe((taa) => {
+        this.frmTaa.patchValue({
+          id: id,
+          nome: taa.nome
+        });
+        this.taa = taa;
       });
-    });
   }
 
   updateTipoAreaAtendimento(): void {
-    this.service.putTipoAreaAtendimento(this.form.value).subscribe(() => {
-      alert('Tipo de Area de Atendimento alterado com sucesso!');
-      this.router.navigate(['Home/TiposAreasAtendimento']);
-    });
+    this.service.putTipoAreaAtendimento(this.frmTaa.value)
+      .subscribe((taa) => {
+        alert(`${taa.nome} alterado com sucesso!`);
+        this.router.navigate(['Home/TiposAreasAtendimento']);
+      });
   }
 }

@@ -3,12 +3,11 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core'; 
 
 import { Observable, catchError, throwError } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 import { Login } from '../models/login';
 import { Usuario } from '../models/usuario';
 import { Funcionalidade } from '../models/funcionalidade';
-
-import { jwtDecode } from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +29,7 @@ export class LoginService {
                   mensagem: ${err.message}`;
     return throwError(errMsg);
   }
-
-  postLogin(log: Login): Observable<Login> {
-    return this.http.post<Login>(`${this.url}/Login`, JSON.stringify(log), this.httpOptions)
-      .pipe(catchError(this.handleErr));
-  }
-
+  
   getUserByToken(): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.url}/ConferirUsuario`)
       .pipe(catchError(this.handleErr))
@@ -43,6 +37,11 @@ export class LoginService {
 
   getFuncsbyToken(): Observable<Funcionalidade[]> {
     return this.http.get<Funcionalidade[]>(`${this.url}/ConferirPermissoes`)
+    .pipe(catchError(this.handleErr));
+  }
+
+  postLogin(log: Login): Observable<Login> {
+    return this.http.post<Login>(`${this.url}/Login`, JSON.stringify(log), this.httpOptions)
       .pipe(catchError(this.handleErr));
   }
 
@@ -53,16 +52,16 @@ export class LoginService {
         "path": "/Token"
       } 
     ]
-    return this.http.patch(`${this.url}/Logout`, patch, this.httpOptions)
+    return this.http.patch(`${this.url}/Logout`, JSON.stringify(patch), this.httpOptions)
       .pipe(catchError(this.handleErr));
   }
 
-  ehExpirado(token: string | null): boolean {
-    if (token) {
+  ehExpiradoToken(token: string | null): boolean {
+    if (token != null) {
       const tokenCodificado: any = jwtDecode(token);
 
-      return tokenCodificado.exp < Date.now() / 1000;
+      return tokenCodificado.exp < Date.now() / 12000;
     }
-    else return true;
+    return false;
   }
 }

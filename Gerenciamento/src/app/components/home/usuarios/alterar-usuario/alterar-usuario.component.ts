@@ -16,13 +16,13 @@ import { Usuario } from '../../../../models/usuario';
 })
 export class AlterarUsuarioComponent {
   user = {} as Usuario;
-  form!: FormGroup;
+  frmUser!: FormGroup;
 
   icCancel = faXmark;
   icCheck = faCheck;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: UsuarioService, private builder: FormBuilder) {
-    this.form = this.builder.group({
+    this.frmUser = this.builder.group({
       id: null,
       nome: null,
       email: null,
@@ -33,31 +33,33 @@ export class AlterarUsuarioComponent {
   
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.getUsuariobyId(parseInt(id!)).subscribe((user) => {
-      this.form.patchValue({
-        id: id,
-        nome: user.nome,
-        email: user.email,
-        cargoId: user.cargoId,
-        senha: user.senha
+    this.service.getUsuariobyId(parseInt(id!))
+      .subscribe((user) => {
+        this.frmUser.patchValue({
+          id: id,
+          nome: user.nome,
+          email: user.email,
+          cargoId: user.cargoId,
+          senha: user.senha
+        });
+        this.user = user;
       });
-      this.user = user;
-    });
   }
 
   updateUser(): void {
-    this.service.putUsuario(this.form.value).subscribe(() => {
-      alert('Alterado com sucesso!');
-      this.router.navigate(['Home/Usuarios']);
+    this.service.putUsuario(this.frmUser.value)
+      .subscribe((user) => {
+        alert(`${user.nome} alterado com sucesso!`);
+        this.router.navigate(['Home/Usuarios']);
 
-      // Gerando o email com o novo usuário e senha para login
-      emailjs.init("YWCD2Lh3vwYpBL967");
-      emailjs.send("HospitalSGS.outlook","template_cv36wj8",{
-        nome: this.form.value.nome,
-        email: this.form.value.email,
-        senha: this.form.value.senha,
-        site: "http://localhost:4200/"
-      });
+        // Gerando o email com o novo usuário e senha para login
+        emailjs.init("YWCD2Lh3vwYpBL967");
+        emailjs.send("HospitalSGS.outlook","template_cv36wj8",{
+          nome: user.nome,
+          email: user.email,
+          senha: user.senha,
+          site: "http://localhost:4200/"
+        });
     });
   }
 }

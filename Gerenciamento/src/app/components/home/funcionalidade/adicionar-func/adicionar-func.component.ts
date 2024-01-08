@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FuncionalidadeService } from '../../../../services/funcionalidade.service';
 import { Router } from '@angular/router';
-import { Funcionalidade } from '../../../../models/funcionalidade';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+
+import { FuncionalidadeService } from '../../../../services/funcionalidade.service';
+import { Funcionalidade } from '../../../../models/funcionalidade';
 
 @Component({
   selector: 'app-adicionar-func',
@@ -12,11 +14,22 @@ import { Funcionalidade } from '../../../../models/funcionalidade';
 })
 export class AdicionarFuncComponent {
   func = {} as Funcionalidade;
+  frmFunc!: FormGroup;
 
   icCancel = faXmark;
   icAdd = faPlus;
 
   constructor(private service: FuncionalidadeService, private router: Router) {}
+
+  ngOnInit() {
+    this.frmFunc = new FormGroup({
+      id: new FormControl(''),
+      nome: new FormControl('', 
+      [Validators.required]),
+      cargoId: new FormControl('',
+      [Validators.required])
+    });
+  }
 
   addFuncionalidade(): void {
     this.service.postFuncionalidade(this.func)

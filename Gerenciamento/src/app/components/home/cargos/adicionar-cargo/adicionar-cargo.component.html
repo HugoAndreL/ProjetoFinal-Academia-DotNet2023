@@ -2,18 +2,24 @@
   <div class="card list-pessoa">
     <h5 class="card-header">Adicionar Cargo</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && addCargo()" #f="ngForm" novalidate>
+      <form id="add-form" (ngSubmit)="addCargo()" [formGroup]="frmCargo" #frm="ngForm">
         <section class="form-group mb-3">
            <!-- Nome -->
            <div class="my-3">
             <label class="form-label" for="nome">Nome do Cargo:</label>
             <input 
             type="text"
-            [(ngModel)]="cargo.nome"
             id="nome"
             name="nomeCargo"
+            formControlName="nome"
+            [(ngModel)]="cargo.nome"
             class="form-control"
             required />
+          </div>
+          <div class="text-end text-danger">
+            <span *ngIf="this.frmCargo.get('nome')?.touched &&
+              this.frmCargo.get('nome')?.errors?.['required']">
+              *O campo 'Nome' se faz obrigatório!</span>
           </div>
         </section>
           <div class="d-flex justify-content-between">
@@ -21,7 +27,7 @@
               Cancelar
               <fa-icon [icon]="icCancel"></fa-icon>
             </button>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn" [ngClass]="this.frmCargo.valid ? 'btn-success' : 'btn-danger'" [disabled]="this.frmCargo.invalid">
               Registrar 
               <fa-icon [icon]="icAdd"></fa-icon>
             </button>

@@ -2,13 +2,14 @@
   <div class="card list-pessoa">
     <h5 class="card-header">Adicionar Cargo</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && addRelatorio()" #f="ngForm" novalidate>
+      <form (ngSubmit)="addRelatorio()" #frm="ngForm" [formGroup]="frmRel">
         <section class="form-group mb-3">
           <!-- Tempo de Espera -->
           <div class="my-3">
             <label class="form-label" for="tempoEspera">Tempo de Espera:</label>
             <input 
             type="text"
+            formControlName="tempoEspera"
             [(ngModel)]="rel.tempoEspera"
             id="tempoEspera"
             name="tempoEsperaDoc"
@@ -16,15 +17,23 @@
             placeholder="00:30:00"
             required />
           </div>
+          <div class="text-danger text-end">
+            <span *ngIf="this.frmRel.get('tempoEspera')?.touched &&
+              this.frmRel.get('tempoEspera')?.errors?.['required']">
+              *O campo 'Tempo de Espera' se faz obrigatório!</span>
+              <span *ngIf="this.frmRel.get('tempoEspera')?.errors?.['maxlenght']">
+                O campo 'Nome' deve conter 10 caratéres.</span>
+          </div>
         </section>
           <!-- Taxa de Utilização do(s) Guiche(s) -->
           <div class="my-3">
             <label class="form-label" for="taxaGuiche">Taxa de Utilização do(s) Guiche(s):</label>
             <input 
             type="number"
+            formControlName="taxaGuiche"
             [(ngModel)]="rel.taxaUtilizacaoGuiche"
-            id="nome"
-            name="nomeDoc"
+            id="tacaGuiche"
+            name="taxaGuicheDoc"
             class="form-control"
             required />
           </div>
@@ -33,6 +42,7 @@
             <label class="form-label" for="taxaTriagem">Taxa de Utilização da(s) Triagem(ns):</label>
             <input 
             type="number"
+            formControlName="taxaTriagem"
             [(ngModel)]="rel.taxaUtilizacaoTriagem"
             id="taxaTriagem"
             name="taxaTriagemDoc"
@@ -44,6 +54,7 @@
             <label class="form-label" for="taxaConsultorio">Taxa de Utilização do(s) Consultório(s):</label>
             <input 
             type="number"
+            formControlName="taxaConsultorio"
             [(ngModel)]="rel.taxaUtilizacaoConsultorio"
             id="taxaConsultorio"
             name="taxaConsultorioDoc"
@@ -55,7 +66,7 @@
               Cancelar
               <fa-icon [icon]="icCancel"></fa-icon>
             </button>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn" [ngClass]="this.frmRel.valid ? 'btn-success' : 'btn-danger'" [disabled]="this.frmRel.invalid">
               Adicionar 
               <fa-icon [icon]="icAdd"></fa-icon>
             </button>

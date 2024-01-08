@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,11 +16,25 @@ import { Usuario } from '../../../../models/usuario';
 })
 export class RegistraUsuarioComponent {
   user = {} as Usuario;
+  frmUser!: FormGroup;
 
   icCancel = faXmark;
   icAdd = faPlus;
 
   constructor(private service: UsuarioService, private router: Router) {}
+
+  ngOnInit() {
+    this.frmUser = new FormGroup({
+      id: new FormControl(''),
+      nome: new FormControl('', 
+        [Validators.required, Validators.maxLength(50)]),
+      email: new FormControl('', 
+        [Validators.required, Validators.pattern(/(.|\s)*\S(.|\s)*/)]),
+      cargoId: new FormControl('', [Validators.required]),
+      cargo: new FormControl(''),
+      senha: new FormControl('')
+    })
+  }
 
   addUser(): void {
     this.service.postUsuario(this.user)

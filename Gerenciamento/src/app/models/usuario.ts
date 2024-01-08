@@ -5,6 +5,6 @@ export interface Usuario {
   nome: string,
   email: string,
   senha?: string,
-  cargoId?: number,
+  cargoId: number,
   cargo?: Cargo,
 }

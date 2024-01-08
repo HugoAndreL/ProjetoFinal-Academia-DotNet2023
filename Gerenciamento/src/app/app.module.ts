@@ -9,8 +9,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { LoginComponent } from './components/login/login.component';
-
 import { HomeComponent } from './components/home/home.component';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -49,6 +47,7 @@ import { AssoicarFuncComponent } from './components/home/funcionalidade/assoicar
 
 import { SenhaComponent } from './components/home/senha/senha.component';
 import { HistoricoComponent } from './components/home/senha/historico/historico.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +90,7 @@ import { HistoricoComponent } from './components/home/senha/historico/historico.
     AssoicarFuncComponent,
 
     SenhaComponent,
-    HistoricoComponent,
+    HistoricoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 import { Usuario } from '../models/usuario';
 
@@ -14,7 +14,7 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
 
   httpOptions = {
-    headers: new HttpHeaders ({ 'content-type': 'application/json'})
+    headers: new HttpHeaders ({ 'content-type': 'application/json-patch+json'})
   }
 
   handleErr(err: HttpErrorResponse) {

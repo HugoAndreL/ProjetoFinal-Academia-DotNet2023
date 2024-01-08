@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { Cargo } from '../../../../models/cargo';
 import { CargoService } from '../../../../services/cargo.service';
+import { Cargo } from '../../../../models/cargo';
 
 @Component({
   selector: 'app-adicionar-cargo',
@@ -13,11 +14,20 @@ import { CargoService } from '../../../../services/cargo.service';
 })
 export class AdicionarCargoComponent {
   cargo = {} as Cargo;
+  frmCargo!: FormGroup;
 
   icCancel = faXmark;
   icAdd = faPlus;
 
   constructor(private service: CargoService, private router: Router) {}
+
+  ngOnInit() {
+    this.frmCargo = new FormGroup({
+      id: new FormControl(''),
+      nome: new FormControl('',
+        [Validators.required, Validators.maxLength(50)])
+    });
+  }
 
   addCargo(): void {
     this.service.postCargo(this.cargo)

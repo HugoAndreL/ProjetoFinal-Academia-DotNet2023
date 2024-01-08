@@ -2,52 +2,80 @@
   <div class="card list-pessoa">
     <h5 class="card-header">Login</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && Logar()" #f="ngForm" novalidate>
+      <form (ngSubmit)="Logar()" [formGroup]="frmLogin" #frm="ngForm">
         <section class="form-group mb-3">
            <!-- Nome -->
            <div class="my-3">
             <label class="form-label" for="username">Nome:</label>
             <input 
             type="text"
-            [(ngModel)]="login.username"
             id="username"
             name="usernameLogin"
             class="form-control"
             placeholder="Username"
+            formControlName="username"
+            [(ngModel)]="login.username"
             required />
+          </div>
+          <div class="text-end">
+            <span *ngIf="this.frmLogin.get('username')?.touched &&
+               this.frmLogin.get('username')?.errors?.['required']" 
+               class="text-danger d-flex justify-content-end">
+               *O campo 'Username' se faz obrigatório!</span>
+            <span *ngIf="this.frmLogin.get('username')?.errors?.['maxlength']" 
+              class="text-danger d-flex justify-content-end">
+              *O campo 'Username' só suporta 50 caratéres!</span>
           </div>
           <!-- Username -->
           <div class="my-3">
             <label for="password" class="form-label">Senha:</label>
             <input 
             type="password" 
-            [(ngModel)]="login.password"
             id="password"
             name="passwordLogin"
             class="form-control" 
             placeholder="Password"
+            formControlName="password"
+            [(ngModel)]="login.password"
             required />
+          </div>
+          <div class="text-end">
+            <span *ngIf="this.frmLogin.get('password')?.touched &&
+               this.frmLogin.get('password')?.errors?.['required']" 
+               class="text-danger d-flex justify-content-end">
+               *O campo 'Password' se faz obrigatório!</span>
+            <span *ngIf="this.frmLogin.get('password')?.touched &&
+               this.frmLogin.get('password')?.errors?.['maxlength']" 
+               class="text-danger d-flex justify-content-end">
+               *O campo 'Password' só suporta 35 caratéres!</span>
           </div>
           <!-- areaAtendimentoId -->
           <div class="my-3">
             <label for="aaId" class="form-label">Identificador da área de atendimento:</label>
             <input 
             type="number" 
-            [(ngModel)]="login.aaId"
             id="aaId"
             name="aaIdLogin"
             class="form-control" 
             placeholder="A que área de atendimento você gostaria de se colocar?"
+            formControlName="aaId"
+            [(ngModel)]="login.aaId"
             required />
           </div>
-        </section>
-          <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-success">
-              Entrar 
-              <fa-icon [icon]="icEntrar"></fa-icon>
-            </button>
+          <div class="text-end">
+            <span *ngIf="this.frmLogin.get('aaId')?.touched &&
+              this.frmLogin.get('aaId')?.errors?.['required']" 
+              class="text-danger d-flex justify-content-end">
+              *O campo 'AreaAtendimentoId' se faz obrigatório!</span>
           </div>
-        </form>
+        </section>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn" [ngClass]="this.frmLogin.valid ? 'btn-success' : 'btn-danger'" [disabled]="this.frmLogin.invalid">
+            Entrar 
+            <fa-icon [icon]="icEntrar"></fa-icon>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </section>

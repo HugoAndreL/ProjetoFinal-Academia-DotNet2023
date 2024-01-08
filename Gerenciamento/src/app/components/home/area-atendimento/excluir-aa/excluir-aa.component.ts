@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
-import { AreaAtendimento } from '../../../../models/area-atendimento';
 import { AreaAtendimentoService } from '../../../../services/area-atendimento.service';
+import { AreaAtendimento } from '../../../../models/area-atendimento';
 
 @Component({
   selector: 'app-excluir-aa',
@@ -22,7 +23,7 @@ export class ExcluirAaComponent {
   }
 
   excluirTaa() {
-    this.service.deleteAreaAtendimento(this.aa).subscribe(() => {
+    this.service.deleteAreaAtendimento(this.aa).subscribe((aa) => {
       alert(`${this.aa.nome} deletado com sucesso`);
       this.router.navigate(['Home/AreasAtendimento']);
     })

@@ -18,6 +18,8 @@ Este projeto visa desenvolver um sistema robusto de um ERP de gerenciamento de s
   - *Interface do usuário* desenvolvida com **Angular**.
 - **Banco de Dados:** SQL Server
   - Sistema de gerenciamento de banco de dados relacional para armazenamento e recuperação eficiente de dados.
+- **Autenticação**: JWT 
+  - *Sistema de Autenticação* usando **JWT**.
 
 ## Status do Projeto:
 - **[X]** Vídeo de Demonstração: [Youtube](https://youtu.be/-6IBH8oTU3w).

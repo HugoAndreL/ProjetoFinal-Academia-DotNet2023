@@ -41,7 +41,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasIndex("TipoAreaAtendimentoId");
 
-                    b.ToTable("AreasAtendimento");
+                    b.ToTable("AreasAtendimento", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Cargo", b =>
@@ -58,7 +58,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cargos");
+                    b.ToTable("Cargos", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Funcionalidade", b =>
@@ -80,7 +80,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasIndex("CargoId");
 
-                    b.ToTable("Funcionalidades");
+                    b.ToTable("Funcionalidades", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.HistoricoCargo", b =>
@@ -97,7 +97,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HistoricoCargos");
+                    b.ToTable("HistoricoCargos", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.HistoricoSenha", b =>
@@ -114,7 +114,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HistoricoSenhas");
+                    b.ToTable("HistoricoSenhas", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.HistoricoUsuario", b =>
@@ -135,7 +135,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HistoricoUsuarios");
+                    b.ToTable("HistoricoUsuarios", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Login", b =>
@@ -164,7 +164,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasIndex("AaId");
 
-                    b.ToTable("Logins");
+                    b.ToTable("Logins", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Relatorio", b =>
@@ -198,7 +198,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Relatorios");
+                    b.ToTable("Relatorios", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Senha", b =>
@@ -218,7 +218,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Senhas");
+                    b.ToTable("Senhas", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.TipoAreaAtendimento", b =>
@@ -235,7 +235,7 @@ namespace DesafioFinal.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TiposAreasAtendimento");
+                    b.ToTable("TiposAreasAtendimento", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.Usuario", b =>
@@ -270,7 +270,7 @@ namespace DesafioFinal.Server.Migrations
                     b.HasIndex("LoginId")
                         .IsUnique();
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("DesafioFinal.Server.Models.AreaAtendimento", b =>

@@ -1,6 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable, catchError, throwError } from 'rxjs';
+
 import { Senha } from '../models/senha';
 import { Historico } from '../models/historico';
 
@@ -13,7 +15,7 @@ export class SenhaService {
   constructor(private http: HttpClient) {}
 
   httpOptions = {
-    headers: new HttpHeaders ({ 'content-type': 'application/json'})
+    headers: new HttpHeaders ({ 'content-type': 'application/json-patch+json'})
   }
 
   handleErr(err: HttpErrorResponse) {

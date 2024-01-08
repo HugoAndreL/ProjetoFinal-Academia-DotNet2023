@@ -2,7 +2,7 @@
   <div class="card list-pessoa">
     <h5 class="card-header">Alterar Usuario: {{ this.user.nome }}</h5>
     <div class="card-body">
-      <form [formGroup]="form">
+      <form [formGroup]="frmUser">
         <section class="form-group">
           <!-- Nome -->
           <div class="my-3">
@@ -34,6 +34,7 @@
             <input 
               type="number" 
               formControlName="cargoId"
+              id="cargoId"
               class="form-control"
               name="emailCargoIdUser"
               required 
@@ -45,6 +46,7 @@
             <input 
               type="text"
               formControlName="senha"
+              id="senha"
               class="form-control"
               name="senhaUser"
             />

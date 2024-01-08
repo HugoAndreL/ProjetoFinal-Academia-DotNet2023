@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { AreaAtendimento } from '../../../../models/area-atendimento';
 import { AreaAtendimentoService } from '../../../../services/area-atendimento.service';
+import { AreaAtendimento } from '../../../../models/area-atendimento';
 
 @Component({
   selector: 'app-alterar-aa',
@@ -14,13 +14,13 @@ import { AreaAtendimentoService } from '../../../../services/area-atendimento.se
 })
 export class AlterarAaComponent {
   aa = {} as AreaAtendimento;
-  form!: FormGroup;
+  frmAa!: FormGroup;
 
   icCancel = faXmark;
   icCheck = faCheck;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: AreaAtendimentoService, private builder: FormBuilder) {
-    this.form = this.builder.group({
+    this.frmAa = this.builder.group({
       id: null,
       nome: null,
       tipoAreaAtendimentoId: null,
@@ -29,19 +29,21 @@ export class AlterarAaComponent {
   
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.getAreaAtendimentobyId(parseInt(id!)).subscribe((taa) => {
-      this.form.patchValue({
+    this.service.getAreaAtendimentobyId(parseInt(id!)).subscribe((aa) => {
+      this.frmAa.patchValue({
         id: id,
-        nome: taa.nome,
-        tipoAreaAtendimentoId: taa.tipoAreaAtendimentoId
+        nome: aa.nome,
+        tipoAreaAtendimentoId: aa.tipoAreaAtendimentoId
       });
+      this.aa = aa
     });
   }
 
   updateAreaAtendimento(): void {
-    this.service.putAreaAtendimento(this.form.value).subscribe(() => {
-      alert('Area de Atendimento alterado com sucesso!');
-      this.router.navigate(['Home/AreasAtendimento']);
-    });
+    this.service.putAreaAtendimento(this.frmAa.value)
+      .subscribe((aa) => {
+        alert(`${aa.nome} alterado com sucesso!`);
+        this.router.navigate(['Home/AreasAtendimento']);
+      });
   }
 }

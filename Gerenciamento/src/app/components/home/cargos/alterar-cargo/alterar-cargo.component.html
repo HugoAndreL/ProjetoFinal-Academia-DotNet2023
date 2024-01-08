@@ -1,8 +1,8 @@
 <section class="container">
   <div class="card list-pessoa">
-    <h5 class="card-header">Alterar Cargo: {{this.form.value.nome}}</h5>
+    <h5 class="card-header">Alterar Cargo: {{ this.cargo.nome }}</h5>
     <div class="card-body">
-      <form [formGroup]="form">
+      <form [formGroup]="frmCargo">
         <section class="form-group">
           <!-- Nome -->
           <div class="my-3">

@@ -2,29 +2,44 @@
   <div class="card list-pessoa">
     <h5 class="card-header">Adicionar Area de Atendimento</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && addAreaAtendimento()" #f="ngForm" novalidate>
+      <form (ngSubmit)="addAreaAtendimento()" [formGroup]="frmAa" #frm="ngForm">
         <section class="form-group mb-3">
           <!-- Nome -->
           <div class="my-3">
             <label class="form-label" for="nome">Nome da Area de Atendimento:</label>
             <input 
             type="text"
+            formControlName="nome"
             [(ngModel)]="aa.nome"
             id="nome"
             name="nomeAa"
             class="form-control"
             required />
           </div>
+          <div class="text-end text-danger">
+            <span *ngIf="this.frmAa.get('nome')?.touched &&
+               this.frmAa.get('nome')?.errors?.['required']">
+               *O campo 'Nome' se faz obrigatório!</span>
+            <span *ngIf="this.frmAa.get('nome')?.errors?.['maxlength']">
+              *O campo 'Nome' só suporta 50 caratéres!</span>
+          </div>
           <!-- Indetificador do Tipo de area de atendimento -->
           <div class="my-3">
             <label class="form-label" for="taaId">Identificador do Tipo de Area de Atendimento:</label>
             <input 
             type="number"
+            formControlName="tipoAreaAtendimentoId"
             [(ngModel)]="aa.tipoAreaAtendimentoId"
             id="taaIdAA"
             name="taaId"
             class="form-control"
             required />
+          </div>
+          <div class="text-end">
+            <span *ngIf="this.frmAa.get('tipoAreaAtendimentoId')?.touched &&
+              this.frmAa.get('tipoAreaAtendimentoId')?.errors?.['required']" 
+              class="text-danger d-flex justify-content-end">
+              *O campo 'Area Atendimento Id' se faz obrigatório!</span>
           </div>
         </section>
           <div class="d-flex justify-content-between">
@@ -32,7 +47,7 @@
               Cancelar
               <fa-icon [icon]="icCancel"></fa-icon>
             </button>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn" [ngClass]="this.frmAa.valid ? 'btn-success' : 'btn-danger'" [disabled]="this.frmAa.invalid">
               Adicionar 
               <fa-icon [icon]="icAdd"></fa-icon>
             </button>

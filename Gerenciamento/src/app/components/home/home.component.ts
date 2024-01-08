@@ -19,27 +19,21 @@ export class HomeComponent {
   constructor(private service: LoginService, private router: Router) {}
 
   ngOnInit() {
-    const token = localStorage.getItem("token")
-    if (this.service.ehExpirado(token))
-      this.Logout();
-    else {
-      this.router.navigate(['/Home']);
-      this.service.getUserByToken()
-      .subscribe((user) => {
-        this.user = user;
-      });
-      this.service.getFuncsbyToken()
-      .subscribe((funcs: Funcionalidade[]) => {
-        this.permissoes = funcs;
-      });
-    }
+    this.service.getUserByToken()
+    .subscribe((user) => {
+      this.user = user;
+    });
+    this.service.getFuncsbyToken()
+    .subscribe((funcs: Funcionalidade[]) => {
+      this.permissoes = funcs;
+    });
   }
 
   Logout() {
     this.service.pacthLogin()
       .subscribe(() => {
         localStorage.removeItem("token");
-        this.router.navigate([''])
+        this.router.navigate(['Login']);
       });
   }
 }

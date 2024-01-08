@@ -4,11 +4,13 @@
       <h5>Auditoria de Usuarios</h5>
     </div>
     <div class="card-body">
-      <table class="table table-light table-hover align-middle table-sm" >
-        <thead class="table-light">
-          <th class="text-center">Id</th>
-          <th class="text-center">Nome</th>
-          <th class="text-center">Email</th>
+      <table class="table table-striped table-hover align-middle table-sm" >
+        <thead class="table-dark">
+          <tr class="table-dark">
+            <th class="text-center">Id</th>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Email</th>
+          </tr>
         </thead>
         <tbody class="table-group-divider">
           <tr *ngFor="let user of users">

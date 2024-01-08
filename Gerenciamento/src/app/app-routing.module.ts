@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './security/auth.guard';
    
 import { UsuariosComponent } from './components/home/usuarios/usuarios.component';
 import { RegistraUsuarioComponent } from './components/home/usuarios/registra-usuario/registra-usuario.component';
@@ -40,10 +41,12 @@ import { HistoricoComponent } from './components/home/senha/historico/historico.
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'Login'},
+  {path: 'Login', component: LoginComponent},
   {
     path: 'Home',
     component: HomeComponent,
+    canActivate: [AuthGuard],
     children: [
       {path: 'Usuarios', component: UsuariosComponent},
       {path: 'Usuarios/Registrar', component: RegistraUsuarioComponent},

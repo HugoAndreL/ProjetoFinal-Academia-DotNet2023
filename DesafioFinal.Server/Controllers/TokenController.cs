@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
-using System.Net.Http.Headers;
 
 namespace DesafioFinal.Server.Controllers
 {

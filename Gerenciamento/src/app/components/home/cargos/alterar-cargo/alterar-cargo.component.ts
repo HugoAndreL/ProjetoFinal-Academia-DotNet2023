@@ -14,13 +14,13 @@ import { CargoService } from '../../../../services/cargo.service';
 })
 export class AlterarCargoComponent {
   cargo = {} as Cargo;
-  form!: FormGroup;
+  frmCargo!: FormGroup;
 
   icCancel = faXmark;
   icCheck = faCheck;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: CargoService, private builder: FormBuilder) {
-    this.form = this.builder.group({
+    this.frmCargo = this.builder.group({
       id: null,
       nome: null,
       email: null,
@@ -31,18 +31,21 @@ export class AlterarCargoComponent {
   
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.getCargobyId(parseInt(id!)).subscribe((cargo) => {
-      this.form.patchValue({
-        id: id,
-        nome: cargo.nome
-      });
+    this.service.getCargobyId(parseInt(id!))
+      .subscribe((cargo) => {
+        this.frmCargo.patchValue({
+          id: id,
+          nome: cargo.nome
+        });
+        this.cargo = cargo
     });
   }
 
   updateCargo(): void {
-    this.service.putCargo(this.form.value).subscribe(() => {
-      alert('Cargo alterado com sucesso!');
-      this.router.navigate(['Home/Cargos']);
-    });
+    this.service.putCargo(this.frmCargo.value)
+      .subscribe((cargo) => {
+        alert(`${cargo.nome} alterado com sucesso!`);
+        this.router.navigate(['Home/Cargos']);
+      });
   }
 }

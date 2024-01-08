@@ -14,10 +14,6 @@ export class FuncionalidadeService {
   constructor(private http: HttpClient) {}
 
   httpOptions = {
-    headers: new HttpHeaders ({ 'content-type': 'application/json' })
-  }
-
-  httpPatch = {
     headers: new HttpHeaders ({ "content-type": 'application/json-patch+json'})
   }
 
@@ -46,9 +42,6 @@ export class FuncionalidadeService {
   }
 
   patchFunciolidade(func: Funcionalidade): Observable<Funcionalidade> {
-    const httpPacth = {
-      headers: new HttpHeaders ({ 'content-type': 'application/json-patch+json' })
-    }
     let json: object = [ 
       {
         "op": "replace",
@@ -56,7 +49,7 @@ export class FuncionalidadeService {
         "value": func.cargoId
       } 
     ]
-    return this.http.patch<Funcionalidade>(`${this.url}/Associar/${func.id}`, json, this.httpPatch)
+    return this.http.patch<Funcionalidade>(`${this.url}/Associar/${func.id}`, json, this.httpOptions)
       .pipe(catchError(this.handleErr));
   }
 }

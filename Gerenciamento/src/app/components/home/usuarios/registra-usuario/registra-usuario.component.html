@@ -2,13 +2,14 @@
   <div class="card list-pessoa">
     <h5 class="card-header">Adicionar Usuario</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && addUser()" #f="ngForm" novalidate>
+      <form [formGroup]="frmUser" (ngSubmit)="addUser()" #frm="ngForm">
         <section class="form-group mb-3">
            <!-- Nome -->
            <div class="my-3">
             <label class="form-label" for="nome">Nome do Usuario:</label>
             <input 
             type="text"
+            formControlName="nome"
             [(ngModel)]="user.nome"
             id="nome"
             name="nomeUser"
@@ -16,11 +17,20 @@
             placeholder="Digite o Nome Completo"
             required />
           </div>
+          <div class="text-end text-danger">
+            <span *ngIf="this.frmUser.get('nome')?.touched &&
+              this.frmUser.get('nome')?.errors?.['required']">
+              *O campo 'Nome' deve ser obrigatório!</span>
+            <span *ngIf="this.frmUser.get('nome')?.touched &&
+              this.frmUser.get('nome')?.errors?.['maxlenght']">
+              O campo 'Nome' deve conter 50 caractéres.</span>
+          </div>
           <!-- Email -->
           <div class="my-3">
             <label for="email" class="form-label">Email do Usuario:</label>
             <input 
             type="email" 
+            formControlName="email"
             [(ngModel)]="user.email"
             id="email"
             name="emailUser"
@@ -28,28 +38,38 @@
             placeholder="email@dominio.com"
             required />
           </div>
+          <div class="text-end text-danger">
+            <span *ngIf="this.frmUser.get('email')?.touched &&
+              this.frmUser.get('email')?.errors?.['required']">
+              *O campo 'Email' se faz obrigatório!</span>
+            <span *ngIf="this.frmUser.get('email')?.touched &&
+              this.frmUser.get('email')?.errors?.['pattern']">
+              O campo 'Email' deve conter um email</span>
+          </div>
           <!-- CargoId -->
           <div class="my-3">
             <label for="cargoId" class="form-label">Identificador do Cargo:</label>
             <input 
             type="number" 
+            formControlName="cargoId"
             [(ngModel)]="user.cargoId"
-            name="emailCargoIdUser"
+            name="cargoIdUser"
             class="form-control"
             placeholder="Identificador do Cargo"
             required />
           </div>
-          <!-- Senha -->
-          <label for="senha" class="form-label">Senha do Usuario</label>
-          <input type="text" name="senhaUser" class="form-control" disabled>
-          <span id="senhaHelp" class="form-text">A senha do usuario será gerada a partir do nome completo do usuario.</span>
+          <div class="text-end text-danger">
+            <span *ngIf="this.frmUser.get('email')?.touched &&
+              this.frmUser.get('email')?.errors?.['required']">
+              *O campo 'Email' se faz obrigatório!</span>
+          </div>
         </section>
           <div class="d-flex justify-content-between">
             <button type="reset" class="btn btn-danger" routerLink="../">
               Cancelar
               <fa-icon [icon]="icCancel"></fa-icon>
             </button>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn" [ngClass]="this.frmUser.valid ? 'btn-success' : 'btn-danger'" [disabled]="this.frmUser.invalid">
               Registrar 
               <fa-icon [icon]="icAdd"></fa-icon>
             </button>

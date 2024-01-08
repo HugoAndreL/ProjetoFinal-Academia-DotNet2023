@@ -86,7 +86,7 @@ namespace DesafioFinal.Server.Controllers
         /// <param name="id">Identificador da área de atendimento a ser alterado</param>
         /// <param name="input">Área de atendimento a ser alterado</param>
         /// <returns>Nada</returns>
-        /// <response code="204">Alterado com sucesso!</response>
+        /// <response code="200">Alterado com sucesso!</response>
         /// <response code="400">Erro ao efetuar a alteração!</response>
         /// <response code="401">Erro de autorização!</response>
         /// <response code="404">Indentificador não encontrado!</response>
@@ -110,7 +110,7 @@ namespace DesafioFinal.Server.Controllers
 
                     _context.AreasAtendimento.Update(aa);
                     await _context.SaveChangesAsync();
-                    return NoContent();
+                    return Ok(aa);
                 }
                 catch (Exception ex)
                 {

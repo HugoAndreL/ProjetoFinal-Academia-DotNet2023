@@ -14,7 +14,7 @@ export class AreaAtendimentoService {
   constructor(private http: HttpClient) {}
 
   httpOptions = {
-    headers: new HttpHeaders ({ 'content-type': 'application/json'})
+    headers: new HttpHeaders ({ 'content-type': 'application/json-patch+json'})
   }
 
   handleErr(err: HttpErrorResponse) {

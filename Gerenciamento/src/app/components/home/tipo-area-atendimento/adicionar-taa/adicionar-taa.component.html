@@ -1,19 +1,27 @@
 <section class="container">
   <div class="card list-pessoa">
-    <h5 class="card-header">Adicionar Cargo</h5>
+    <h5 class="card-header">Adicionar Tipo de Area de Atendimento</h5>
     <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && addTipoAreaAtendimento()" #f="ngForm" novalidate>
+      <form (ngSubmit)="addTipoAreaAtendimento()" #frm="ngForm" [formGroup]="this.frmTaa">
         <section class="form-group mb-3">
            <!-- Nome -->
            <div class="my-3">
             <label class="form-label" for="nome">Nome do Tipo de Area de Atendimento:</label>
             <input 
             type="text"
+            formControlName="nome"
             [(ngModel)]="taa.nome"
             id="nome"
             name="nomeTaa"
             class="form-control"
             required />
+          </div>
+          <div class="text-danger text-end">
+            <span *ngIf="this.frmTaa.get('nome')?.touched &&
+              this.frmTaa.get('nome')?.errors?.['required']">
+              *O campo 'Nome' se faz obrigatório!</span>
+            <span *ngIf="this.frmTaa.get('nome')?.errors?.['maxlenght']">
+              O campo 'Nome' deve conter 50 caratéres.</span>
           </div>
         </section>
           <div class="d-flex justify-content-between">
@@ -21,7 +29,7 @@
               Cancelar
               <fa-icon [icon]="icCancel"></fa-icon>
             </button>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn" [ngClass]="this.frmTaa.valid ? 'btn-success' : 'btn-danger'" [disabled]="this.frmTaa.invalid">
               Adicionar 
               <fa-icon [icon]="icAdd"></fa-icon>
             </button>

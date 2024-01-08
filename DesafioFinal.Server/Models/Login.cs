@@ -1,12 +1,11 @@
-﻿using Microsoft.Identity.Client;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace DesafioFinal.Server.Models
 {
     /// <summary>
-    ///     Todos os logins dos usuarios 
+    ///     Todos os logins dos usuarios
     /// </summary>
     public class Login
     {

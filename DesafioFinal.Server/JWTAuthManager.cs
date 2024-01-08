@@ -35,7 +35,7 @@ namespace DesafioFinal.Server
                 {
                     new Claim(ClaimTypes.Name, username)
                 }),
-                Expires = DateTime.UtcNow.AddHours(12),
+                Expires = DateTime.UtcNow.AddSeconds(12),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
