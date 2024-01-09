@@ -20,7 +20,7 @@
         <tbody class="table-group-divider">
           <tr *ngFor="let senha of senhas">
             <td class="text-center">{{ senha.id }}</td>
-            <td class="text-center">{{ senha.prioridade == '1' ? "Normal" : "Prioritario" }}</td>
+            <td class="text-center">{{ senha.prioridade == '1' ? "Normal" : "Prioritário" }}</td>
             <td class="table-danger text-center">
               <button class="btn btn-outline-danger btn-sm" (click)="excluirSenha(senha)">
                 <fa-icon [icon]="icTrash"></fa-icon>

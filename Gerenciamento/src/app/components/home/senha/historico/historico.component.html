@@ -14,7 +14,7 @@
         <tbody class="table-group-divider">
           <tr *ngFor="let his of historicos">
             <td class="text-center">{{ his.id }}</td>
-            <td class="text-center">{{ his.prioridade }}</td>
+            <td class="text-center">{{ his.prioridade == '1' ? 'Normal': 'Prioritário' }}</td>
           </tr>
         </tbody>
       </table>
